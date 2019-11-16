@@ -8,4 +8,22 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="MyAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorAccent">@color/accountText</item>
+        <item name="colorControlNormal">@color/accountText</item>
+
+    </style>
+
+    <style name="myaccountEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">336dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:background">@drawable/accountedittext</item>
+        <item name="android:paddingLeft">24dp</item>
+        <item name="android:radius">24dp</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">@color/accountText</item>
+        <item name="android:textColorHint">@color/accountTextHint</item>
+
+    </style>
+
 </resources>
