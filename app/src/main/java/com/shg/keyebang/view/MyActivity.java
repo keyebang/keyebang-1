@@ -10,7 +10,7 @@ public abstract class MyActivity extends AppCompatActivity {
     abstract protected void init();
 
     public void toastAndLog(String message){
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         Log.d(TAG, message);
     }
 }

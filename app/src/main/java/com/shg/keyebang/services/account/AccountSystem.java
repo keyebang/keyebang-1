@@ -1,7 +1,7 @@
 package com.shg.keyebang.services.account;
 
-import com.shg.keyebang.model.User;
 
+import com.shg.keyebang.model.User;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 
@@ -13,7 +13,7 @@ public class AccountSystem {
             @Override
             public void done(User u, BmobException e) {
                 if(e == null) listener.onSuccess(u, u.getUsername());
-                else listener.onFailure(e.toString());
+                else listener.onFailure(e.getErrorCode() + ": " + e.getMessage());
             }
         });
     }
@@ -24,7 +24,7 @@ public class AccountSystem {
             @Override
             public void done(User user, BmobException e) {
                 if(e == null) listener.onSuccess(user, user.getUsername());
-                else listener.onFailure(e.toString());
+                else listener.onFailure(e.getErrorCode() + ": " + e.getMessage());
             }
         });
     }
