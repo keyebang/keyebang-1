@@ -3,7 +3,7 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="accountText">#4285F4</color>
+    <color name="themeColor">#4285F4</color>
     <color name="accountTextHint">#664285F4</color>
     <color name="accountEditText">#1E4285F4</color>
 </resources>
