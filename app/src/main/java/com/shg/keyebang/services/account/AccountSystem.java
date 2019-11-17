@@ -28,4 +28,12 @@ public class AccountSystem {
             }
         });
     }
+
+    public static String getSemester(String studentId){
+        return "大一下";
+    }
+
+    public static String getName(String studentId){
+        return "小课同学";
+    }
 }

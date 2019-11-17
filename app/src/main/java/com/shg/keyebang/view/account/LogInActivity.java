@@ -1,57 +1,42 @@
 package com.shg.keyebang.view.account;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.shg.keyebang.R;
-import com.shg.keyebang.builder.DensityAdapter;
-import com.shg.keyebang.model.User;
-import com.shg.keyebang.services.account.AccountSystem;
-import com.shg.keyebang.services.account.SignUpLogInListener;
-import com.shg.keyebang.view.MainActivity;
-import com.shg.keyebang.view.MyActivity;
+import com.shg.keyebang.presenter.account.LogInPresenter;
+import com.shg.keyebang.view.BaseActivity;
 
-public class LogInActivity extends MyActivity {
-    private EditText userName;
+public class LogInActivity extends BaseActivity {
+    private LogInPresenter presenter;
+    private EditText username;
     private EditText password;
+    private TextView toSignUp;
     private Button logInButton;
-
 
     @Override
     protected void init() {
-        userName = findViewById(R.id.username);
+        presenter = new LogInPresenter(this);
+        username = findViewById(R.id.username);
         password = findViewById(R.id.password);
-        logInButton = findViewById(R.id.loginbutton);
+        toSignUp = findViewById(R.id.toSignUp);
+        logInButton = findViewById(R.id.loginButton);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_log_in);
+        setContentView(R.layout.activity_account_login);
         init();
 
         logInButton.setOnClickListener((v)->{
-            User user = new User();
-            user.setUsername(userName.getText().toString());
-            user.setPassword(password.getText().toString());
-            AccountSystem.login(user, new SignUpLogInListener() {
-                @Override
-                public void onSuccess(User user, String message) {
-                    toastAndLog(message);
-                    Intent intent = new Intent(LogInActivity.this, MainActivity.class);
-                    startActivity(intent);
-                }
+            presenter.login(username.getText().toString(), password.getText().toString());
+        });
 
-                @Override
-                public void onFailure(String errMessage) {
-                    toastAndLog(errMessage);
-                }
-            });
+        toSignUp.setOnClickListener((v)->{
+            presenter.toSignUp();
         });
     }
 }

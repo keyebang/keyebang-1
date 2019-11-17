@@ -1,0 +1,92 @@
+package com.shg.keyebang.presenter.account;
+
+import android.content.Intent;
+import android.text.TextUtils;
+
+import com.shg.keyebang.model.User;
+import com.shg.keyebang.presenter.BasePresenter;
+import com.shg.keyebang.services.account.AccountSystem;
+import com.shg.keyebang.services.account.SignUpLogInListener;
+import com.shg.keyebang.view.MainActivity;
+import com.shg.keyebang.view.account.LogInActivity;
+import com.shg.keyebang.view.account.SignUpActivity;
+
+public class SignUpPresenter extends BasePresenter {
+    private SignUpActivity signUpActivity;
+
+    public SignUpPresenter(SignUpActivity signUpActivity){
+        this.signUpActivity = signUpActivity;
+    }
+
+    public void signUp(String username, String studentId, String nickname, String password, String confirmPassword){
+        if(TextUtils.isEmpty(username) || TextUtils.isEmpty(studentId) || TextUtils.isEmpty(nickname) || TextUtils.isEmpty(password) || TextUtils.isEmpty(confirmPassword)){
+            signUpActivity.toastAndLog("Some data is empty");
+            return;
+        }
+
+        if(!isStudentId(studentId)){
+            signUpActivity.toastAndLog("StudentId is incorrect");
+            return;
+        }
+
+        if(!password.equals(confirmPassword)){
+            signUpActivity.toastAndLog("NewPassword and confirmPassword are not the same");
+            return;
+        }
+
+        String name = AccountSystem.getName(studentId);
+        String semester = AccountSystem.getSemester(studentId);
+        if(TextUtils.isEmpty(name) || TextUtils.isEmpty(semester)){
+            signUpActivity.toastAndLog("StudentId is non-existent");
+        }
+
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setStudentId(studentId);
+        user.setNickname(nickname);
+        user.setName(name);
+        user.setSemester(semester);
+
+        AccountSystem.signUp(user, new SignUpLogInListener() {
+            @Override
+            public void onSuccess(User user, String message) {
+                if (User.isLogin()) User.logOut();
+                User u = new User(username, password);
+                AccountSystem.login(u, new SignUpLogInListener() {
+                    @Override
+                    public void onSuccess(User user, String message) {
+                        signUpActivity.toastAndLog(user.getUsername());
+                        Intent intent = new Intent(signUpActivity, MainActivity.class);
+                        signUpActivity.startActivity(intent);
+                    }
+
+                    @Override
+                    public void onFailure(String errMessage) {
+                        signUpActivity.toastAndLog(errMessage);
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(String errMessage) {
+                signUpActivity.toastAndLog(errMessage);
+            }
+        });
+    }
+
+    private boolean isStudentId(String studentId){
+        if(studentId.length() != 7) return false;
+        for (int i = studentId.length(); --i >= 0;){
+            if (!Character.isDigit(studentId.charAt(i))){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void toLogIn() {
+        Intent intent = new Intent(signUpActivity, LogInActivity.class);
+        signUpActivity.startActivity(intent);
+    }
+}
