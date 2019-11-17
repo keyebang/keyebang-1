@@ -12,7 +12,7 @@ import com.shg.keyebang.builder.DensityAdapter;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-public abstract class MyActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
     private static final String TAG = "KYB";
 
     abstract protected void init();
@@ -28,5 +28,7 @@ public abstract class MyActivity extends AppCompatActivity {
         Log.d(TAG, message);
     }
 
-
+    public void toast(String message){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
 }

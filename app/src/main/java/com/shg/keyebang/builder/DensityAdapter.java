@@ -9,21 +9,21 @@ import androidx.annotation.NonNull;
 
 public class DensityAdapter {
 
-    private static float noncompatDensity;
-    private static float noncompatScaleDensity;
+    private static float nonCompatDensity;
+    private static float nonCompatScaleDensity;
 
     public static void setCustomDensity(@NonNull Activity activity, @NonNull Application application){
         final DisplayMetrics appDisplayMetrics = application.getResources().getDisplayMetrics();
         final DisplayMetrics activityDisplayMetrics = activity.getResources().getDisplayMetrics();
 
-        if(noncompatDensity == 0){
-            noncompatDensity = appDisplayMetrics.density;
-            noncompatScaleDensity = appDisplayMetrics.scaledDensity;
+        if(nonCompatDensity == 0){
+            nonCompatDensity = appDisplayMetrics.density;
+            nonCompatScaleDensity = appDisplayMetrics.scaledDensity;
             application.registerComponentCallbacks(new ComponentCallbacks() {
                 @Override
                 public void onConfigurationChanged(@NonNull Configuration configuration) {
                     if(configuration != null && configuration.fontScale > 0){
-                        noncompatScaleDensity = application.getResources().getDisplayMetrics().scaledDensity;
+                        nonCompatScaleDensity = application.getResources().getDisplayMetrics().scaledDensity;
                     }
                 }
                 @Override
@@ -33,7 +33,7 @@ public class DensityAdapter {
         }
 
         final float targetDensity = appDisplayMetrics.widthPixels/360;
-        final float targetScaledDensity = targetDensity * (noncompatScaleDensity / noncompatDensity);
+        final float targetScaledDensity = targetDensity * (nonCompatScaleDensity / nonCompatDensity);
         final int targetDensityDpi = (int)(160 * targetDensity);
 
         appDisplayMetrics.density =  targetDensity;
