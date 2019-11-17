@@ -7,31 +7,30 @@
     tools:context=".view.account.LogInActivity">
 
     <EditText
-        style="@style/accountEditText"
-        android:id="@+id/username"
-        android:hint="Username"
-        android:layout_marginTop="240dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <EditText
-        style="@style/accountEditText"
         android:id="@+id/password"
+        style="@style/accountEditText"
+        android:layout_marginTop="16dp"
         android:hint="Password"
-        android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/username" />
 
-    <Button
-        style="@style/accountButton"
-        android:text="LogIn"
-        android:id="@+id/loginbutton"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintRight_toRightOf="parent"
+    <EditText
+        android:id="@+id/username"
+        style="@style/accountEditText"
+        android:layout_marginTop="210dp"
+        android:hint="Username"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/loginbutton"
+        style="@style/accountButton"
+        android:layout_marginBottom="20dp"
+        android:text="LogIn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

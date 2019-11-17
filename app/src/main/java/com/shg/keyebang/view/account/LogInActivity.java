@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.shg.keyebang.R;
+import com.shg.keyebang.builder.DensityAdapter;
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.services.account.AccountSystem;
 import com.shg.keyebang.services.account.SignUpLogInListener;
