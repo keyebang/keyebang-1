@@ -31,6 +31,8 @@ public class LogInActivity extends BaseActivity {
         setContentView(R.layout.activity_account_login);
         init();
 
+        presenter.autoLogin();
+
         logInButton.setOnClickListener((v)->{
             presenter.login(username.getText().toString(), password.getText().toString());
         });

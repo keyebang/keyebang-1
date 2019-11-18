@@ -27,6 +27,9 @@ android {
     useLibrary 'org.apache.http.legacy'
 }
 
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
+
 dependencies {
     //Bmob
     implementation 'cn.bmob.android:bmob-sdk:3.7.3-rc1'
@@ -35,6 +38,8 @@ dependencies {
     implementation 'com.squareup.okio:okio:2.2.2'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.squareup.okhttp3:okhttp:4.2.0'
+    //GreenDAO
+    implementation 'org.greenrobot:greendao:3.2.2'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.0.2'
