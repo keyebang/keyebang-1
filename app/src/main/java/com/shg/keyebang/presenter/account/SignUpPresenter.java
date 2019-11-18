@@ -5,7 +5,7 @@ import android.text.TextUtils;
 
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.presenter.BasePresenter;
-import com.shg.keyebang.services.account.AccountSystem;
+import com.shg.keyebang.services.account.Account;
 import com.shg.keyebang.services.account.SignUpLogInListener;
 import com.shg.keyebang.view.MainActivity;
 import com.shg.keyebang.view.account.LogInActivity;
@@ -34,10 +34,11 @@ public class SignUpPresenter extends BasePresenter {
             return;
         }
 
-        String name = AccountSystem.getName(studentId);
-        String semester = AccountSystem.getSemester(studentId);
+        String name = Account.getName(studentId);
+        String semester = Account.getSemester(studentId);
         if(TextUtils.isEmpty(name) || TextUtils.isEmpty(semester)){
             signUpActivity.toastAndLog("StudentId is non-existent");
+            return;
         }
 
         User user = new User();
@@ -48,12 +49,12 @@ public class SignUpPresenter extends BasePresenter {
         user.setName(name);
         user.setSemester(semester);
 
-        AccountSystem.signUp(user, new SignUpLogInListener() {
+        Account.signUp(user, new SignUpLogInListener() {
             @Override
             public void onSuccess(User user, String message) {
-                if (User.isLogin()) User.logOut();
+                if (Account.isLogin()) Account.logOut();
                 User u = new User(username, password);
-                AccountSystem.login(u, new SignUpLogInListener() {
+                Account.login(u, new SignUpLogInListener() {
                     @Override
                     public void onSuccess(User user, String message) {
                         signUpActivity.toastAndLog(user.getUsername());

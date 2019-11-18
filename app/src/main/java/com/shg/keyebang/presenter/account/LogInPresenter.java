@@ -4,7 +4,7 @@ import android.content.Intent;
 
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.presenter.BasePresenter;
-import com.shg.keyebang.services.account.AccountSystem;
+import com.shg.keyebang.services.account.Account;
 import com.shg.keyebang.services.account.SignUpLogInListener;
 import com.shg.keyebang.view.MainActivity;
 import com.shg.keyebang.view.account.LogInActivity;
@@ -21,7 +21,7 @@ public class LogInPresenter extends BasePresenter {
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
-        AccountSystem.login(user, new SignUpLogInListener() {
+        Account.login(user, new SignUpLogInListener() {
             @Override
             public void onSuccess(User user, String message) {
                 logInActivity.toastAndLog(message);

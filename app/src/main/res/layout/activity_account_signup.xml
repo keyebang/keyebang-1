@@ -9,7 +9,7 @@
     <EditText
         android:id="@+id/newUsername"
         style="@style/accountEditText"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="120dp"
         android:hint="Username"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -61,7 +61,7 @@
         android:layout_marginTop="16dp"
         android:text="Have an account? Login."
         android:textSize="12sp"
-        android:textColor="@color/themeColorBlue"
+        android:textColor="@color/themeColorYellow"
         android:alpha="0.75"
         />
 
@@ -69,7 +69,7 @@
         android:id="@+id/signUpButton"
         style="@style/accountButton"
         android:layout_marginBottom="20dp"
-        android:text="signUp"
+        android:text="SignUp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />

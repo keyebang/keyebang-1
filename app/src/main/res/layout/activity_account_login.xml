@@ -34,8 +34,8 @@
         android:layout_marginTop="16dp"
         android:text="Don't have an account? Sign Up."
         android:textSize="12sp"
-        android:textColor="@color/themeColorBlue"
-        android:alpha="0.75"
+        android:textColor="@color/themeColorYellow"
+        android:alpha="1"
         />
 
     <Button
