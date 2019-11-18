@@ -62,7 +62,6 @@
         android:text="Have an account? Login."
         android:textSize="12sp"
         android:textColor="@color/themeColorYellow"
-        android:alpha="0.75"
         />
 
     <Button
