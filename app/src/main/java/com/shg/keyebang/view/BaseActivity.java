@@ -1,15 +1,11 @@
 package com.shg.keyebang.view;
 
-import android.app.Activity;
-import android.app.Application;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.shg.keyebang.builder.DensityAdapter;
+import com.shg.keyebang.builder.DisplayAdapter;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -20,7 +16,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        DensityAdapter.setCustomDensity(this, getApplication());
+        DisplayAdapter.setCustomDensity(this, getApplication());
     }
 
     public void toastAndLog(String message){

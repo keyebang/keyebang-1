@@ -8,13 +8,6 @@ public class User extends BmobUser {
 
     }
 
-    public User(String username, String password, String studentId, String nickname) {
-        this.nickname = nickname;
-        this.studentId = studentId;
-        setUsername(username);
-        setPassword(password);
-    }
-
     public User(String username, String password){
         setUsername(username);
         setPassword(password);

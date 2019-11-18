@@ -11,8 +11,14 @@
         android:supportsRtl="true"
         android:theme="@style/MyAppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.account.SignUpActivity"></activity>
-        <activity android:name=".view.account.LogInActivity" />
+        <activity
+            android:name=".view.account.SignUpActivity"
+            android:launchMode="singleTask"
+            />
+        <activity
+            android:name=".view.account.LogInActivity"
+            android:launchMode="singleTask"
+            />
         <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

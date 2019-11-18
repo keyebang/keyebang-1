@@ -7,7 +7,7 @@ import android.content.res.Configuration;
 import android.util.DisplayMetrics;
 import androidx.annotation.NonNull;
 
-public class DensityAdapter {
+public class DisplayAdapter {
 
     private static float nonCompatDensity;
     private static float nonCompatScaleDensity;

@@ -6,6 +6,7 @@ import android.widget.Button;
 
 import com.shg.keyebang.R;
 import com.shg.keyebang.model.User;
+import com.shg.keyebang.services.account.Account;
 import com.shg.keyebang.view.account.LogInActivity;
 
 public class MainActivity extends BaseActivity {
@@ -27,7 +28,7 @@ public class MainActivity extends BaseActivity {
         init();
 
         logOut.setOnClickListener((v)->{
-            if(User.isLogin()) User.logOut();
+            if(Account.isLogin()) Account.logOut();
             Intent intent = new Intent(this, LogInActivity.class);
             startActivity(intent);
         });

@@ -6,8 +6,8 @@
     <color name="themeColorBlue">#3683FC</color>
     <color name="themeColorYellow">#FFB000</color>
     <color name="themeColorPink">#FC6699</color>
-    <color name="textHintBlue">#663683FC</color>
-    <color name="textHintPink">#66FC6699</color>
-    <color name="accountEdTextBlue">#1E3683FC</color>
+    <color name="textHintBlue">#603683FC</color>
+    <color name="textHintPink">#60FC6699</color>
+    <color name="accountEdTextBlue">#103683FC</color>
     <color name="accountEdTextPink">#1EFC6699</color>
 </resources>
