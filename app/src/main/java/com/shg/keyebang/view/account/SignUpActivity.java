@@ -1,8 +1,11 @@
 package com.shg.keyebang.view.account;
 
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.shg.keyebang.R;
@@ -17,7 +20,9 @@ public class SignUpActivity extends BaseActivity {
     private EditText password;
     private EditText confirmPassword;
     private TextView toLogIn;
+    private ImageView passwordIcon;
     private Button signUp;
+    private boolean isHidePassword = false;
 
     @Override
     protected void init() {
@@ -29,6 +34,7 @@ public class SignUpActivity extends BaseActivity {
         confirmPassword = findViewById(R.id.confirmPassword);
         toLogIn = findViewById(R.id.toLogIn);
         signUp = findViewById(R.id.signUpButton);
+        passwordIcon = findViewById(R.id.passwordIcon);
     }
 
     @Override
@@ -50,5 +56,25 @@ public class SignUpActivity extends BaseActivity {
         toLogIn.setOnClickListener((v)->{
             presenter.toLogIn();
         });
+
+        passwordIcon.setOnClickListener((v)->{
+            changePasswordType();
+        });
+    }
+
+    private void changePasswordType(){
+        if(isHidePassword){
+            password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            passwordIcon.setImageResource(R.drawable.ic_remove_red_eye_black_24dp);
+            passwordIcon.setAlpha((float)1.0);
+            isHidePassword = false;
+        }
+        else{
+            password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            passwordIcon.setImageResource(R.drawable.ic_md_eye_off);
+            passwordIcon.setAlpha((float)0.4);
+            isHidePassword = true;
+        }
+        password.setSelection(password.getText().toString().length());
     }
 }

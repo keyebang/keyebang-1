@@ -22,6 +22,12 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            style="@style/accountSVGIcon"
+            app:layout_constraintTop_toTopOf="@id/newUsername"
+            app:layout_constraintRight_toRightOf="@id/newUsername"
+            android:src="@drawable/ic_person_black_24dp"/>
+
         <EditText
             android:id="@+id/studentId"
             style="@style/accountEditText"
@@ -30,6 +36,12 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/newUsername" />
+
+        <ImageView
+            style="@style/accountSVGIcon"
+            app:layout_constraintTop_toTopOf="@id/studentId"
+            app:layout_constraintRight_toRightOf="@id/studentId"
+            android:src="@drawable/ic_credit_card_black_24dp"/>
 
         <EditText
             android:id="@+id/nickname"
@@ -40,6 +52,12 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/studentId" />
 
+        <ImageView
+            style="@style/accountSVGIcon"
+            app:layout_constraintTop_toTopOf="@id/nickname"
+            app:layout_constraintRight_toRightOf="@id/nickname"
+            android:src="@drawable/ic_face_black_24dp"/>
+
         <EditText
             android:id="@+id/newPassword"
             style="@style/accountEditText"
@@ -48,6 +66,14 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/nickname" />
+
+        <ImageView
+            style="@style/accountSVGIcon"
+            android:id="@+id/passwordIcon"
+            app:layout_constraintTop_toTopOf="@id/newPassword"
+            app:layout_constraintRight_toRightOf="@id/newPassword"
+            android:src="@drawable/ic_md_eye_off"
+            android:alpha="0.4"/>
 
         <EditText
             android:id="@+id/confirmPassword"

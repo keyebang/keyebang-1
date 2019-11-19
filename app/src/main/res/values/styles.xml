@@ -36,6 +36,12 @@
         <item name="android:textAllCaps">false</item>
     </style>
 
-
+    <style name="accountSVGIcon">
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:color">@color/themeColorBlue</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+    </style>
 
 </resources>
