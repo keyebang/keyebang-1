@@ -24,7 +24,7 @@ public class PhoneAccount {
         });
     }
 
-    public static void checkSMS(String phoneNumber, String code,PhoneListener listener){
+    public static void checkSMS(String phoneNumber, String code,SignUpLogInListener listener){
 
         BmobUser.signOrLoginByMobilePhone(phoneNumber, code, new LogInListener<User>() {
             @Override
@@ -32,7 +32,7 @@ public class PhoneAccount {
 
                 if (e == null) {
                     if(user.getNickname()==null){
-                        listener.signinSuccess();
+                        listener.signupSuccess();
                     }
                     else{
                     listener.loginSuccess("短信登录成功：" + user.getUsername());}
