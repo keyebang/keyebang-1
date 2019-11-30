@@ -24,7 +24,7 @@ public class PhoneAccount {
         });
     }
 
-    public static void checkSMS(String phoneNumber, String code,SignUpLogInListener listener){
+    public static void checkSMS(String phoneNumber, String code,PhoneSignUpLogInListener listener){
 
         BmobUser.signOrLoginByMobilePhone(phoneNumber, code, new LogInListener<User>() {
             @Override
