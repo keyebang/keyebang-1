@@ -21,7 +21,15 @@ public class User extends BmobUser {
         this.name = name;
         return this;
     }
-
+    public User setId4m3(String id4m3){
+        this.id4m3=id4m3;
+        return this;
+    }
+    public String getId4m3(){return id4m3;}
+    public User setPassword4m3(String password4m3){
+        this.password4m3=password4m3;
+        return this;
+    }
     public String getNickname() {
         return nickname;
     }
@@ -60,6 +68,8 @@ public class User extends BmobUser {
 
     private String name;
     private String nickname;
+    private String id4m3;
+    private String password4m3;
     private String studentId;
     private String semester;
     private String sex;

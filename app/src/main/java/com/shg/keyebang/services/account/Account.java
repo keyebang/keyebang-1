@@ -2,6 +2,7 @@ package com.shg.keyebang.services.account;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.shg.keyebang.MyApplication;
 import com.shg.keyebang.model.User;
@@ -20,6 +21,7 @@ public class Account {
             }
         });
     }
+
 
     public static void login(final User user, SignUpLogInListener listener){
 
