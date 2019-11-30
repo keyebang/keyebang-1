@@ -65,6 +65,8 @@ public class SignUpPresenter extends BasePresenter {
                         signUpActivity.startActivity(intent);
                     }
 
+
+
                     @Override
                     public void onFailure(String errMessage) {
                         signUpActivity.toastAndLog(errMessage);
