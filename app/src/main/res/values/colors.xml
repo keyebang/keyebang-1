@@ -3,11 +3,14 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="themeColorBlue">#3683FC</color>
+    <color name="themeColorBlue">#0081FF</color>
+    <color name="themeColorBlack">#002448</color>
     <color name="themeColorYellow">#FCBB35</color>
     <color name="themeColorPink">#FC6699</color>
-    <color name="textHintBlue">#603683FC</color>
+    <color name="themeColorRed">#F4511E</color>
+    <color name="textColor">#002448</color>
+    <color name="textInputColor">#99002448</color>
+    <color name="textHintColor">#40002448</color>
     <color name="textHintPink">#60FC6699</color>
-    <color name="accountEdTextBlue">#103683FC</color>
-    <color name="accountEdTextPink">#1EFC6699</color>
+    <color name="accountEdText">#0D002448</color>
 </resources>

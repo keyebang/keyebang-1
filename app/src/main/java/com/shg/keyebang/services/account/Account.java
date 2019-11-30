@@ -12,24 +12,13 @@ public class Account {
 
     public static void signUp(final User user, SignUpLogInListener listener){
 
-        user.signUp(new SaveListener<User>() {
-            @Override
-            public void done(User u, BmobException e) {
-                if(e == null) listener.onSuccess(u, u.getUsername());
-                else listener.onFailure(e.getErrorCode() + ": " + e.getMessage());
-            }
-        });
+
+
     }
 
     public static void login(final User user, SignUpLogInListener listener){
 
-        user.login(new SaveListener<User>() {
-            @Override
-            public void done(User user, BmobException e) {
-                if(e == null) listener.onSuccess(user, user.getUsername());
-                else listener.onFailure(e.getErrorCode() + ": " + e.getMessage());
-            }
-        });
+
     }
 
     public static void logOut(){

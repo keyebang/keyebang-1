@@ -1,11 +1,9 @@
-package com.shg.keyebang.view.personal;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.shg.keyebang.view.activity.personal;
 
 import android.os.Bundle;
 
 import com.shg.keyebang.R;
-import com.shg.keyebang.view.BaseActivity;
+import com.shg.keyebang.view.activity.BaseActivity;
 
 public class PersonalActivity extends BaseActivity {
 

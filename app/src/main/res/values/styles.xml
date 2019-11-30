@@ -12,24 +12,32 @@
         <item name="colorAccent">@color/themeColorBlue</item>
     </style>
 
-    <style name="accountEditText" parent="Widget.AppCompat.EditText">
-        <item name="android:layout_width">320dp</item>
-        <item name="android:layout_height">40dp</item>
-        <item name="android:background">@drawable/accountedtextbg</item>
-        <item name="android:padding">0dp</item>
-        <item name="android:paddingStart">20dp</item>
-        <item name="android:paddingEnd">20dp</item>
-        <item name="android:lines">1</item>
-        <item name="android:radius">20dp</item>
+    <style name="accountHint" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:alpha">0.7</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/themeColorBlue</item>
-        <item name="android:textColorHint">@color/textHintBlue</item>
+        <item name="android:textColor">@color/themeColorBlack</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="accountEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:background">@drawable/account_bg_edittext</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:paddingStart">18dp</item>
+        <item name="android:paddingEnd">18dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:radius">18dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/textInputColor</item>
     </style>
 
     <style name="accountButton" parent="Widget.AppCompat.Button">
-        <item name="android:layout_width">320dp</item>
+        <item name="android:layout_width">280dp</item>
         <item name="android:layout_height">40dp</item>
-        <item name="android:background">@drawable/fullradiusbg</item>
+        <item name="android:background">@drawable/common_bg_button</item>
         <item name="android:padding">0dp</item>
         <item name="android:radius">20dp</item>
         <item name="android:textColor">#FFFFFF</item>
@@ -42,6 +50,7 @@
         <item name="android:color">@color/themeColorBlue</item>
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:layout_marginRight">20dp</item>
+        <item name="android:alpha">0.9</item>
     </style>
 
 </resources>

@@ -1,4 +1,4 @@
-package com.shg.keyebang.view.account;
+package com.shg.keyebang.view.activity.account;
 
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
@@ -9,52 +9,42 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.shg.keyebang.R;
-import com.shg.keyebang.presenter.account.SignUpPresenter;
-import com.shg.keyebang.view.BaseActivity;
+import com.shg.keyebang.presenter.account.OldLogInPresenter;
+import com.shg.keyebang.view.activity.BaseActivity;
 
-public class SignUpActivity extends BaseActivity {
-    private SignUpPresenter presenter;
+public class OldLogInActivity extends BaseActivity {
+    private OldLogInPresenter presenter;
     private EditText username;
-    private EditText studentId;
-    private EditText nickname;
     private EditText password;
-    private EditText confirmPassword;
-    private TextView toLogIn;
+    private TextView toSignUp;
+    private Button logInButton;
     private ImageView passwordIcon;
-    private Button signUp;
     private boolean isHidePassword = false;
 
     @Override
     protected void init() {
-        presenter = new SignUpPresenter(this);
-        username = findViewById(R.id.newUsername);
-        studentId = findViewById(R.id.studentId);
-        nickname = findViewById(R.id.nickname);
-        password = findViewById(R.id.newPassword);
-        confirmPassword = findViewById(R.id.confirmPassword);
-        toLogIn = findViewById(R.id.toLogIn);
-        signUp = findViewById(R.id.signUpButton);
+        presenter = new OldLogInPresenter(this);
+        username = findViewById(R.id.username);
+        password = findViewById(R.id.password);
+        toSignUp = findViewById(R.id.toSignUp);
+        logInButton = findViewById(R.id.loginButton);
         passwordIcon = findViewById(R.id.passwordIcon);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_account_signup);
+        setContentView(R.layout.activity_old_account_login);
         init();
 
-        signUp.setOnClickListener((v)->{
-            presenter.signUp(
-                    username.getText().toString(),
-                    studentId.getText().toString(),
-                    nickname.getText().toString(),
-                    password.getText().toString(),
-                    confirmPassword.getText().toString()
-            );
+        presenter.autoLogin();
+
+        logInButton.setOnClickListener((v)->{
+            presenter.login(username.getText().toString(), password.getText().toString());
         });
 
-        toLogIn.setOnClickListener((v)->{
-            presenter.toLogIn();
+        toSignUp.setOnClickListener((v)->{
+            presenter.toSignUp();
         });
 
         passwordIcon.setOnClickListener((v)->{
@@ -65,7 +55,7 @@ public class SignUpActivity extends BaseActivity {
     private void changePasswordType(){
         if(isHidePassword){
             password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-            passwordIcon.setImageResource(R.drawable.ic_remove_red_eye_black_24dp);
+            passwordIcon.setImageResource(R.drawable.ic_md_eye_on);
             passwordIcon.setAlpha((float)1.0);
             isHidePassword = false;
         }

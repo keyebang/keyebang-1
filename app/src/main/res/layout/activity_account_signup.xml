@@ -1,110 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.account.SignUpActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/account_bg_layout">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="296dp"
+        android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4">
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
 
-        <EditText
-            android:id="@+id/newUsername"
-            style="@style/accountEditText"
-            android:layout_marginTop="0dp"
-            android:hint="Username"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            style="@style/accountSVGIcon"
-            app:layout_constraintTop_toTopOf="@id/newUsername"
-            app:layout_constraintRight_toRightOf="@id/newUsername"
-            android:src="@drawable/ic_person_black_24dp"/>
-
-        <EditText
-            android:id="@+id/studentId"
-            style="@style/accountEditText"
-            android:layout_marginTop="16dp"
-            android:hint="StudentId"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/newUsername" />
-
-        <ImageView
-            style="@style/accountSVGIcon"
-            app:layout_constraintTop_toTopOf="@id/studentId"
-            app:layout_constraintRight_toRightOf="@id/studentId"
-            android:src="@drawable/ic_credit_card_black_24dp"/>
-
-        <EditText
-            android:id="@+id/nickname"
-            style="@style/accountEditText"
-            android:layout_marginTop="16dp"
-            android:hint="Nickname"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/studentId" />
-
-        <ImageView
-            style="@style/accountSVGIcon"
-            app:layout_constraintTop_toTopOf="@id/nickname"
-            app:layout_constraintRight_toRightOf="@id/nickname"
-            android:src="@drawable/ic_face_black_24dp"/>
-
-        <EditText
-            android:id="@+id/newPassword"
-            style="@style/accountEditText"
-            android:layout_marginTop="16dp"
-            android:hint="Password"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/nickname" />
-
-        <ImageView
-            style="@style/accountSVGIcon"
-            android:id="@+id/passwordIcon"
-            app:layout_constraintTop_toTopOf="@id/newPassword"
-            app:layout_constraintRight_toRightOf="@id/newPassword"
-            android:src="@drawable/ic_md_eye_off"
-            android:alpha="0.4"/>
-
-        <EditText
-            android:id="@+id/confirmPassword"
-            style="@style/accountEditText"
-            android:layout_marginTop="16dp"
-            android:hint="ConfirmPassword"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/newPassword" />
-
-        <TextView
-            android:id="@+id/toLogIn"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/signUpTitleBg"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="16dp"
-            android:text="Have an account? Login."
-            android:textColor="@color/themeColorYellow"
-            android:textSize="12sp"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/confirmPassword" />
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="40dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:src="@drawable/ic_close_black_24dp"
+                android:alpha="0.5">
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="欢迎注册！首先请完善信息"
+                android:textColor="@color/textColor"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="28dp"
+                android:layout_marginBottom="1dp"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@id/signUpTitleBg">
+
+            <TextView
+                android:id="@+id/nicknameHint"
+                style="@style/accountHint"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:text="呢称" />
+
+            <EditText
+                android:id="@+id/signUpNickname"
+                style="@style/accountEditText"
+                app:layout_constraintTop_toBottomOf="@id/nicknameHint"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="8dp"
+                android:paddingEnd="104dp"/>
+
+            <TextView
+                android:id="@+id/studentIdHint"
+                style="@style/accountHint"
+                app:layout_constraintTop_toBottomOf="@id/signUpNickname"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="12dp"
+                android:text="学号"/>
+
+            <EditText
+                android:id="@+id/signUpStudentId"
+                style="@style/accountEditText"
+                app:layout_constraintTop_toBottomOf="@id/studentIdHint"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="8dp"
+                android:paddingEnd="104dp"/>
+
+            <TextView
+                android:id="@+id/semesterHint"
+                style="@style/accountHint"
+                app:layout_constraintTop_toBottomOf="@id/signUpStudentId"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="12dp"
+                android:text="年级"/>
+
+            <EditText
+                android:id="@+id/signUpSemester"
+                style="@style/accountEditText"
+                app:layout_constraintTop_toBottomOf="@id/semesterHint"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="8dp"
+                android:paddingEnd="104dp"/>
+
+            <TextView
+                android:id="@+id/majorHint"
+                style="@style/accountHint"
+                app:layout_constraintTop_toBottomOf="@id/signUpSemester"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="12dp"
+                android:text="专业"/>
+
+            <EditText
+                android:id="@+id/signUpMajor"
+                style="@style/accountEditText"
+                app:layout_constraintTop_toBottomOf="@id/majorHint"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="8dp"/>
+
+            <TextView
+                android:id="@+id/passwordHint"
+                style="@style/accountHint"
+                app:layout_constraintTop_toBottomOf="@id/signUpMajor"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="12dp"
+                android:text="密码"/>
+
+            <EditText
+                android:id="@+id/signUpPassword"
+                style="@style/accountEditText"
+                app:layout_constraintTop_toBottomOf="@id/passwordHint"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="8dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/signUpButton"
+            style="@style/accountButton"
+            android:layout_width="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginBottom="32dp"
+            android:text="完成"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/signUpButton"
-        style="@style/accountButton"
-        android:layout_marginBottom="20dp"
-        android:text="SignUp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+

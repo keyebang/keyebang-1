@@ -1,17 +1,13 @@
 package com.shg.keyebang.presenter.account;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.text.TextUtils;
 
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.presenter.BasePresenter;
 import com.shg.keyebang.services.account.Account;
-import com.shg.keyebang.services.account.SignUpLogInListener;
-import com.shg.keyebang.view.MainActivity;
-import com.shg.keyebang.view.account.LogInActivity;
-import com.shg.keyebang.view.account.SignUpActivity;
+import com.shg.keyebang.view.activity.account.OldLogInActivity;
+import com.shg.keyebang.view.activity.account.SignUpActivity;
 
 public class SignUpPresenter extends BasePresenter {
     private SignUpActivity signUpActivity;
@@ -51,32 +47,6 @@ public class SignUpPresenter extends BasePresenter {
         user.setName(name);
         user.setSemester(semester);
 
-        Account.signUp(user, new SignUpLogInListener() {
-            @Override
-            public void onSuccess(User user, String message) {
-                if (Account.isLogin()) Account.logOut();
-                User u = new User(username, password);
-                Account.login(u, new SignUpLogInListener() {
-                    @Override
-                    public void onSuccess(User user, String message) {
-                        signUpActivity.toastAndLog(user.getUsername());
-                        Account.setAccountSp(username, password);
-                        Intent intent = new Intent(signUpActivity, MainActivity.class);
-                        signUpActivity.startActivity(intent);
-                    }
-
-                    @Override
-                    public void onFailure(String errMessage) {
-                        signUpActivity.toastAndLog(errMessage);
-                    }
-                });
-            }
-
-            @Override
-            public void onFailure(String errMessage) {
-                signUpActivity.toastAndLog(errMessage);
-            }
-        });
     }
 
     private boolean isStudentId(String studentId){
@@ -90,7 +60,7 @@ public class SignUpPresenter extends BasePresenter {
     }
 
     public void toLogIn() {
-        Intent intent = new Intent(signUpActivity, LogInActivity.class);
+        Intent intent = new Intent(signUpActivity, OldLogInActivity.class);
         signUpActivity.startActivity(intent);
     }
 }
