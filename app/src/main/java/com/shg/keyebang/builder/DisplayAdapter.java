@@ -5,6 +5,9 @@ import android.app.Application;
 import android.content.ComponentCallbacks;
 import android.content.res.Configuration;
 import android.util.DisplayMetrics;
+
+import com.shg.keyebang.MyApplication;
+
 import androidx.annotation.NonNull;
 
 public class DisplayAdapter {
@@ -43,5 +46,17 @@ public class DisplayAdapter {
         activityDisplayMetrics.density = targetDensity;
         activityDisplayMetrics.scaledDensity = targetScaledDensity;
         activityDisplayMetrics.densityDpi = targetDensityDpi;
+    }
+
+    public static int pxTodp(int px){
+        final DisplayMetrics displayMetrics = MyApplication.getContext().getResources().getDisplayMetrics();
+        int dp = px * (int)displayMetrics.density;
+        return dp;
+    }
+
+    public static float pxTodp(float px){
+        final DisplayMetrics displayMetrics = MyApplication.getContext().getResources().getDisplayMetrics();
+        float dp = px * (float) displayMetrics.density;
+        return dp;
     }
 }

@@ -1,4 +1,4 @@
-package com.shg.keyebang.view;
+package com.shg.keyebang.view.activity;
 
 import android.os.Bundle;
 import android.util.Log;

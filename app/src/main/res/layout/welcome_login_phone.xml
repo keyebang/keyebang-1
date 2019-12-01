@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.lijiankun24.shadowlayout.ShadowLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:shadowColor="#0E000000"
+    app:shadowDy="-6dp"
+    app:shadowRadius="20dp"
+    app:shadowSide="top"
+    android:paddingBottom="0dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="360dp"
+        android:layout_height="384dp"
+        android:background="@drawable/account_bg_layout"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="36dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/phoneLoginTitleBg"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="欢迎来到课业帮"
+                    android:textColor="@color/textColor"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/commonLoginPhoneNumberHint"
+                style="@style/accountHint"
+                app:layout_constraintTop_toBottomOf="@id/phoneLoginTitleBg"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:text="手机号"/>
+
+            <EditText
+                android:id="@+id/phoneLoginPhoneNumber"
+                style="@style/accountEditText"
+                app:layout_constraintTop_toBottomOf="@id/commonLoginPhoneNumberHint"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="8dp"
+                android:paddingEnd="104dp"/>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/getCode"
+                android:layout_width="104dp"
+                android:layout_height="36dp"
+                android:background="@drawable/common_bg_touch"
+                app:layout_constraintTop_toTopOf="@id/phoneLoginPhoneNumber"
+                app:layout_constraintRight_toRightOf="@id/phoneLoginPhoneNumber">
+
+
+                <TextView
+                    android:id="@+id/getCodeHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:text="获取验证码"
+                    android:alpha="0.7"
+                    android:textStyle="bold"
+                    android:textSize="12sp"
+                    android:textColor="@color/textColor"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <TextView
+                android:id="@+id/phoneLoginPasswordHint"
+                style="@style/accountHint"
+                app:layout_constraintTop_toBottomOf="@id/phoneLoginPhoneNumber"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="16dp"
+                android:text="验证码"/>
+
+            <EditText
+                android:id="@+id/phoneLoginCode"
+                style="@style/accountEditText"
+                app:layout_constraintTop_toBottomOf="@id/phoneLoginPasswordHint"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="8dp"/>
+
+            <TextView
+                android:id="@+id/toCommonLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/phoneLoginCode"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="112dp"
+                android:text="— 使用密码登录 —"
+                android:alpha="0.4"
+                android:textSize="11sp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.lijiankun24.shadowlayout.ShadowLayout>
+
+

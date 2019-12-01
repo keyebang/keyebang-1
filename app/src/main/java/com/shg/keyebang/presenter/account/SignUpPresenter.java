@@ -1,82 +1,51 @@
 package com.shg.keyebang.presenter.account;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.text.TextUtils;
 
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.presenter.BasePresenter;
-import com.shg.keyebang.services.account.Account;
-import com.shg.keyebang.services.account.SignUpLogInListener;
-import com.shg.keyebang.view.MainActivity;
-import com.shg.keyebang.view.account.LogInActivity;
-import com.shg.keyebang.view.account.SignUpActivity;
+import com.shg.keyebang.services.account.Account4m3;
+import com.shg.keyebang.services.account.GetInfoListener;
+import com.shg.keyebang.view.activity.MainActivity;
+import com.shg.keyebang.view.activity.account.SignUpActivity;
 
 public class SignUpPresenter extends BasePresenter {
-    private SignUpActivity signUpActivity;
+    private SignUpActivity activity;
 
     public SignUpPresenter(SignUpActivity signUpActivity){
-        this.signUpActivity = signUpActivity;
+        this.activity = signUpActivity;
     }
 
-    public void signUp(String username, String studentId, String nickname, String password, String confirmPassword){
-        if(TextUtils.isEmpty(username) || TextUtils.isEmpty(studentId) || TextUtils.isEmpty(nickname) || TextUtils.isEmpty(password) || TextUtils.isEmpty(confirmPassword)){
-            signUpActivity.toastAndLog("Some data is empty");
+    public void signUp(String nickname, String studentId, String semester, String major, String password){
+        if(TextUtils.isEmpty(nickname) || TextUtils.isEmpty(studentId) || TextUtils.isEmpty(semester) || TextUtils.isEmpty(major) || TextUtils.isEmpty(password)){
+            activity.toastAndLog("信息未填写完全");
             return;
         }
 
         if(!isStudentId(studentId)){
-            signUpActivity.toastAndLog("StudentId is incorrect");
+            activity.toastAndLog("StudentId格式不正确");
             return;
         }
 
-        if(!password.equals(confirmPassword)){
-            signUpActivity.toastAndLog("NewPassword and confirmPassword are not the same");
-            return;
-        }
-
-        String name = Account.getName(studentId);
-        String semester = Account.getSemester(studentId);
-        if(TextUtils.isEmpty(name) || TextUtils.isEmpty(semester)){
-            signUpActivity.toastAndLog("StudentId is non-existent");
-            return;
-        }
-
-        User user = new User();
-        user.setUsername(username);
+        User user = User.getCurrentUser(User.class);
         user.setPassword(password);
         user.setStudentId(studentId);
         user.setNickname(nickname);
-        user.setName(name);
         user.setSemester(semester);
+        user.setMajor(major);
 
-        Account.signUp(user, new SignUpLogInListener() {
+        Account4m3.gatInfo(user, password, studentId, "", new GetInfoListener() {
             @Override
-            public void onSuccess(User user, String message) {
-                if (Account.isLogin()) Account.logOut();
-                User u = new User(username, password);
-                Account.login(u, new SignUpLogInListener() {
-                    @Override
-                    public void onSuccess(User user, String message) {
-                        signUpActivity.toastAndLog(user.getUsername());
-                        Account.setAccountSp(username, password);
-                        Intent intent = new Intent(signUpActivity, MainActivity.class);
-                        signUpActivity.startActivity(intent);
-                    }
-
-
-
-                    @Override
-                    public void onFailure(String errMessage) {
-                        signUpActivity.toastAndLog(errMessage);
-                    }
-                });
+            public void onSuccess(String message) {
+                activity.toast(message);
+                Intent intent = new Intent(activity, MainActivity.class);
+                activity.startActivity(intent);
             }
 
             @Override
             public void onFailure(String errMessage) {
-                signUpActivity.toastAndLog(errMessage);
+                activity.toastAndLog(errMessage);
             }
         });
     }
@@ -89,10 +58,5 @@ public class SignUpPresenter extends BasePresenter {
             }
         }
         return true;
-    }
-
-    public void toLogIn() {
-        Intent intent = new Intent(signUpActivity, LogInActivity.class);
-        signUpActivity.startActivity(intent);
     }
 }

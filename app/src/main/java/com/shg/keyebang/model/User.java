@@ -57,12 +57,16 @@ public class User extends BmobUser {
         return this;
     }
 
-    public String getSex() {
-        return sex;
+    public String getPassword4m3() {
+        return password4m3;
     }
 
-    public User setSex(String sex) {
-        this.sex = sex;
+    public String getMajor() {
+        return major;
+    }
+
+    public User setMajor(String major) {
+        this.major = major;
         return this;
     }
 
@@ -72,5 +76,5 @@ public class User extends BmobUser {
     private String password4m3;
     private String studentId;
     private String semester;
-    private String sex;
+    private String major;
 }
