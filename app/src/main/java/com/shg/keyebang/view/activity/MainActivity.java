@@ -6,14 +6,15 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.shg.keyebang.R;
+import com.shg.keyebang.model.User;
 import com.shg.keyebang.view.activity.account.LoginActivity;
 import com.shg.keyebang.view.activity.account.SignUpActivity;
 import com.shg.keyebang.view.activity.classtable.ClassTableActivity;
 
 public class MainActivity extends BaseActivity {
     private Button logOut;
-    private TextView toClassTable;
-    private TextView toTest;
+    private Button toClassTable;
+    private Button toTest;
 
 
     @Override
@@ -44,5 +45,15 @@ public class MainActivity extends BaseActivity {
             Intent intent = new Intent(this, ClassTableActivity.class);
             startActivity(intent);
         });
+
+        User user = User.getCurrentUser(User.class);
+        if(user != null) {
+            toastAndLog(
+                    "当前用户：" + "\n" +
+                    user.getUsername() + "\n" +
+                    user.getNickname() + "\n" +
+                    user.getStudentId());
+        }
+        else toastAndLog("不存在当前用户，请尝试登录");
     }
 }

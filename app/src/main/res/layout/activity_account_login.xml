@@ -10,29 +10,56 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/startup"
+        app:layout_constraintBottom_toTopOf="@id/loginCardBg"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/accountCardBg"/>
+        android:layout_marginTop="32dp"/>
 
-    <ImageView
-        android:id="@+id/accountCardBg"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="384dp"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
-    <include layout="@layout/welcome_login_phone"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent">
-    </include>
+
+        <include
+            android:id="@+id/commonLoginCard"
+            layout="@layout/welcome_login_common"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+        </include>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/loginCardBg"
+        android:layout_width="match_parent"
+        android:layout_height="384dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <include
+            android:id="@+id/phoneLoginCard"
+            layout="@layout/welcome_login_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+        </include>
+
+    </LinearLayout>
+
 
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/entryButton"
         style="@style/accountButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginBottom="32dp"
-        android:text="登录/注册"/>
+        android:text="进入课业帮"/>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

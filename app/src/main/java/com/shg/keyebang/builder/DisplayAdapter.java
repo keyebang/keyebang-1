@@ -53,4 +53,10 @@ public class DisplayAdapter {
         int dp = px * (int)displayMetrics.density;
         return dp;
     }
+
+    public static float pxTodp(float px){
+        final DisplayMetrics displayMetrics = MyApplication.getContext().getResources().getDisplayMetrics();
+        float dp = px * (float) displayMetrics.density;
+        return dp;
+    }
 }

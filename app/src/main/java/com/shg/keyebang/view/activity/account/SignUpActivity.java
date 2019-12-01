@@ -21,12 +21,14 @@ public class SignUpActivity extends BaseActivity {
     private EditText major;
     private TextView toLogIn;
     private ImageView passwordIcon;
+    private ImageView close;
     private Button signUp;
     private boolean isHidePassword = false;
 
     @Override
     protected void init() {
         presenter = new SignUpPresenter(this);
+        close = findViewById(R.id.close);
         studentId = findViewById(R.id.signUpStudentId);
         nickname = findViewById(R.id.signUpNickname);
         password = findViewById(R.id.signUpPassword);
@@ -42,22 +44,20 @@ public class SignUpActivity extends BaseActivity {
         setContentView(R.layout.activity_account_signup);
         init();
 
+        signUp.setOnClickListener(view -> {
+            presenter.signUp(
+                    nickname.getText().toString(),
+                    studentId.getText().toString(),
+                    semester.getText().toString(),
+                    major.getText().toString(),
+                    password.getText().toString()
+            );
+        });
 
-    }
+        close.setOnClickListener(v->{
+            finish();
+        });
 
-    private void changePasswordType(){
-        if(isHidePassword){
-            password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-            passwordIcon.setImageResource(R.drawable.ic_md_eye_on);
-            passwordIcon.setAlpha((float)1.0);
-            isHidePassword = false;
-        }
-        else{
-            password.setTransformationMethod(PasswordTransformationMethod.getInstance());
-            passwordIcon.setImageResource(R.drawable.ic_md_eye_off);
-            passwordIcon.setAlpha((float)0.4);
-            isHidePassword = true;
-        }
-        password.setSelection(password.getText().toString().length());
+
     }
 }
