@@ -18,7 +18,7 @@
         android:id="@+id/classCard"
         android:layout_width="64dp"
         android:layout_height="148dp"
-        android:background="@drawable/classtable_bg_classcard">
+        android:background="@drawable/coursetable_bg_coursecard">
 
         <ImageView
             android:id="@+id/cardTag"
@@ -28,7 +28,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginLeft="6dp"
             android:layout_marginTop="6dp"
-            android:background="@drawable/classtable_shape_tag"/>
+            android:background="@drawable/coursetable_shape_tag"/>
 
         <TextView
             android:id="@+id/className"
@@ -84,7 +84,7 @@
                 android:id="@+id/todoBg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/classtable_shape_tag"
+                android:src="@drawable/coursetable_shape_tag"
                 android:alpha="0.1">
             </ImageView>
 

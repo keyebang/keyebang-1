@@ -1,4 +1,4 @@
-package com.shg.keyebang.services.classtable;
+package com.shg.keyebang.fakeservices.coursetable;
 
 import com.shg.keyebang.model.Course;
 import com.shg.keyebang.model.Todo;
@@ -16,7 +16,7 @@ public class FakeTableService {
         //Course
         Course course1 = new Course("概率论1", "安楼101","李华",1,1,2);
         Course course2 = new Course("概率论2", "安楼101","李华",1,3,4);
-        Course course3 = new Course("概率论3", "安楼101","李华",2,5,6);
+        Course course3 = new Course("概率论3", "安楼101","李华",2,9,12);
         Course course4 = new Course("概率论4", "安楼101","李华",3,1,2);
         Course course5 = new Course("概率论概率论概率论", "安楼101","李华",5,1,2);
         Course course6 = new Course("概率论6", "安楼101","李华",4,3,4);
@@ -52,8 +52,4 @@ public class FakeTableService {
     }
 
 
-    public interface FakeGetTableListener {
-        void onSuccess(Map<Course, Todo> table);
-        void onFailure(String errMessage);
-    }
 }

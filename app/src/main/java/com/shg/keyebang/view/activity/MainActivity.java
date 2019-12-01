@@ -3,13 +3,12 @@ package com.shg.keyebang.view.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.shg.keyebang.R;
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.view.activity.account.LoginActivity;
 import com.shg.keyebang.view.activity.account.SignUpActivity;
-import com.shg.keyebang.view.activity.classtable.ClassTableActivity;
+import com.shg.keyebang.view.activity.coursetable.CourseTableActivity;
 
 public class MainActivity extends BaseActivity {
     private Button logOut;
@@ -42,7 +41,7 @@ public class MainActivity extends BaseActivity {
         });
 
         toClassTable.setOnClickListener((v)->{
-            Intent intent = new Intent(this, ClassTableActivity.class);
+            Intent intent = new Intent(this, CourseTableActivity.class);
             startActivity(intent);
         });
 

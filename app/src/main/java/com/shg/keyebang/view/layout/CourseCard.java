@@ -1,7 +1,6 @@
 package com.shg.keyebang.view.layout;
 
 import android.content.Context;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -36,7 +35,7 @@ public class CourseCard extends FrameLayout implements View.OnClickListener {
 
     public CourseCard(Context context){
         super(context);
-        LayoutInflater.from(context).inflate(R.layout.classtable_classcard, this);
+        LayoutInflater.from(context).inflate(R.layout.coursetable_coursecard, this);
 
         cardBg = findViewById(R.id.cardBg);
         classCard = findViewById(R.id.classCard);
@@ -59,7 +58,7 @@ public class CourseCard extends FrameLayout implements View.OnClickListener {
         FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams)cardBg.getLayoutParams();
         //lp.setMargins(50,50,0,0);
 
-        lp.setMargins(DisplayAdapter.pxTodp((course.getWeekday() - 1) * (boxWidth + spacing)), DisplayAdapter.pxTodp((course.getFirstClass() - 1) * (boxHeight + spacing)), 0, 0);
+        lp.setMargins(DisplayAdapter.pxTodp(4 + (course.getWeekday() - 1) * (boxWidth + spacing)), DisplayAdapter.pxTodp((course.getFirstClass() - 1) * (boxHeight + spacing)), 0, 0);
     }
 
     public void setSize(Course course){

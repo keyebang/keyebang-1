@@ -1,20 +1,24 @@
-package com.shg.keyebang.view.activity.classtable;
+package com.shg.keyebang.view.activity.coursetable;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 
 import com.shg.keyebang.R;
 import com.shg.keyebang.model.Course;
 import com.shg.keyebang.model.Todo;
-import com.shg.keyebang.presenter.classtable.ClassTablePresenter;
+import com.shg.keyebang.model.User;
+import com.shg.keyebang.presenter.coursetable.ClassTablePresenter;
 import com.shg.keyebang.view.activity.BaseActivity;
+import com.shg.keyebang.view.activity.account.LoginActivity;
 import com.shg.keyebang.view.layout.CourseCard;
 
 import java.util.ArrayList;
 import java.util.Map;
 
-public class ClassTableActivity extends BaseActivity {
+public class CourseTableActivity extends BaseActivity {
     ClassTablePresenter presenter;
     ConstraintLayout tableContainer;
     ArrayList<CourseCard> cards = new ArrayList<>();
@@ -28,11 +32,20 @@ public class ClassTableActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_classtable);
+        setContentView(R.layout.activity_coursetable);
         init();
 
-        Map<Course, Todo> classTable = presenter.fakeGetTable();
+        if(TextUtils.isEmpty(User.getCurrentUser(User.class).getStudentId())){
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
 
+        presenter.fakeGetTable();
+
+        //toastAndLog(tableContainer.getWidth() + "");
+    }
+
+    public void setCourseTable(Map<Course, Todo> classTable){
         for(Course course: classTable.keySet()){
             CourseCard card = new CourseCard(this);
             card.setCourse(course);
@@ -42,6 +55,5 @@ public class ClassTableActivity extends BaseActivity {
             cards.add(card);
             tableContainer.addView(card);
         }
-        //toastAndLog(tableContainer.getWidth() + "");
     }
 }
