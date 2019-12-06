@@ -1,6 +1,8 @@
 package com.shg.keyebang.model;
 
-public class Course {
+import cn.bmob.v3.BmobObject;
+
+public class Course extends BmobObject {
     private String className;
     private String classPlace;
     private String teacher;

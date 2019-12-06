@@ -19,7 +19,6 @@ public class SignUpActivity extends BaseActivity {
     private EditText nickname;
     private EditText password;
     private EditText major;
-    private TextView toLogIn;
     private ImageView passwordIcon;
     private ImageView close;
     private Button signUp;
@@ -57,7 +56,5 @@ public class SignUpActivity extends BaseActivity {
         close.setOnClickListener(v->{
             finish();
         });
-
-
     }
 }

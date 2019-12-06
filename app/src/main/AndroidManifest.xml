@@ -11,16 +11,18 @@
         android:supportsRtl="true"
         android:theme="@style/MyAppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.activity.coursetable.CourseTableActivity"></activity>
+        <activity
+            android:name=".view.activity.coursetable.TodoActivity"
+            android:theme="@style/NoTitleTranslucentTheme"></activity>
         <activity android:name=".view.activity.account.LoginActivity" />
-        <activity android:name=".view.activity.personal.PersonalActivity" />
         <activity
             android:name=".view.activity.account.SignUpActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".view.activity.MainActivity">
+        <activity
+            android:name=".view.activity.main.MainActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -29,12 +31,12 @@
             android:name="cn.bmob.v3.util.BmobContentProvider"
             android:authorities="com.shg.keyebang.BmobContentProvider" />
     </application>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>

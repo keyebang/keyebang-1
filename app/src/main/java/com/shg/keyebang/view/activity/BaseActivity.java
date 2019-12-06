@@ -1,10 +1,11 @@
 package com.shg.keyebang.view.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.shg.keyebang.builder.DisplayAdapter;
+import com.shg.keyebang.aatools.DisplayAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,7 +25,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         Log.d(TAG, message);
     }
 
-    public void toast(String message){
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    protected void startActivityDirectly(Class<?> cls){
+        Intent intent = new Intent(this, cls);
+        startActivity(intent);
     }
 }
