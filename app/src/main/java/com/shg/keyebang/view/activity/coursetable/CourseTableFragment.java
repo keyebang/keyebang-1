@@ -28,7 +28,8 @@ public class CourseTableFragment extends BaseFragment {
     private ArrayList<CourseCard> courseCards;
     private ConstraintLayout tableContainer;
     private TextView title;
-    private TextView time;
+    private TextView semesterTime;
+    private TextView date;
     private CircleImageView avatar;
 
 
@@ -36,7 +37,8 @@ public class CourseTableFragment extends BaseFragment {
     protected void init(View view) {
         tableContainer = view.findViewById(R.id.tableContainer);
         title = view.findViewById(R.id.courseTableTitle);
-        time = view.findViewById(R.id.courseTableTime);
+        semesterTime = view.findViewById(R.id.semesterTime);
+        date = view.findViewById(R.id.date);
         avatar = view.findViewById(R.id.avatar);
     }
 
@@ -67,9 +69,11 @@ public class CourseTableFragment extends BaseFragment {
         });
 
         presenter.fakeGetTableToFragment();
+        presenter.getDate();
         presenter.getSemesterTime();
         title.setText(presenter.getTitle());
-        
+        date.setText(presenter.getDate());
+
         return view;
     }
 
@@ -91,6 +95,6 @@ public class CourseTableFragment extends BaseFragment {
 
 
     public void setSemesterTime(String textTime) {
-        time.setText(textTime);
+        semesterTime.setText(textTime);
     }
 }

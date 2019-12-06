@@ -65,7 +65,7 @@
         <item name="android:textColor">@color/themeColorBlack</item>
     </style>
 
-    <style name="mainMiniTitle">
+    <style name="miniMainTitle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">18sp</item>
@@ -79,7 +79,16 @@
         <item name="android:textSize">12sp</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/themeColorBlack</item>
-        <item name="android:alpha">0.4</item>
+        <item name="android:alpha">0.5</item>
+    </style>
+
+    <style name="miniSubTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/themeColorBlack</item>
+        <item name="android:alpha">0.5</item>
     </style>
 
 </resources>

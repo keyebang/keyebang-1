@@ -37,15 +37,18 @@ public class CourseTablePresenter extends BasePresenter {
         }
     }
 
+    public String getTitle(){
+        if(!User.isLogin()) return "当前用户未登录";
+        String nickname = User.getCurrentUser(User.class).getNickname();
+        String greeting = MyTools.getGreeting(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
+        return greeting + " " + nickname;
+    }
+
     public void getSemesterTime(){
         FakeTableService.getSemesterTime(new SemesterTimeListener() {
             @Override
             public void onSuccess(String time) {
-                Calendar date = Calendar.getInstance();
-                int month = date.get(Calendar.MONTH) + 1;
-                int day = date.get(Calendar.DAY_OF_MONTH);
-                String weekday = MyTools.numToCN(date.get(Calendar.DAY_OF_WEEK));
-                fragment.setSemesterTime(month + "月" + day + "日  " + time + "  星期" + weekday);
+                fragment.setSemesterTime(time);
             }
 
             @Override
@@ -55,10 +58,13 @@ public class CourseTablePresenter extends BasePresenter {
         });
     }
 
-    public String getTitle(){
-        if(!User.isLogin()) return "当前用户未登录";
-        String nickname = User.getCurrentUser(User.class).getNickname();
-        String greeting = MyTools.getGreeting(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
-        return greeting + " " + nickname;
+    public String getDate() {
+        Calendar date = Calendar.getInstance();
+        int month = date.get(Calendar.MONTH) + 1;
+        int day = date.get(Calendar.DAY_OF_MONTH);
+        String weekday = MyTools.numToCN(date.get(Calendar.DAY_OF_WEEK));
+        return month + "月" + day + "日 " +  "星期" + weekday;
     }
+
+
 }
