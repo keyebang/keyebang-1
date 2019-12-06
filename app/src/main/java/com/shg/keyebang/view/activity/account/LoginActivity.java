@@ -14,14 +14,14 @@ import android.widget.TextView;
 import com.lijiankun24.shadowlayout.ShadowLayout;
 import com.shg.keyebang.R;
 import com.shg.keyebang.builder.DisplayAdapter;
-import com.shg.keyebang.presenter.account.LoginPresenter;
+import com.shg.keyebang.presenter.account.LogInPresenter;
 import com.shg.keyebang.view.activity.BaseActivity;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class LoginActivity extends BaseActivity {
-    private LoginPresenter presenter;
+    private LogInPresenter presenter;
     private ShadowLayout phoneLoginCard;
     private EditText phoneNumber;
     private ConstraintLayout getCode;
@@ -41,7 +41,7 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void init() {
-        presenter = new LoginPresenter(this);
+        presenter = new LogInPresenter(this);
         phoneLoginCard = findViewById(R.id.phoneLoginCard);
         phoneNumber = findViewById(R.id.phoneLoginPhoneNumber);
         code = findViewById(R.id.phoneLoginCode);
