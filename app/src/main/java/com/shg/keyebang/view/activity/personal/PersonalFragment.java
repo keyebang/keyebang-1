@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 public class PersonalFragment extends BaseFragment {
 
     @Override
-    protected void init() {
+    protected void init(View view) {
 
     }
 

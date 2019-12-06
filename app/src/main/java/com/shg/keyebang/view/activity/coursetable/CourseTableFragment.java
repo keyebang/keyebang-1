@@ -9,8 +9,10 @@ import android.widget.TextView;
 import com.shg.keyebang.R;
 import com.shg.keyebang.model.Course;
 import com.shg.keyebang.model.Todo;
+import com.shg.keyebang.model.User;
 import com.shg.keyebang.presenter.coursetable.CourseTablePresenter;
 import com.shg.keyebang.view.activity.BaseFragment;
+import com.shg.keyebang.view.view.CircleImageView;
 import com.shg.keyebang.view.view.CourseCard;
 
 import java.util.ArrayList;
@@ -27,13 +29,15 @@ public class CourseTableFragment extends BaseFragment {
     private ConstraintLayout tableContainer;
     private TextView title;
     private TextView time;
+    private CircleImageView avatar;
 
 
     @Override
-    protected void init() {
-        presenter.fakeGetTableToFragment();
-        presenter.getSemesterTime();
-        title.setText(presenter.getTitle());
+    protected void init(View view) {
+        tableContainer = view.findViewById(R.id.tableContainer);
+        title = view.findViewById(R.id.courseTableTitle);
+        time = view.findViewById(R.id.courseTableTime);
+        avatar = view.findViewById(R.id.avatar);
     }
 
     @Override
@@ -49,15 +53,25 @@ public class CourseTableFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_coursetable, container, false);
-        if(/*User.isLogin()*/true) {
-            tableContainer = view.findViewById(R.id.tableContainer);
-            title = view.findViewById(R.id.courseTableTitle);
-            time = view.findViewById(R.id.courseTableTime);
-            init();
-        }
+        init(view);
+
+        avatar.setOnClickListener(v->{
+            User user = User.getCurrentUser(User.class);
+            if(user != null) {
+                toastAndLog(
+                        "当前用户：" + "\n" +
+                                user.getUsername() + "\n" +
+                                user.getNickname() + "\n" +
+                                user.getStudentId());
+            }
+        });
+
+        presenter.fakeGetTableToFragment();
+        presenter.getSemesterTime();
+        title.setText(presenter.getTitle());
+        
         return view;
     }
-
 
 
     public void setCourseTable(Map<Course, Todo> classTable){
@@ -67,9 +81,9 @@ public class CourseTableFragment extends BaseFragment {
             card.setTodo(classTable.get(course));
             card.setLocation(course);
             card.setSize(course);
-//            card.setOnClickListener(v->{
-//                startActivityDirectly(TodoActivity.class);
-//            });
+            card.setOnClickListener(v->{
+                startActivityDirectly(TodoActivity.class);
+            });
             courseCards.add(card);
             tableContainer.addView(card);
         }
