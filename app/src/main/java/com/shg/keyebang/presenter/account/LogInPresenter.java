@@ -2,9 +2,11 @@ package com.shg.keyebang.presenter.account;
 
 import com.shg.keyebang.aatools.Strings;
 import com.shg.keyebang.presenter.BasePresenter;
+import com.shg.keyebang.services.account.Account;
 import com.shg.keyebang.services.account.PhoneAccount;
 import com.shg.keyebang.services.account.PhoneListener;
 import com.shg.keyebang.services.account.PhoneSignUpLogInListener;
+import com.shg.keyebang.services.account.SignUpLogInListener;
 import com.shg.keyebang.view.activity.main.MainActivity;
 import com.shg.keyebang.view.activity.account.LoginActivity;
 import com.shg.keyebang.view.activity.account.SignUpActivity;
@@ -23,7 +25,6 @@ public class LogInPresenter extends BasePresenter {
         }
 
         PhoneAccount.sendSMS(phoneNumber, new PhoneListener() {
-
             @Override
             public void onFailure(String errMessage) {
                 activity.toastAndLog(errMessage);
@@ -47,6 +48,7 @@ public class LogInPresenter extends BasePresenter {
             @Override
             public void loginSuccess(String message) {
                 startActivityDirectly(activity, MainActivity.class);
+                activity.finish();
             }
 
             @Override
@@ -66,5 +68,18 @@ public class LogInPresenter extends BasePresenter {
             activity.toastAndLog("信息未填写完全");
             return;
         }
+
+        Account.login(username, password, new SignUpLogInListener() {
+            @Override
+            public void onSuccess(String message) {
+                startActivityDirectly(activity, MainActivity.class);
+                activity.finish();
+            }
+
+            @Override
+            public void onFailure(String errMessage) {
+                activity.toastAndLog(errMessage);
+            }
+        });
     }
 }

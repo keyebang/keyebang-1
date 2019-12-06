@@ -3,10 +3,12 @@ package com.shg.keyebang.view.activity.main;
 import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
+import com.shg.keyebang.MyApplication;
 import com.shg.keyebang.R;
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.view.activity.BaseActivity;
 import com.shg.keyebang.view.activity.CourseList.CourseListFragment;
+import com.shg.keyebang.view.activity.account.LoginActivity;
 import com.shg.keyebang.view.activity.coursetable.CourseTableFragment;
 import com.shg.keyebang.view.activity.personal.PersonalFragment;
 
@@ -17,8 +19,6 @@ public class MainActivity extends BaseActivity {
     private CourseListFragment courseListFragment;
     private PersonalFragment personalFragment;
     private TabLayout bottomTabLayout;
-
-
 
     @Override
     protected void init() {
@@ -35,6 +35,12 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if(!User.isLogin()) {
+            toastAndLog("请先登录");
+            startActivityDirectly(LoginActivity.class);
+            finish();
+        }
+
         init();
 
         bottomTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -65,7 +71,6 @@ public class MainActivity extends BaseActivity {
                     user.getNickname() + "\n" +
                     user.getStudentId());
         }
-        else toastAndLog("不存在当前用户，请尝试登录");
     }
 
     private void setFragment(int position){
@@ -76,7 +81,6 @@ public class MainActivity extends BaseActivity {
             case 1:
                 getSupportFragmentManager().beginTransaction().replace(R.id.mainContainer, courseListFragment).commit();
                 break;
-
             case 2:
                 getSupportFragmentManager().beginTransaction().replace(R.id.mainContainer, personalFragment).commit();
                 break;

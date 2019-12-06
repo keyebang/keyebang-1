@@ -18,10 +18,11 @@
         <activity
             android:name=".view.activity.account.SignUpActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".view.activity.main.MainActivity">
+        <activity
+            android:name=".view.activity.main.MainActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
