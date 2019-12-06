@@ -1,14 +1,14 @@
 package com.shg.keyebang.presenter.account;
 
-import android.content.Intent;
-import android.text.TextUtils;
-
+import com.shg.keyebang.aatools.Strings;
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.presenter.BasePresenter;
 import com.shg.keyebang.services.account.Account4m3;
 import com.shg.keyebang.services.account.GetInfoListener;
-import com.shg.keyebang.view.activity.MainActivity;
+import com.shg.keyebang.view.activity.main.MainActivity;
 import com.shg.keyebang.view.activity.account.SignUpActivity;
+
+import org.jetbrains.annotations.NotNull;
 
 public class SignUpPresenter extends BasePresenter {
     private SignUpActivity activity;
@@ -18,7 +18,7 @@ public class SignUpPresenter extends BasePresenter {
     }
 
     public void signUp(String nickname, String studentId, String semester, String major, String password){
-        if(TextUtils.isEmpty(nickname) || TextUtils.isEmpty(studentId) || TextUtils.isEmpty(semester) || TextUtils.isEmpty(major) || TextUtils.isEmpty(password)){
+        if(Strings.isNullOrEmpty(nickname, studentId, semester, major, password)){
             activity.toastAndLog("信息未填写完全");
             return;
         }
@@ -38,9 +38,7 @@ public class SignUpPresenter extends BasePresenter {
         Account4m3.gatInfo(user, password, studentId, "", new GetInfoListener() {
             @Override
             public void onSuccess(String message) {
-                activity.toast(message);
-                Intent intent = new Intent(activity, MainActivity.class);
-                activity.startActivity(intent);
+                startActivityDirectly(activity, MainActivity.class);
             }
 
             @Override
@@ -50,7 +48,7 @@ public class SignUpPresenter extends BasePresenter {
         });
     }
 
-    private boolean isStudentId(String studentId){
+    private boolean isStudentId(@NotNull String studentId){
         if(studentId.length() != 7) return false;
         for (int i = studentId.length(); --i >= 0;){
             if (!Character.isDigit(studentId.charAt(i))){

@@ -1,5 +1,6 @@
 package com.shg.keyebang.view.activity.account;
 
+import androidx.annotation.UiThread;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.animation.ValueAnimator;
@@ -13,7 +14,7 @@ import android.widget.TextView;
 
 import com.lijiankun24.shadowlayout.ShadowLayout;
 import com.shg.keyebang.R;
-import com.shg.keyebang.builder.DisplayAdapter;
+import com.shg.keyebang.aatools.DisplayAdapter;
 import com.shg.keyebang.presenter.account.LoginPresenter;
 import com.shg.keyebang.view.activity.BaseActivity;
 
@@ -102,6 +103,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     public void waitToSendAgain(){
+
         TimerTask timerTask1 = new TimerTask() {
             @Override
             public void run() {
