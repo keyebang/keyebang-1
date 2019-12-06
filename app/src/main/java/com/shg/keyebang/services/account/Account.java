@@ -28,8 +28,9 @@ public class Account {
             @Override
             public void done(User user, BmobException e) {
                 if(e==null){
-                    Log.i("smile","用户登陆成功");
+                    listener.onSuccess("登录成功：" + user.getUsername());
                 }
+                else {listener.onFailure("登录失败：" + e.getErrorCode() );}
             }
         });
 
