@@ -6,7 +6,10 @@ import android.util.Log;
 
 import com.shg.keyebang.MyApplication;
 import com.shg.keyebang.model.User;
+
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.LogInListener;
 import cn.bmob.v3.listener.SaveListener;
 
 public class Account {
@@ -18,8 +21,17 @@ public class Account {
     }
 
 
-    public static void login(final User user, SignUpLogInListener listener){
+    public static void login( String phoneNumber, String password,SignUpLogInListener listener){
 
+        BmobUser.loginByAccount(phoneNumber, password, new LogInListener<User>() {
+
+            @Override
+            public void done(User user, BmobException e) {
+                if(e==null){
+                    Log.i("smile","用户登陆成功");
+                }
+            }
+        });
 
     }
 
@@ -29,22 +41,5 @@ public class Account {
         User.logOut();
     }
 
-    public static boolean isLogin(){
-        return User.isLogin();
-    }
 
-    public static String getSemester(String studentId){
-        return "大一下";
-    }
-
-    public static String getName(String studentId){
-        return "小课同学";
-    }
-
-    public static void setAccountSp(String username, String password){
-        SharedPreferences.Editor editor = MyApplication.getContext().getSharedPreferences("thisAccount", Context.MODE_PRIVATE).edit();
-        editor.putString("username", username);
-        editor.putString("password", password);
-        editor.apply();
-    }
 }
