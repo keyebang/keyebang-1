@@ -60,7 +60,7 @@
                 style="@style/accountHint"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:text="呢称" />
+                android:text="昵称" />
 
             <EditText
                 android:id="@+id/signUpNickname"
