@@ -2,7 +2,7 @@ package com.shg.keyebang.fakeservices.coursetable;
 
 import com.shg.keyebang.model.Course;
 import com.shg.keyebang.model.Todo;
-import com.shg.keyebang.view.view.CourseCard;
+import com.shg.keyebang.view.activity.coursetable.CourseCard;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;

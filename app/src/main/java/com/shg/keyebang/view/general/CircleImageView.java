@@ -1,4 +1,4 @@
-package com.shg.keyebang.view.view;
+package com.shg.keyebang.view.general;
 
 import android.content.Context;
 import android.graphics.Bitmap;

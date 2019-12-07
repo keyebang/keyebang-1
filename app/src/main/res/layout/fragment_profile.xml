@@ -11,6 +11,23 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="Personal"/>
+        android:text="Profile"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="For Test"
+        android:id="@+id/test"
+        app:layout_constraintBottom_toTopOf="@id/logout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/logout"
+        android:text="LogOut"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textAllCaps="false"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

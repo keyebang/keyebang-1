@@ -1,6 +1,6 @@
 package com.shg.keyebang.presenter.coursetable;
 
-import com.shg.keyebang.aatools.MyTools;
+import com.shg.keyebang.aatools.TimeCN;
 import com.shg.keyebang.fakeservices.coursetable.FakeGetTableListener;
 import com.shg.keyebang.fakeservices.coursetable.SemesterTimeListener;
 import com.shg.keyebang.model.Course;
@@ -11,7 +11,6 @@ import com.shg.keyebang.fakeservices.coursetable.FakeTableService;
 import com.shg.keyebang.view.activity.coursetable.CourseTableFragment;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Map;
 
 public class CourseTablePresenter extends BasePresenter {
@@ -40,7 +39,7 @@ public class CourseTablePresenter extends BasePresenter {
     public String getTitle(){
         if(!User.isLogin()) return "当前用户未登录";
         String nickname = User.getCurrentUser(User.class).getNickname();
-        String greeting = MyTools.getGreeting(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
+        String greeting = TimeCN.getGreeting(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
         return greeting + " " + nickname;
     }
 
@@ -62,7 +61,7 @@ public class CourseTablePresenter extends BasePresenter {
         Calendar date = Calendar.getInstance();
         int month = date.get(Calendar.MONTH) + 1;
         int day = date.get(Calendar.DAY_OF_MONTH);
-        String weekday = MyTools.numToCN(date.get(Calendar.DAY_OF_WEEK));
+        String weekday = TimeCN.weekdayToCN(date.get(Calendar.DAY_OF_WEEK));
         return month + "月" + day + "日 " +  "星期" + weekday;
     }
 

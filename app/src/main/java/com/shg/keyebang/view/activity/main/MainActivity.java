@@ -3,21 +3,20 @@ package com.shg.keyebang.view.activity.main;
 import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
-import com.shg.keyebang.MyApplication;
 import com.shg.keyebang.R;
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.view.activity.BaseActivity;
 import com.shg.keyebang.view.activity.CourseList.CourseListFragment;
 import com.shg.keyebang.view.activity.account.LoginActivity;
 import com.shg.keyebang.view.activity.coursetable.CourseTableFragment;
-import com.shg.keyebang.view.activity.personal.PersonalFragment;
+import com.shg.keyebang.view.activity.profile.ProfileFragment;
 
 import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends BaseActivity {
     private CourseTableFragment courseTableFragment;
     private CourseListFragment courseListFragment;
-    private PersonalFragment personalFragment;
+    private ProfileFragment profileFragment;
     private TabLayout bottomTabLayout;
 
     @Override
@@ -25,7 +24,7 @@ public class MainActivity extends BaseActivity {
         bottomTabLayout = findViewById(R.id.bottomTabLayout);
         courseListFragment = new CourseListFragment();
         courseTableFragment = new CourseTableFragment();
-        personalFragment = new PersonalFragment();
+        profileFragment = new ProfileFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.mainContainer, courseTableFragment);
         fragmentTransaction.commit();
@@ -82,7 +81,7 @@ public class MainActivity extends BaseActivity {
                 getSupportFragmentManager().beginTransaction().replace(R.id.mainContainer, courseListFragment).commit();
                 break;
             case 2:
-                getSupportFragmentManager().beginTransaction().replace(R.id.mainContainer, personalFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.mainContainer, profileFragment).commit();
                 break;
             default:
                 break;

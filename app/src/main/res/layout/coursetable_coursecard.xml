@@ -75,7 +75,7 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginBottom="48dp"
         android:layout_marginRight="6dp"
-        android:background="@drawable/coursetable_shape_tag"
+        android:background="@drawable/bg_roundrectangle_white"
         android:alpha="0.7">
     </ImageView>
 

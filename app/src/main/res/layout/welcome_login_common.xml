@@ -16,7 +16,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="360dp"
         android:layout_height="384dp"
-        android:background="@drawable/common_bg_roundlayout">
+        android:background="@drawable/bg_roundlayout_white">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -90,7 +90,7 @@
                 app:layout_constraintTop_toTopOf="@id/commonLoginPassword"
                 app:layout_constraintBottom_toBottomOf="@id/commonLoginPassword"
                 app:layout_constraintRight_toRightOf="@id/commonLoginPassword"
-                android:background="@drawable/common_bg_touch">
+                android:background="@drawable/bg_touch">
 
                 <ImageView
                     android:id="@+id/loginPasswordIcon"
