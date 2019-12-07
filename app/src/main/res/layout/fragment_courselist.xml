@@ -1,24 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <Button
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/courseListTopBar"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:text="For Test"
-        android:id="@+id/test"
-        app:layout_constraintBottom_toTopOf="@id/logout"
+        android:gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        android:orientation="vertical">
 
-    <Button
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="16dp"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/courseListTitle"
+                    style="@style/mainTitle"
+                    android:text="课程列表"/>
+
+                <TextView
+                    style="@style/subTitle"
+                    android:id="@+id/courseTableTitle"
+                    android:text="选择你喜欢的课程"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/bg_capsule_black"
+                android:alpha="0.04"/>
+
+
+            <com.shg.keyebang.view.general.CircleImageView
+                android:id="@+id/avatar"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/deer"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/searchText"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:paddingStart="12dp"
+                android:paddingEnd="48dp"
+                android:textSize="14sp"
+                android:hint="搜索课程"
+                android:maxLines="1"
+                android:textColor="@color/themeColorBlack"
+                android:background="@drawable/bg_roundrectangle_black_alpha"/>
+
+
+            <ImageView
+                android:id="@+id/searchIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="14dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:src="@drawable/ic_search_black_24dp"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"/>
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/courseListTabLayout"
+            android:layout_width="144dp"
+            android:layout_height="36dp"
+            android:layout_gravity="start"
+            android:layout_marginLeft="-14dp"
+            app:tabIndicator="@drawable/courselist_indicator"
+            app:tabIndicatorColor="@color/themeColorBlue"
+            app:tabTextColor="@color/textHintColor"
+            app:tabSelectedTextColor="@color/themeColorBlack">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+
+                android:text="必修课"/>
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选修课"/>
+
+        </com.google.android.material.tabs.TabLayout>
+
+    </LinearLayout>
+
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/courseListViewPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/logout"
-        android:text="LogOut"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:textAllCaps="false"/>
+        android:layout_height="match_parent"
+        android:layout_below="@id/courseListTopBar"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>
