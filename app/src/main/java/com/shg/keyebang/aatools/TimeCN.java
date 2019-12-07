@@ -1,6 +1,6 @@
 package com.shg.keyebang.aatools;
 
-public class MyTools {
+public class TimeCN {
 
     public static String getGreeting(int i) {
         if(i < 6 || i >= 18) return "晚上好";
@@ -8,7 +8,7 @@ public class MyTools {
         return "下午好";
     }
 
-    public static String numToCN(int i){
+    public static String weekdayToCN(int i){
         switch (i){
             case 1: return "一";
             case 2: return "二";

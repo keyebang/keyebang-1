@@ -16,7 +16,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="360dp"
         android:layout_height="384dp"
-        android:background="@drawable/common_bg_roundlayout"
+        android:background="@drawable/bg_roundlayout_white"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -68,7 +68,7 @@
                 android:id="@+id/getCode"
                 android:layout_width="104dp"
                 android:layout_height="36dp"
-                android:background="@drawable/common_bg_touch"
+                android:background="@drawable/bg_touch"
                 app:layout_constraintTop_toTopOf="@id/phoneLoginPhoneNumber"
                 app:layout_constraintRight_toRightOf="@id/phoneLoginPhoneNumber">
 

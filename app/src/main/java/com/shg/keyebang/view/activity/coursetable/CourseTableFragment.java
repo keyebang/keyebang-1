@@ -12,8 +12,7 @@ import com.shg.keyebang.model.Todo;
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.presenter.coursetable.CourseTablePresenter;
 import com.shg.keyebang.view.activity.BaseFragment;
-import com.shg.keyebang.view.view.CircleImageView;
-import com.shg.keyebang.view.view.CourseCard;
+import com.shg.keyebang.view.general.CircleImageView;
 
 import java.util.ArrayList;
 import java.util.Map;
