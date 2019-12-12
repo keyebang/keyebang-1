@@ -16,7 +16,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="360dp"
         android:layout_height="384dp"
-        android:background="@drawable/bg_roundlayout_white">
+        android:background="@drawable/bg_layout_up">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout

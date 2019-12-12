@@ -1,6 +1,6 @@
 package com.shg.keyebang.presenter.coursetable;
 
-import com.shg.keyebang.aatools.TimeCN;
+import com.shg.keyebang.aatools.TimeCNUtil;
 import com.shg.keyebang.fakeservices.coursetable.FakeGetTableListener;
 import com.shg.keyebang.fakeservices.coursetable.SemesterTimeListener;
 import com.shg.keyebang.model.Course;
@@ -39,7 +39,7 @@ public class CourseTablePresenter extends BasePresenter {
     public String getTitle(){
         if(!User.isLogin()) return "当前用户未登录";
         String nickname = User.getCurrentUser(User.class).getNickname();
-        String greeting = TimeCN.getGreeting(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
+        String greeting = TimeCNUtil.getGreeting(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
         return greeting + " " + nickname;
     }
 
@@ -61,7 +61,7 @@ public class CourseTablePresenter extends BasePresenter {
         Calendar date = Calendar.getInstance();
         int month = date.get(Calendar.MONTH) + 1;
         int day = date.get(Calendar.DAY_OF_MONTH);
-        String weekday = TimeCN.weekdayToCN(date.get(Calendar.DAY_OF_WEEK));
+        String weekday = TimeCNUtil.weekdayToCN(date.get(Calendar.DAY_OF_WEEK));
         return month + "月" + day + "日 " +  "星期" + weekday;
     }
 

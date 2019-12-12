@@ -20,7 +20,7 @@
         android:text="丢孔杰平啊啊"
         android:textSize="12sp"
         android:textStyle="bold"
-        android:textColor="@color/themeColorWrite"
+        android:textColor="@color/themeColorWhite"
         android:maxLines="2"
         android:ellipsize="end"/>
 
@@ -48,7 +48,7 @@
         android:text="丢孔杰平"
         android:textSize="11sp"
         android:alpha="0.7"
-        android:textColor="@color/themeColorWrite"
+        android:textColor="@color/themeColorWhite"
         android:maxLines="1"/>
 
     <TextView
@@ -62,7 +62,7 @@
         android:text="00.00"
         android:textSize="9sp"
         android:textStyle="bold"
-        android:textColor="@color/themeColorWrite"
+        android:textColor="@color/themeColorWhite"
         android:alpha="0.7"
         android:maxLines="1"
         android:ellipsize="end"/>
@@ -90,7 +90,7 @@
         android:text="丢孔杰平啊丢你啊"
         android:textSize="10dp"
         android:textStyle="bold"
-        android:textColor="@color/themeColorWrite"
+        android:textColor="@color/themeColorWhite"
         android:maxLines="2"
         android:ellipsize="end"/>
 

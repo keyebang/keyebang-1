@@ -25,7 +25,9 @@ public class SignUpActivity extends BaseActivity {
     private boolean isHidePassword = false;
 
     @Override
-    protected void init() {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_account_signup);
         presenter = new SignUpPresenter(this);
         close = findViewById(R.id.close);
         studentId = findViewById(R.id.signUpStudentId);
@@ -35,14 +37,12 @@ public class SignUpActivity extends BaseActivity {
         major = findViewById(R.id.signUpMajor);
         //passwordIcon = findViewById(R.id.passwordIcon);
         signUp = findViewById(R.id.signUpButton);
+
+        init();
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_account_signup);
-        init();
-
+    protected void init() {
         signUp.setOnClickListener(view -> {
             presenter.signUp(
                     nickname.getText().toString(),

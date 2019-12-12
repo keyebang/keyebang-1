@@ -8,69 +8,19 @@
     app:layout_constraintRight_toRightOf="parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <com.shg.keyebang.view.general.TitleBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/courseListBar"/>
+
     <LinearLayout
-        android:id="@+id/courseListTopBar"
+        android:id="@+id/courseListSearchBar"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:layout_centerHorizontal="true"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_below="@id/courseListBar"
         android:orientation="vertical">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="16dp"/>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="88dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/courseListTitle"
-                    style="@style/mainTitle"
-                    android:text="课程列表"/>
-
-                <TextView
-                    style="@style/subTitle"
-                    android:id="@+id/courseTableTitle"
-                    android:text="选择你喜欢的课程"/>
-
-            </LinearLayout>
-
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:background="@drawable/bg_capsule_black"
-                android:alpha="0.04"/>
-
-
-            <com.shg.keyebang.view.general.CircleImageView
-                android:id="@+id/avatar"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginRight="8dp"
-                android:src="@drawable/deer"/>
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -107,7 +57,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="8dp"/>
+            android:layout_height="4dp"/>
 
 
         <com.google.android.material.tabs.TabLayout
@@ -115,7 +65,7 @@
             android:layout_width="144dp"
             android:layout_height="36dp"
             android:layout_gravity="start"
-            android:layout_marginLeft="-14dp"
+            android:layout_marginLeft="-13dp"
             app:tabIndicator="@drawable/courselist_indicator"
             app:tabIndicatorColor="@color/themeColorBlue"
             app:tabTextColor="@color/textHintColor"
@@ -143,7 +93,7 @@
         android:id="@+id/courseListViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/courseListTopBar"/>
+        android:layout_below="@id/courseListSearchBar"/>
 
 
 </RelativeLayout>

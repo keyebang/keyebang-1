@@ -1,6 +1,6 @@
 package com.shg.keyebang.presenter.account;
 
-import com.shg.keyebang.aatools.Strings;
+import com.shg.keyebang.aatools.StringUtil;
 import com.shg.keyebang.presenter.BasePresenter;
 import com.shg.keyebang.services.account.Account;
 import com.shg.keyebang.services.account.PhoneAccount;
@@ -19,7 +19,7 @@ public class LogInPresenter extends BasePresenter {
     }
 
     public void getSMSCode(String phoneNumber){
-        if(Strings.isNullOrEmpty(phoneNumber)){
+        if(StringUtil.isNullOrEmpty(phoneNumber)){
             activity.toastAndLog("手机号为空");
             return;
         }
@@ -39,7 +39,7 @@ public class LogInPresenter extends BasePresenter {
     }
 
     public void loginOrSignUp(String phoneNumber, String code){
-        if(Strings.isNullOrEmpty(phoneNumber, code)){
+        if(StringUtil.isNullOrEmpty(phoneNumber, code)){
             activity.toastAndLog("信息未填写完全");
             return;
         }
@@ -64,7 +64,7 @@ public class LogInPresenter extends BasePresenter {
     }
 
     public void commonLogin(String username, String password){
-        if(Strings.isNullOrEmpty(username, password)){
+        if(StringUtil.isNullOrEmpty(username, password)){
             activity.toastAndLog("信息未填写完全");
             return;
         }

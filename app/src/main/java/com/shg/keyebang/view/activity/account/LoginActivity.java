@@ -1,6 +1,5 @@
 package com.shg.keyebang.view.activity.account;
 
-import androidx.annotation.UiThread;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.animation.ValueAnimator;
@@ -13,9 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lijiankun24.shadowlayout.ShadowLayout;
-import com.shg.keyebang.MyApplication;
 import com.shg.keyebang.R;
-import com.shg.keyebang.aatools.DisplayAdapter;
+import com.shg.keyebang.aatools.DisplayUtil;
 import com.shg.keyebang.presenter.account.LogInPresenter;
 import com.shg.keyebang.view.activity.BaseActivity;
 
@@ -42,7 +40,9 @@ public class LoginActivity extends BaseActivity {
     private boolean isHidePassword = true;
 
     @Override
-    protected void init() {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_account_login);
         presenter = new LogInPresenter(this);
         phoneLoginCard = findViewById(R.id.phoneLoginCard);
         phoneNumber = findViewById(R.id.phoneLoginPhoneNumber);
@@ -58,14 +58,12 @@ public class LoginActivity extends BaseActivity {
         toPhoneLogin = findViewById(R.id.toPhoneLogin);
         entryButton = findViewById(R.id.entryButton);
         commonLoginCard.setY(500);
+
+        init();
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_account_login);
-        init();
-
+    protected void init() {
         getCode.setOnClickListener(v->presenter.getSMSCode(phoneNumber.getText().toString()));
 
         entryButton.setOnClickListener(v->presenter.loginOrSignUp(phoneNumber.getText().toString(), code.getText().toString()));
@@ -81,8 +79,8 @@ public class LoginActivity extends BaseActivity {
         ValueAnimator locationAnim = ValueAnimator.ofFloat(0, 500).setDuration(250);
         locationAnim.addUpdateListener((valueAnimator)-> {
             float currentValue = (Float) valueAnimator.getAnimatedValue();
-            phoneLoginCard.setY(DisplayAdapter.pxTodp(currentValue));
-            commonLoginCard.setY(DisplayAdapter.pxTodp(500-currentValue));
+            phoneLoginCard.setY(DisplayUtil.pxTodp(currentValue));
+            commonLoginCard.setY(DisplayUtil.pxTodp(500-currentValue));
             commonLoginCard.requestLayout();
             phoneLoginCard.requestLayout();
         });
@@ -94,8 +92,8 @@ public class LoginActivity extends BaseActivity {
         ValueAnimator locationAnim = ValueAnimator.ofInt(500, 0).setDuration(250);
         locationAnim.addUpdateListener((valueAnimator)-> {
             int currentValue = (Integer) valueAnimator.getAnimatedValue();
-            phoneLoginCard.setY(DisplayAdapter.pxTodp(currentValue));
-            commonLoginCard.setY(DisplayAdapter.pxTodp(500-currentValue));
+            phoneLoginCard.setY(DisplayUtil.pxTodp(currentValue));
+            commonLoginCard.setY(DisplayUtil.pxTodp(500-currentValue));
             commonLoginCard.requestLayout();
             phoneLoginCard.requestLayout();
         });

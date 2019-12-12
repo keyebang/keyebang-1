@@ -10,7 +10,7 @@ import com.shg.keyebang.MyApplication;
 
 import androidx.annotation.NonNull;
 
-public class DisplayAdapter {
+public class DisplayUtil {
 
     private static float nonCompatDensity;
     private static float nonCompatScaleDensity;

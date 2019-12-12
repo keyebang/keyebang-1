@@ -1,6 +1,6 @@
 package com.shg.keyebang.presenter.account;
 
-import com.shg.keyebang.aatools.Strings;
+import com.shg.keyebang.aatools.StringUtil;
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.presenter.BasePresenter;
 import com.shg.keyebang.services.account.Account4m3;
@@ -18,7 +18,7 @@ public class SignUpPresenter extends BasePresenter {
     }
 
     public void signUp(String nickname, String studentId, String semester, String major, String password){
-        if(Strings.isNullOrEmpty(nickname, studentId, semester, major, password)){
+        if(StringUtil.isNullOrEmpty(nickname, studentId, semester, major, password)){
             activity.toastAndLog("信息未填写完全");
             return;
         }
