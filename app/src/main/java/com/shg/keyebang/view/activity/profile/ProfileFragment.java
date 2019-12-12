@@ -19,17 +19,19 @@ public class ProfileFragment extends BaseFragment {
     private Button logOut;
     private Button toTest;
 
-    @Override
-    protected void init(View view) {
-        logOut = view.findViewById(R.id.logout);
-        toTest = view.findViewById(R.id.test);
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        init(view);
+        logOut = view.findViewById(R.id.logout);
+        toTest = view.findViewById(R.id.test);
+
+        init();
+        return view;
+    }
+
+    @Override
+    protected void init() {
         toTest.setOnClickListener((v)->{
             startActivityDirectly(SignUpActivity.class);
         });
@@ -39,6 +41,5 @@ public class ProfileFragment extends BaseFragment {
             startActivityDirectly(LoginActivity.class);
             getActivity().finish();
         });
-        return view;
     }
 }

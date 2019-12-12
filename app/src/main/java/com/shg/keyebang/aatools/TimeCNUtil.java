@@ -1,6 +1,6 @@
 package com.shg.keyebang.aatools;
 
-public class TimeCN {
+public class TimeCNUtil {
 
     public static String getGreeting(int i) {
         if(i < 6 || i >= 18) return "晚上好";

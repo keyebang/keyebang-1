@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.shg.keyebang.R;
 import com.shg.keyebang.model.Course;
 import com.shg.keyebang.model.Todo;
@@ -13,6 +15,7 @@ import com.shg.keyebang.model.User;
 import com.shg.keyebang.presenter.coursetable.CourseTablePresenter;
 import com.shg.keyebang.view.activity.BaseFragment;
 import com.shg.keyebang.view.general.CircleImageView;
+import com.shg.keyebang.view.general.TitleBarLayout;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -26,20 +29,11 @@ public class CourseTableFragment extends BaseFragment {
     private CourseTablePresenter presenter;
     private ArrayList<CourseCard> courseCards;
     private ConstraintLayout tableContainer;
-    private TextView title;
+    private TitleBarLayout titleBar;
     private TextView semesterTime;
     private TextView date;
-    private CircleImageView avatar;
 
 
-    @Override
-    protected void init(View view) {
-        tableContainer = view.findViewById(R.id.tableContainer);
-        title = view.findViewById(R.id.courseTableTitle);
-        semesterTime = view.findViewById(R.id.semesterTime);
-        date = view.findViewById(R.id.date);
-        avatar = view.findViewById(R.id.avatar);
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,26 +48,26 @@ public class CourseTableFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_coursetable, container, false);
-        init(view);
+        tableContainer = view.findViewById(R.id.tableContainer);
+        titleBar = view.findViewById(R.id.courseTableBar);
+        semesterTime = view.findViewById(R.id.semesterTime);
+        date = view.findViewById(R.id.date);
 
-        avatar.setOnClickListener(v->{
-            User user = User.getCurrentUser(User.class);
-            if(user != null) {
-                toastAndLog(
-                        "当前用户：" + "\n" +
-                                user.getUsername() + "\n" +
-                                user.getNickname() + "\n" +
-                                user.getStudentId());
-            }
-        });
+        init();
+
+        return view;
+    }
+
+    @Override
+    protected void init() {
+
 
         presenter.fakeGetTableToFragment();
         presenter.getDate();
         presenter.getSemesterTime();
-        title.setText(presenter.getTitle());
+        titleBar.setTitle(presenter.getTitle());
         date.setText(presenter.getDate());
-
-        return view;
+        
     }
 
 
@@ -85,7 +79,9 @@ public class CourseTableFragment extends BaseFragment {
             card.setLocation(course);
             card.setSize(course);
             card.setOnClickListener(v->{
-                startActivityDirectly(TodoActivity.class);
+                TodoDialog dialog = new TodoDialog(this.getActivity(), classTable.get(course), course);
+                //dialog.setContentView(R.layout.dialog_todo);
+                dialog.show();
             });
             courseCards.add(card);
             tableContainer.addView(card);

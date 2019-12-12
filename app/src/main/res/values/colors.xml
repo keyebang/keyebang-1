@@ -3,13 +3,13 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="themeColorBlue">#0081FF</color>
+    <color name="themeColorBlue">#99B7DF</color>
     <color name="themeColorBlack">#002448</color>
     <color name="themeColorYellow">#FCBB35</color>
     <color name="themeColorPink">#FC6699</color>
     <color name="themeColorRed">#F4511E</color>
-    <color name="themeColorWrite">#FFFFFF</color>
-    <color name="cardColorBlue">#9CB7DE</color>
+    <color name="themeColorWhite">#FFFFFF</color>
+    <color name="cardColorBlue">#97B4DC</color>
     <color name="cardColorRed">#EBA59B</color>
     <color name="cardColorGreen">#9FCABC</color>
     <color name="textColor">#002448</color>

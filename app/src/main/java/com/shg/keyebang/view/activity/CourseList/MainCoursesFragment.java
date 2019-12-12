@@ -14,11 +14,6 @@ import androidx.annotation.Nullable;
 public class MainCoursesFragment extends BaseFragment {
 
     @Override
-    protected void init(View view) {
-
-    }
-
-    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
@@ -27,7 +22,12 @@ public class MainCoursesFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_course_main, container, false);
-        init(view);
+        init();
         return view;
+    }
+
+    @Override
+    protected void init() {
+
     }
 }
