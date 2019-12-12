@@ -8,16 +8,13 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.shg.keyebang.R;
-import com.shg.keyebang.aatools.DisplayAdapter;
+import com.shg.keyebang.aatools.DisplayUtil;
 import com.shg.keyebang.model.Course;
 import com.shg.keyebang.model.Todo;
 import java.util.Calendar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class CourseCard extends FrameLayout {
-    public static int COLOR_RED = R.color.cardColorRed;
-    public static int COLOR_BLUE = R.color.cardColorBlue;
-    public static int COLOR_GREEN = R.color.cardColorGreen;
 
     private static int CARD_WIDTH = 62;
     private static int CARD_HEIGHT = 72;
@@ -45,8 +42,8 @@ public class CourseCard extends FrameLayout {
     }
 
     public void setLocation(Course course){
-        int left = DisplayAdapter.pxTodp(LEFT_BORDER + (course.getWeekday() - 1) * (CARD_WIDTH + SPACING));
-        int top = DisplayAdapter.pxTodp((course.getFirstClass() - 1) * (CARD_HEIGHT + SPACING));
+        int left = DisplayUtil.pxTodp(LEFT_BORDER + (course.getWeekday() - 1) * (CARD_WIDTH + SPACING));
+        int top = DisplayUtil.pxTodp((course.getFirstClass() - 1) * (CARD_HEIGHT + SPACING));
         this.setX(left);
         this.setY(top);
         //((ConstraintLayout.LayoutParams)this.getLayoutParams()).setMargins(left, top, 0, 0);
@@ -54,7 +51,7 @@ public class CourseCard extends FrameLayout {
 
     public void setSize(Course course){
         int size = course.getLastClass() - course.getFirstClass();
-        cardLayout.setLayoutParams(new FrameLayout.LayoutParams(DisplayAdapter.pxTodp(CARD_WIDTH), DisplayAdapter.pxTodp(CARD_HEIGHT * (size + 1) + SPACING * size)));
+        cardLayout.setLayoutParams(new FrameLayout.LayoutParams(DisplayUtil.pxTodp(CARD_WIDTH), DisplayUtil.pxTodp(CARD_HEIGHT * (size + 1) + SPACING * size)));
     }
 
     public void setCourse(Course course){
@@ -78,9 +75,9 @@ public class CourseCard extends FrameLayout {
             todoTitle.setVisibility(View.VISIBLE);
             todoTime.setVisibility(View.VISIBLE);
             todoTag.setVisibility(View.VISIBLE);
-            courseName.setTextColor(getResources().getColor(R.color.themeColorWrite, null));
-            coursePlace.setTextColor(getResources().getColor(R.color.themeColorWrite, null));
-            teacher.setTextColor(getResources().getColor(R.color.themeColorWrite, null));
+            courseName.setTextColor(getResources().getColor(R.color.themeColorWhite, null));
+            coursePlace.setTextColor(getResources().getColor(R.color.themeColorWhite, null));
+            teacher.setTextColor(getResources().getColor(R.color.themeColorWhite, null));
             coursePlace.setAlpha(0.75f);
             teacher.setAlpha(0.75f);
         }
@@ -93,7 +90,7 @@ public class CourseCard extends FrameLayout {
             teacher.setTextColor(getResources().getColor(R.color.themeColorBlack, null));
             coursePlace.setAlpha(0.6f);
             teacher.setAlpha(0.6f);
-            ((GradientDrawable)cardLayout.getBackground()).setColor(getResources().getColor(R.color.themeColorWrite, null));
+            ((GradientDrawable)cardLayout.getBackground()).setColor(getResources().getColor(R.color.themeColorWhite, null));
         }
     }
 }

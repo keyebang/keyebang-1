@@ -1,10 +1,19 @@
 package com.shg.keyebang.model;
 
+import com.shg.keyebang.R;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.Calendar;
 
+import androidx.annotation.IntDef;
 import cn.bmob.v3.BmobObject;
 
 public class Todo extends BmobObject {
+    public static int COLOR_RED = R.color.cardColorRed;
+    public static int COLOR_BLUE = R.color.cardColorBlue;
+    public static int COLOR_GREEN = R.color.cardColorGreen;
+
     private String todoTitle;
     private String todoMessage;
     private int color;

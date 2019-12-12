@@ -29,9 +29,9 @@ public class FakeTableService {
 
         //Todos：取数据下来的时候，记得包含他的ObjectId（一般是默认）
         Calendar calendar = new GregorianCalendar(2000,11 - 1, 20,23,59);
-        Todo todo1 = new Todo("交第二十一章作业", "", calendar, CourseCard.COLOR_RED);
-        Todo todo2 = new Todo("交第二十一章作业", "", calendar, CourseCard.COLOR_GREEN);
-        Todo todo3 = new Todo("交第二十一章作业", "", calendar, CourseCard.COLOR_BLUE);
+        Todo todo1 = new Todo("交第二十一章作业", "第二十一章第1、2、5、7、12题", calendar, Todo.COLOR_RED);
+        Todo todo2 = new Todo("交第二十一章作业", "第二十一章第1、2、5、7、12题", calendar, Todo.COLOR_GREEN);
+        Todo todo3 = new Todo("交第二十一章作业", "第二十一章第1、2、5、7、12题", calendar, Todo.COLOR_BLUE);
 
         //Table
         Map<Course, Todo> classTable = new HashMap<>();
