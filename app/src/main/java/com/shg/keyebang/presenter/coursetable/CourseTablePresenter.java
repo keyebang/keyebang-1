@@ -8,6 +8,8 @@ import com.shg.keyebang.model.Todo;
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.presenter.BasePresenter;
 import com.shg.keyebang.fakeservices.coursetable.FakeTableService;
+import com.shg.keyebang.services.coursetable.CourseTable;
+import com.shg.keyebang.services.coursetable.GetClassListener;
 import com.shg.keyebang.view.activity.coursetable.CourseTableFragment;
 
 import java.util.Calendar;
@@ -22,7 +24,7 @@ public class CourseTablePresenter extends BasePresenter {
 
     public void fakeGetTableToFragment(){
         if(true){
-            FakeTableService.getTable("User.getCurrentUser(User.class).getStudentId()", new FakeGetTableListener() {
+            CourseTable.getClass(new GetClassListener() {
                 @Override
                 public void onSuccess(Map<Course, Todo> table) {
                     fragment.setCourseTable(table);
@@ -31,8 +33,10 @@ public class CourseTablePresenter extends BasePresenter {
                 @Override
                 public void onFailure(String errMsg) {
                     fragment.toastAndLog(errMsg);
+
                 }
-            });
+            } );
+
         }
     }
 
@@ -59,7 +63,7 @@ public class CourseTablePresenter extends BasePresenter {
 
     public String getDate() {
         Calendar date = Calendar.getInstance();
-        int month = date.get(Calendar.MONTH) + 1;
+        int month = date.get(Calendar.MONTH) ;
         int day = date.get(Calendar.DAY_OF_MONTH);
         String weekday = TimeCNUtil.weekdayToCN(date.get(Calendar.DAY_OF_WEEK));
         return month + "月" + day + "日 " +  "星期" + weekday;
