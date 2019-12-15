@@ -14,6 +14,7 @@ import com.shg.keyebang.model.Todo;
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.presenter.coursetable.CourseTablePresenter;
 import com.shg.keyebang.view.activity.BaseFragment;
+import com.shg.keyebang.view.activity.main.MainActivity;
 import com.shg.keyebang.view.general.CircleImageView;
 import com.shg.keyebang.view.general.TitleBarLayout;
 
@@ -66,7 +67,7 @@ public class CourseTableFragment extends BaseFragment {
         presenter.getDate();
         presenter.getSemesterTime();
         titleBar.setTitle(presenter.getTitle());
-        date.setText(presenter.getDate());
+        //date.setText(presenter.getDate());
         
     }
 
@@ -79,7 +80,7 @@ public class CourseTableFragment extends BaseFragment {
             card.setLocation(course);
             card.setSize(course);
             card.setOnClickListener(v->{
-                TodoDialog dialog = new TodoDialog(this.getActivity(), classTable.get(course), course);
+                TodoDialog dialog = new TodoDialog((MainActivity)this.getActivity(), classTable.get(course), course);
                 //dialog.setContentView(R.layout.dialog_todo);
                 dialog.show();
             });

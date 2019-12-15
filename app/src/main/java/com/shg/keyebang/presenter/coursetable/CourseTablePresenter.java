@@ -64,6 +64,4 @@ public class CourseTablePresenter extends BasePresenter {
         String weekday = TimeCNUtil.weekdayToCN(date.get(Calendar.DAY_OF_WEEK));
         return month + "月" + day + "日 " +  "星期" + weekday;
     }
-
-
 }
