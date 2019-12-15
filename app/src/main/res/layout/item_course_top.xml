@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:orientation="vertical"
+        android:layout_width="128dp"
+        android:layout_height="128dp">
+
+        <com.shehuan.niv.NiceImageView
+            android:id="@+id/topCourseImg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:corner_radius="6dp"
+            android:src="@drawable/example"
+            app:mask_color="#40000000"/>
+
+        <TextView
+            android:id="@+id/topCourseName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginLeft="12dp"
+            android:layout_marginBottom="12dp"
+            android:text="示例课程"
+            android:textSize="16sp"
+            android:textColor="@color/themeColorWhite"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="12dp"
+        android:layout_height="128dp"/>
+
+
+</LinearLayout>

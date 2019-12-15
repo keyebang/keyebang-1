@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="themeColorBlue">#99B7DF</color>
+    <color name="themeColorBlueDark">#7890B0</color>
     <color name="themeColorBlack">#002448</color>
     <color name="themeColorYellow">#FCBB35</color>
     <color name="themeColorPink">#FC6699</color>
