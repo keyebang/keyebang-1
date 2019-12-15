@@ -7,6 +7,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.Calendar;
 
 import androidx.annotation.IntDef;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import cn.bmob.v3.BmobObject;
 
 public class Todo extends BmobObject {
@@ -26,11 +28,15 @@ public class Todo extends BmobObject {
         this.color = color;
     }
 
+    public Todo() {
+
+    }
+
     public int getColor() {
         return color;
     }
 
-    public Todo setColor(int color) {
+    public Todo setColor(@NonNull int color) {
         this.color = color;
         return this;
     }
@@ -39,7 +45,7 @@ public class Todo extends BmobObject {
         return todoTitle;
     }
 
-    public Todo setTodoTitle(String todoTitle) {
+    public Todo setTodoTitle(@NonNull String todoTitle) {
         this.todoTitle = todoTitle;
         return this;
     }
@@ -48,7 +54,7 @@ public class Todo extends BmobObject {
         return todoMessage;
     }
 
-    public Todo setTodoMessage(String todoMessage) {
+    public Todo setTodoMessage(@Nullable String todoMessage) {
         this.todoMessage = todoMessage;
         return this;
     }
@@ -57,7 +63,7 @@ public class Todo extends BmobObject {
         return date;
     }
 
-    public Todo setDate(Calendar date) {
+    public Todo setDate(@NonNull Calendar date) {
         this.date = date;
         return this;
     }
