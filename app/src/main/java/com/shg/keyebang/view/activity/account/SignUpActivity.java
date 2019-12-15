@@ -1,12 +1,9 @@
 package com.shg.keyebang.view.activity.account;
 
 import android.os.Bundle;
-import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.shg.keyebang.R;
 import com.shg.keyebang.presenter.account.SignUpPresenter;
@@ -29,7 +26,7 @@ public class SignUpActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_signup);
         presenter = new SignUpPresenter(this);
-        close = findViewById(R.id.close);
+        close = findViewById(R.id.delete);
         studentId = findViewById(R.id.signUpStudentId);
         nickname = findViewById(R.id.signUpNickname);
         password = findViewById(R.id.signUpPassword);

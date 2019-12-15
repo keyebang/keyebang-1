@@ -1,4 +1,7 @@
-package com.shg.keyebang.view.activity.CourseList;
+package com.shg.keyebang.view.activity.CourseList.adapter;
+
+import com.shg.keyebang.view.activity.CourseList.MainCoursesFragment;
+import com.shg.keyebang.view.activity.CourseList.OptionalCourseFragment;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

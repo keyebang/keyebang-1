@@ -31,7 +31,7 @@ public class CourseCard extends FrameLayout {
 
     public CourseCard(Context context){
         super(context);
-        LayoutInflater.from(context).inflate(R.layout.coursetable_coursecard, this);
+        LayoutInflater.from(context).inflate(R.layout.item_coursecard_coursetable, this);
         cardLayout = findViewById(R.id.classCard);
         courseName = findViewById(R.id.className);
         coursePlace = findViewById(R.id.classPlace);

@@ -6,8 +6,8 @@
         <shape>
             <corners android:radius="4dp" />
             <size
-                android:width="24dp"
-                android:height="3dp" />
+                android:width="40dp"
+                android:height="0dp" />
         </shape>
     </item>
 </layer-list>
