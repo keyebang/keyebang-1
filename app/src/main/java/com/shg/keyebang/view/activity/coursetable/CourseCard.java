@@ -16,10 +16,10 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class CourseCard extends FrameLayout {
 
-    private static int CARD_WIDTH = 62;
-    private static int CARD_HEIGHT = 72;
-    private static int SPACING = 4;
-    private static int LEFT_BORDER = 0;
+    private static final int CARD_WIDTH = 62;
+    private static final int CARD_HEIGHT = 72;
+    private static final int SPACING = 4;
+    private static final int LEFT_BORDER = 0;
 
     private ConstraintLayout cardLayout;
     private TextView courseName;
@@ -31,7 +31,7 @@ public class CourseCard extends FrameLayout {
 
     public CourseCard(Context context){
         super(context);
-        LayoutInflater.from(context).inflate(R.layout.item_coursecard_coursetable, this);
+        LayoutInflater.from(context).inflate(R.layout.item_coursetable_coursecard, this);
         cardLayout = findViewById(R.id.classCard);
         courseName = findViewById(R.id.className);
         coursePlace = findViewById(R.id.classPlace);

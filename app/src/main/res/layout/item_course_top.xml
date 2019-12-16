@@ -16,7 +16,7 @@
             android:id="@+id/topCourseImg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:corner_radius="6dp"
+            app:corner_radius="8dp"
             android:src="@drawable/example"
             app:mask_color="#40000000"/>
 
@@ -36,7 +36,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
-        android:layout_width="12dp"
+        android:layout_width="16dp"
         android:layout_height="128dp"/>
 
 
