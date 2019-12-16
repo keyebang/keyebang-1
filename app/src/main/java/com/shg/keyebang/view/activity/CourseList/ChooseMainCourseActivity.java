@@ -6,14 +6,14 @@ import android.widget.LinearLayout;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.shg.keyebang.R;
-import com.shg.keyebang.presenter.courselist.ChooseCoursePresenter;
+import com.shg.keyebang.presenter.courselist.FindCoursePresenter;
 import com.shg.keyebang.view.activity.BaseActivity;
 import com.shg.keyebang.view.activity.CourseList.adapter.ChooseCourseListAdapter;
 import com.shg.keyebang.view.general.TitleBarLayout;
 
 public class ChooseMainCourseActivity extends BaseActivity {
     private String courseName;
-    private ChooseCoursePresenter presenter;
+    private FindCoursePresenter presenter;
     private TitleBarLayout chooseCourseBar;
     private LRecyclerViewAdapter lMainCourseListAdapter;
     private ChooseCourseListAdapter mainCourseListAdapter;
@@ -23,7 +23,7 @@ public class ChooseMainCourseActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_course_main);
+        setContentView(R.layout.activity_course_main_choose);
         chooseCourseBar = findViewById(R.id.chooseCourseBar);
         init();
     }
