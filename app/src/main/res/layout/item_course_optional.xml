@@ -15,7 +15,9 @@
         <TextView
             style="@style/miniMainTitle"
             android:id="@+id/optionalCourseName"
-            android:text="示例课程"/>
+            android:text="示例课程"
+            android:textSize="15sp"
+            />
 
         <TextView
             style="@style/subTitle"
@@ -26,8 +28,8 @@
     </LinearLayout>
 
     <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
