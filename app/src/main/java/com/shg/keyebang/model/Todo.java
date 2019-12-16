@@ -22,6 +22,7 @@ public class Todo extends BmobObject {
     private Calendar date;
 
     public Todo(String todoTitle, String todoMessage, Calendar date, int color) {
+        this.setTableName("Course");
         this.todoTitle = todoTitle;
         this.todoMessage = todoMessage;
         this.date = date;
