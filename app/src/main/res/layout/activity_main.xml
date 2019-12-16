@@ -11,7 +11,8 @@
         android:id="@+id/mainContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottomTabLayout">
+        android:layout_above="@id/bottomTabLayout"
+        android:background="#f8f8f8">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

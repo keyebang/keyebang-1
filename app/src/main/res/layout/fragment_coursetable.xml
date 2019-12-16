@@ -30,13 +30,13 @@
                 android:layout_height="2dp"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/timeBg"
-                    android:layout_width="96dp"
-                    android:layout_height="22dp"
+                    android:layout_width="104dp"
+                    android:layout_height="24dp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -44,8 +44,8 @@
 
                 <ImageView
                     android:id="@+id/timeIcon"
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -54,35 +54,34 @@
                     android:alpha="0.6"/>
 
                 <TextView
-                    style="@style/miniSubTitle"
+                    style="@style/subTitle"
                     android:id="@+id/semesterTime"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toRightOf="@id/timeIcon"
                     app:layout_constraintRight_toRightOf="@id/timeBg"
-                    android:layout_marginRight="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="12dp"
                     android:text="semesterTime"
                     android:textStyle="bold"/>
 
                 <TextView
-                    style="@style/miniSubTitle"
+                    style="@style/subTitle"
                     android:id="@+id/date"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/timeBg"
-                    android:layout_marginLeft="4dp"
-                    android:text="Time"/>
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:text=""/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="8dp"/>
+                android:layout_height="6dp"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/tableContainer"
                 android:layout_width="match_parent"
-                android:layout_height="860dp">
+                android:layout_height="920dp">
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>

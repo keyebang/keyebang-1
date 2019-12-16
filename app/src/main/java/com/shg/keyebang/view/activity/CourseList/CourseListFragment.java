@@ -6,13 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.shg.keyebang.R;
-import com.shg.keyebang.model.User;
 import com.shg.keyebang.view.activity.BaseFragment;
+import com.shg.keyebang.view.activity.CourseList.adapter.CoursesViewPagerAdapter;
 import com.shg.keyebang.view.general.TitleBarLayout;
 
 import androidx.annotation.NonNull;
@@ -59,7 +57,11 @@ public class CourseListFragment extends BaseFragment  {
         courseListTabLayout.getTabAt(0).setText("必修课");
         courseListTabLayout.getTabAt(1).setText("选修课");
 
-        search.setOnClickListener(v -> toastAndLog("Search"));
+        search.setOnClickListener(v -> search());
         titleBar.setTitle("您的课程列表");
+    }
+
+    private void search(){
+        toastAndLog("Search");
     }
 }

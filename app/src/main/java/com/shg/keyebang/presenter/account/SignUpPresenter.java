@@ -18,7 +18,7 @@ public class SignUpPresenter extends BasePresenter {
     }
 
     public void signUp(String nickname, String studentId, String semester, String major, String password){
-        if(StringUtil.isNullOrEmpty(nickname, studentId, semester, major, password)){
+        if(StringUtil.isSomeNullOrEmpty(nickname, studentId, semester, major, password)){
             activity.toastAndLog("信息未填写完全");
             return;
         }

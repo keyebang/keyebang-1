@@ -59,4 +59,10 @@ public class DisplayUtil {
         float dp = px * (float) displayMetrics.density;
         return dp;
     }
+
+    public static int dpTopx(int dp){
+        final DisplayMetrics displayMetrics = MyApplication.getContext().getResources().getDisplayMetrics();
+        float px = (float) dp * displayMetrics.density;
+        return (int)px;
+    }
 }

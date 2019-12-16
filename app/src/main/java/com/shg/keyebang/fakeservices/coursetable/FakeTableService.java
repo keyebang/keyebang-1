@@ -17,7 +17,7 @@ public class FakeTableService {
         //Course: 取数据下来的时候，记得包含他的ObjectId（一般是默认）
         Course course1 = new Course("概率论1", "安楼101","李华",1,1,2);
         Course course2 = new Course("概率论2", "安楼101","李华",1,3,4);
-        Course course3 = new Course("概率论3", "安楼101","李华",2,5,8);
+        Course course3 = new Course("概率论3", "安楼101","李华",2,5,12);
         Course course4 = new Course("概率论4", "安楼101","李华",3,1,2);
         Course course5 = new Course("概率论概率论概率论", "安楼101","李华",5,1,2);
         Course course6 = new Course("概率论6", "安楼101","李华",4,3,4);

@@ -19,7 +19,7 @@ public class LogInPresenter extends BasePresenter {
     }
 
     public void getSMSCode(String phoneNumber){
-        if(StringUtil.isNullOrEmpty(phoneNumber)){
+        if(StringUtil.isSomeNullOrEmpty(phoneNumber)){
             activity.toastAndLog("手机号为空");
             return;
         }
@@ -39,7 +39,7 @@ public class LogInPresenter extends BasePresenter {
     }
 
     public void loginOrSignUp(String phoneNumber, String code){
-        if(StringUtil.isNullOrEmpty(phoneNumber, code)){
+        if(StringUtil.isSomeNullOrEmpty(phoneNumber, code)){
             activity.toastAndLog("信息未填写完全");
             return;
         }
@@ -64,7 +64,7 @@ public class LogInPresenter extends BasePresenter {
     }
 
     public void commonLogin(String username, String password){
-        if(StringUtil.isNullOrEmpty(username, password)){
+        if(StringUtil.isSomeNullOrEmpty(username, password)){
             activity.toastAndLog("信息未填写完全");
             return;
         }
