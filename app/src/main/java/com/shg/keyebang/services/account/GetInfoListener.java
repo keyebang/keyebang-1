@@ -1,9 +1,8 @@
 package com.shg.keyebang.services.account;
 
-public abstract class GetInfoListener {
+import com.shg.keyebang.services.BaseListener;
 
-    public abstract void onSuccess(String message);
+public interface GetInfoListener extends BaseListener {
 
-    public abstract void onFailure(String errMessage);
-
+    void onSuccess(String message);
 }
