@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import com.github.jdsjlzx.interfaces.OnItemClickListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
+import com.github.jdsjlzx.recyclerview.ProgressStyle;
 import com.shg.keyebang.R;
 import com.shg.keyebang.model.Course;
 import com.shg.keyebang.presenter.courselist.MainCoursePresenter;
@@ -58,9 +59,10 @@ public class MainCoursesFragment extends BaseFragment {
             intent.putExtra("courseName", courseName);
             startActivity(intent);
         });
+        mainCourseRecyclerView.setOnRefreshListener(()->presenter.getMainCourses());
+        mainCourseRecyclerView.setRefreshProgressStyle(ProgressStyle.BallPulse);
         mainCourseRecyclerView.setLayoutManager(verticalLayoutManager);
         mainCourseRecyclerView.setAdapter(lMainCourseListAdapter);
-        mainCourseRecyclerView.setPullRefreshEnabled(false);
         mainCourseRecyclerView.setLoadMoreEnabled(false);
         presenter.getMainCourses();
     }
@@ -68,5 +70,6 @@ public class MainCoursesFragment extends BaseFragment {
     public void setMainCourseData(ArrayList<Course> courses) {
         mainCourseListAdapter.setCourseList(courses);
         lMainCourseListAdapter.notifyDataSetChanged();
+        mainCourseRecyclerView.refreshComplete(0);
     }
 }

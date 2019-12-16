@@ -24,11 +24,13 @@ import java.util.Map;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class CourseTableFragment extends BaseFragment {
     private View view;
     private CourseTablePresenter presenter;
     private ArrayList<CourseCard> courseCards;
+    private SwipeRefreshLayout refreshLayout;
     private ConstraintLayout tableContainer;
     private TitleBarLayout titleBar;
     private TextView semesterTime;
@@ -49,6 +51,7 @@ public class CourseTableFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_coursetable, container, false);
+        refreshLayout = view.findViewById(R.id.refreshTable);
         tableContainer = view.findViewById(R.id.tableContainer);
         titleBar = view.findViewById(R.id.courseTableBar);
         semesterTime = view.findViewById(R.id.semesterTime);
@@ -61,12 +64,13 @@ public class CourseTableFragment extends BaseFragment {
 
     @Override
     protected void init() {
-
-
         presenter.fakeGetTableToFragment();
         presenter.getDate();
         presenter.getSemesterTime();
         titleBar.setTitle(presenter.getTitle());
+        refreshLayout.setOnRefreshListener(()->{
+            presenter.fakeGetTableToFragment();
+        });
         //date.setText(presenter.getDate());
         
     }
@@ -87,6 +91,7 @@ public class CourseTableFragment extends BaseFragment {
             courseCards.add(card);
             tableContainer.addView(card);
         }
+        refreshLayout.setRefreshing(false);
     }
 
 

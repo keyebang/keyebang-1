@@ -14,9 +14,6 @@
         <activity android:name=".view.activity.CourseList.SearchCourseActivity"></activity>
         <activity android:name=".view.activity.CourseList.ChooseMainCourseActivity" />
         <activity android:name=".view.activity.coursedetail.CourseDetailActivity" />
-        <activity
-            android:name=".view.activity.coursetable.TodoActivity"
-            android:theme="@style/NoTitleTranslucentTheme" />
         <activity android:name=".view.activity.account.LoginActivity" />
         <activity
             android:name=".view.activity.account.SignUpActivity"

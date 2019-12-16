@@ -15,16 +15,21 @@ public class ChooseMainCourseActivity extends BaseActivity {
     private String courseName;
     private FindCoursePresenter presenter;
     private TitleBarLayout chooseCourseBar;
-    private LRecyclerViewAdapter lMainCourseListAdapter;
-    private ChooseCourseListAdapter mainCourseListAdapter;
-    private LRecyclerView mainCourseRecyclerView;
-    private LinearLayout mainCourseContainer;
+    private LRecyclerViewAdapter lChooseCourseListAdapter;
+    private ChooseCourseListAdapter chooseCourseListAdapter;
+    private LRecyclerView chooseCourseRecyclerView;
+    private LinearLayout chooseCourseContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_main_choose);
+        presenter = new FindCoursePresenter(this);
+        chooseCourseListAdapter = new ChooseCourseListAdapter();
+        lChooseCourseListAdapter = new LRecyclerViewAdapter(chooseCourseListAdapter);
         chooseCourseBar = findViewById(R.id.chooseCourseBar);
+        chooseCourseContainer = findViewById(R.id.chooseCourseContainer);
+        chooseCourseRecyclerView = findViewById(R.id.chooseCourseRecycler);
         init();
     }
 
@@ -32,5 +37,7 @@ public class ChooseMainCourseActivity extends BaseActivity {
     protected void init() {
         courseName = getIntent().getStringExtra("courseName" );
         chooseCourseBar.setTitle(courseName);
+        presenter.getChooseCourseList(courseName);
     }
+
 }

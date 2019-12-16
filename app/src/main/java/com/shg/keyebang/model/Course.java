@@ -124,6 +124,7 @@ public class Course extends BmobObject {
         this.lastClass = lastClass;
         return this;
     }
+
     public String getTodoTitle() {
         return todoTitle;
     }

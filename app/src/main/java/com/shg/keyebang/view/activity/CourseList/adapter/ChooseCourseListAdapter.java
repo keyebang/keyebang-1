@@ -59,4 +59,5 @@ public class ChooseCourseListAdapter extends RecyclerView.Adapter<ChooseCourseLi
     public String getCourseName(int position) {
         return courses.get(position).getClassName();
     }
+
 }

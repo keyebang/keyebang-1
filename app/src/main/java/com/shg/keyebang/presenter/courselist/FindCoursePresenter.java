@@ -16,7 +16,7 @@ public class FindCoursePresenter extends BasePresenter {
         chooseMainCourseActivity = activity;
     }
 
-    public void getChooseCourseList(){
+    public void getChooseCourseList(String courseName){
 
     }
 

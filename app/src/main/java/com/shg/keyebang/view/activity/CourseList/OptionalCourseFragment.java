@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
+import com.github.jdsjlzx.recyclerview.ProgressStyle;
 import com.shg.keyebang.R;
 import com.shg.keyebang.model.Course;
 import com.shg.keyebang.model.TopCourse;
@@ -68,7 +69,8 @@ public class OptionalCourseFragment extends BaseFragment {
         });
         optionalCourseRecyclerView.setLayoutManager(verticalLayoutManager);
         optionalCourseRecyclerView.setAdapter(lOptionalCourseListAdapter);
-        optionalCourseRecyclerView.setPullRefreshEnabled(false);
+        optionalCourseRecyclerView.setOnRefreshListener(()->presenter.getOptionalCourses());
+        optionalCourseRecyclerView.setRefreshProgressStyle(ProgressStyle.BallPulse);
         presenter.getTopCourses();
         presenter.getOptionalCourses();
     }
@@ -81,5 +83,6 @@ public class OptionalCourseFragment extends BaseFragment {
     public void setOptionalCourseData(ArrayList<Course> courses) {
         optionalCourseListAdapter.setCourseList(courses);
         lOptionalCourseListAdapter.notifyDataSetChanged();
+        optionalCourseRecyclerView.refreshComplete(0);
     }
 }

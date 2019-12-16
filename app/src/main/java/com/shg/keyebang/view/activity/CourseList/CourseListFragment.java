@@ -2,11 +2,14 @@ package com.shg.keyebang.view.activity.CourseList;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.shg.keyebang.R;
@@ -60,6 +63,13 @@ public class CourseListFragment extends BaseFragment  {
         courseListTabLayout.getTabAt(1).setText("选修课");
 
         search.setOnClickListener(v -> search());
+        searchText.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEND || (event!=null && event.getKeyCode()== KeyEvent.KEYCODE_ENTER)) {
+                search();
+                return true;
+            }
+            return false;
+        });
         titleBar.setTitle("您的课程列表");
     }
 

@@ -26,8 +26,5 @@ public class CourseInfo extends BmobObject {
         return this;
     }
     public String getClassId(){return classId;}
-    public CourseInfo setClassName(String className){
-        this
-    }
 
 }
