@@ -1,5 +1,6 @@
 package com.shg.keyebang.view.activity.CourseList;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.shg.keyebang.R;
+import com.shg.keyebang.aatools.StringUtil;
 import com.shg.keyebang.view.activity.BaseFragment;
 import com.shg.keyebang.view.activity.CourseList.adapter.CoursesViewPagerAdapter;
 import com.shg.keyebang.view.general.TitleBarLayout;
@@ -38,7 +40,7 @@ public class CourseListFragment extends BaseFragment  {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_courselist, container, false);
+        View view =  inflater.inflate(R.layout.fragment_course_list, container, false);
         titleBar = view.findViewById(R.id.courseListBar);
         searchText = view.findViewById(R.id.searchText);
         search = view.findViewById(R.id.searchIcon);
@@ -62,6 +64,12 @@ public class CourseListFragment extends BaseFragment  {
     }
 
     private void search(){
-        toastAndLog("Search");
+        String searchValue = searchText.getText().toString();
+        if(!StringUtil.isAllNullOrEmpty(searchValue)){
+            Intent intent = new Intent(getActivity(), SearchCourseActivity.class);
+            intent.putExtra("searchValue", searchText.getText().toString());
+            startActivity(intent);
+        }
+        else toastAndLog("搜索信息为空");
     }
 }
