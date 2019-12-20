@@ -50,29 +50,28 @@ public class CourseTableFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if(view != null) return view;
         view = inflater.inflate(R.layout.fragment_coursetable, container, false);
         refreshLayout = view.findViewById(R.id.refreshTable);
         tableContainer = view.findViewById(R.id.tableContainer);
         titleBar = view.findViewById(R.id.courseTableBar);
         semesterTime = view.findViewById(R.id.semesterTime);
         date = view.findViewById(R.id.date);
-
         init();
-
         return view;
     }
 
     @Override
     protected void init() {
+        refreshLayout.setOnRefreshListener(()->{
+            presenter.fakeGetTableToFragment();
+        });
         presenter.fakeGetTableToFragment();
         presenter.getDate();
         presenter.getSemesterTime();
         titleBar.setTitle(presenter.getTitle());
-        refreshLayout.setOnRefreshListener(()->{
-            presenter.fakeGetTableToFragment();
-        });
+
         //date.setText(presenter.getDate());
-        
     }
 
 

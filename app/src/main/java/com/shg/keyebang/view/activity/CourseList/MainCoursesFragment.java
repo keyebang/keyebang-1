@@ -24,6 +24,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class MainCoursesFragment extends BaseFragment {
+    private View view;
     private MainCoursePresenter presenter;
     private LRecyclerViewAdapter lMainCourseListAdapter;
     private MainCourseListAdapter mainCourseListAdapter;
@@ -33,15 +34,19 @@ public class MainCoursesFragment extends BaseFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = new MainCoursePresenter(this);
-        mainCourseListAdapter = new MainCourseListAdapter();
-        lMainCourseListAdapter = new LRecyclerViewAdapter(mainCourseListAdapter);
+        if(view == null){
+            presenter = new MainCoursePresenter(this);
+            mainCourseListAdapter = new MainCourseListAdapter();
+            lMainCourseListAdapter = new LRecyclerViewAdapter(mainCourseListAdapter);
+        }
+
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_course_main, container, false);
+        if(view != null) return view;
+        view = inflater.inflate(R.layout.fragment_course_main, container, false);
         mainCourseRecyclerView = view.findViewById(R.id.mainCourseRecycler);
         mainCourseContainer = view.findViewById(R.id.mainCourseContainer);
         init();

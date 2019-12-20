@@ -26,6 +26,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class OptionalCourseFragment extends BaseFragment {
+    private View view;
     private OptionalCoursePresenter presenter;
     private RecyclerView topCourseRecyclerView;
     private TopCourseListAdapter topCourseListAdapter;
@@ -36,16 +37,20 @@ public class OptionalCourseFragment extends BaseFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = new OptionalCoursePresenter(this);
-        topCourseListAdapter = new TopCourseListAdapter(this);
-        optionalCourseListAdapter = new OptionalCourseListAdapter();
-        lOptionalCourseListAdapter = new LRecyclerViewAdapter(optionalCourseListAdapter);
+        if(view == null){
+            presenter = new OptionalCoursePresenter(this);
+            topCourseListAdapter = new TopCourseListAdapter(this);
+            optionalCourseListAdapter = new OptionalCourseListAdapter();
+            lOptionalCourseListAdapter = new LRecyclerViewAdapter(optionalCourseListAdapter);
+        }
+
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_course_optional, container, false);
+        if(view != null) return view;
+        view = inflater.inflate(R.layout.fragment_course_optional, container, false);
         topCourseRecyclerView = view.findViewById(R.id.topCourseRecycler);
         optionalCourseRecyclerView = view.findViewById(R.id.optionalCourseRecycler);
         init();

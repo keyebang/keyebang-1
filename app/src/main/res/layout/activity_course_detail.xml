@@ -1,19 +1,333 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F8F8F9"
     tools:context=".view.activity.coursedetail.CourseDetailActivity">
 
-    <TextView
-        android:id="@+id/courseId"
+    <com.shg.keyebang.view.general.TitleBarLayout
+        android:id="@+id/detailTitleBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/detailTitleBar">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/courseDetailContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"/>
+
+                <LinearLayout
+                    android:id="@+id/messageBg"
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_card_white">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginBottom="8dp"
+                            android:text="课程信息"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/themeColorBlueDark"/>
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:translationX="20dp"
+                            android:src="@drawable/ic_person_black_24dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:translationX="60dp"
+                            android:text="课程信息"
+                            android:textSize="14sp"
+                            android:textColor="@color/themeColorBlack"/>
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:translationX="20dp"
+                            android:src="@drawable/ic_person_black_24dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:translationX="60dp"
+                            android:text="课程信息"
+                            android:textSize="14sp"
+                            android:textColor="@color/themeColorBlack"/>
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:translationX="20dp"
+                            android:src="@drawable/ic_person_black_24dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:translationX="60dp"
+                            android:text="课程信息"
+                            android:textSize="14sp"
+                            android:textColor="@color/themeColorBlack"/>
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp"/>
+
+                <LinearLayout
+                    android:id="@+id/timeBg"
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_card_white">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginBottom="8dp"
+                            android:text="时间信息"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/themeColorBlueDark"/>
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/courseTimeRecycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp"/>
+
+                <LinearLayout
+                    android:id="@+id/bookBg"
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_card_white">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginBottom="8dp"
+                            android:text="书籍资料"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/themeColorBlueDark"/>
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/coursebookRecycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"/>
+
+                <com.github.jdsjlzx.recyclerview.LRecyclerView
+                    android:id="@+id/commentRecyclerView"
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"/>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+    <com.lijiankun24.shadowlayout.ShadowLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:text="null"/>
+        android:layout_alignParentBottom="true"
+        app:shadowColor="#0C000000"
+        app:shadowDy="-1dp"
+        app:shadowRadius="4dp"
+        app:shadowSide="top">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/commentBg"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="#FFFFFF">
+
+
+
+            <com.like.LikeButton
+                android:id="@+id/likeButton"
+                app:icon_size="20dp"
+                app:anim_scale_factor="1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:translationX="-20dp"
+                app:unlike_drawable="@drawable/ic_favorite_black_24dp"
+                app:like_drawable="@drawable/ic_favorite_red_24dp"
+                app:icon_type="heart"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/sendComment"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/likeButton"
+                android:translationX="-24dp"
+                android:background="@drawable/bg_touch">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:src="@drawable/ic_send_black_24dp"
+                    android:alpha="0.6"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <EditText
+                android:id="@+id/commentEditText"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:translationX="20dp"
+                android:textSize="15sp"
+                android:hint="你的评论..."
+                android:background="@null"
+                android:textCursorDrawable="@drawable/cursor_todo"
+                android:textColorHint="@color/textHintColor"
+                android:maxLines="1"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.lijiankun24.shadowlayout.ShadowLayout>
+
+</RelativeLayout>

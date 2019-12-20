@@ -1,5 +1,6 @@
 package com.shg.keyebang.view.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
@@ -12,8 +13,10 @@ public abstract class BaseFragment extends Fragment {
     abstract protected void init();
 
     public void toastAndLog(String message){
-        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
         Log.d(TAG, message);
+        if(getActivity() == null) return;
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+
     }
 
     protected void startActivityDirectly(Class<?> cls){

@@ -37,6 +37,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:imeOptions="actionSearch"
+                    android:inputType="text"
                     android:paddingStart="14dp"
                     android:paddingEnd="48dp"
                     android:textSize="14sp"

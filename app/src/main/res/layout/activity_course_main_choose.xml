@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="20dp"/>
 
-    <com.github.jdsjlzx.recyclerview.LuRecyclerView
+    <com.github.jdsjlzx.recyclerview.LRecyclerView
         android:id="@+id/chooseCourseRecycler"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
