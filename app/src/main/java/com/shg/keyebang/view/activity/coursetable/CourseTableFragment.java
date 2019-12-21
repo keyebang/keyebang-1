@@ -1,6 +1,7 @@
 package com.shg.keyebang.view.activity.coursetable;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -104,5 +105,10 @@ public class CourseTableFragment extends BaseFragment {
                 courseCard.setOnClick(this);
             }
         }
+    }
+
+    public void showErrMessage(String errMassage) {
+        toastAndLog(errMassage);
+        refreshLayout.setRefreshing(false);
     }
 }
