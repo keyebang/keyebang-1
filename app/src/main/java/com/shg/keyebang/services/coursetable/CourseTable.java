@@ -1,5 +1,7 @@
 package com.shg.keyebang.services.coursetable;
 
+import android.util.Log;
+
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.model.ViewCourse;
 import com.shg.keyebang.model.ViewCourseTime;
@@ -20,6 +22,8 @@ import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.FindListener;
+
+import static android.content.ContentValues.TAG;
 
 
 public class CourseTable {
@@ -42,38 +46,10 @@ public class CourseTable {
 
     }
 
-    public static void getClass(GetClassListener listener){
-        BmobQuery<ViewCourse> query =new BmobQuery<>();
-        query.addWhereEqualTo("student",BmobUser.getCurrentUser(User.class));
-        query.include("student");
-        query.setLimit(20);
-        query.findObjects(new FindListener<ViewCourse>() {
-            @Override
-            public void done(List<ViewCourse> object, BmobException e) {
-                if(e==null){
-
-                    Map<ViewCourse, ViewTodo> classTable = new HashMap<>();
-                    for (ViewCourse course : object) {
-                        ViewCourse course1 = new ViewCourse(course.getCourseName(), course.getClassPlace(),course.getTeacher(),course.getOneOfWeekday(),course.getOneOfFirstClass(),course.getOneOfLastClass());
-                        if(course.getTodoTitle()==null){classTable.put(course1, null);}
-                        else{
-                            Calendar calendar = new GregorianCalendar(course.getYear(),course.getMonth(), course.getDayOfMonth());
-                            ViewTodo todo = new ViewTodo(course.getTodoTitle(),course.getTodoMessage(),calendar,ViewTodo.COLOR_RED);
-                            classTable.put(course1,todo);
-                        }
-
-                    }
-                    listener.onSuccess(classTable);
-                }else{
-                    listener.onFailure("查询失败"+e.getMessage()+e.getErrorCode());
-                }
-            }
-        });
-    }*/
+*/
     public static void getClass(GetClassListener listener) {
         BmobQuery<Todo> query1 = new BmobQuery<>();
         query1.addWhereEqualTo("userId", BmobUser.getCurrentUser(User.class));
-        query1.include("courseId[className|classPlace|teacher].timeId[courseId|weekday|firstClass|LastClass]");
 
         query1.setLimit(30);
         query1.findObjects(new FindListener<Todo>() {
@@ -84,11 +60,12 @@ public class CourseTable {
                     Map<ViewCourse, ViewTodo> courseTable = new HashMap<>();
                     for (Todo todo : object) {
                         BmobQuery<Course> query2 = new BmobQuery<>();
-                        query2.addWhereEqualTo("courseId", todo.getCourseId());
+                        query2.addWhereEqualTo("ObjectId", todo.getCourseId());
                         query2.findObjects(new FindListener<Course>() {
                             @Override
                             public void done(List<Course> object, BmobException e) {
                                 if (e == null) {
+                                    Log.d(TAG, "done:"+object.size());
                                     for (Course course : object) {
                                         BmobQuery<CourseTime> query3 = new BmobQuery<>();
                                         query3.addWhereEqualTo("courseId", todo.getCourseId());

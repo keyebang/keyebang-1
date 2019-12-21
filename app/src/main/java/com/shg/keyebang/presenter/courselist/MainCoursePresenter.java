@@ -8,7 +8,7 @@ import com.shg.keyebang.view.activity.CourseList.MainCoursesFragment;
 
 import java.util.ArrayList;
 
-public class MainCoursePresenter extends BasePresenter {
+public class    MainCoursePresenter extends BasePresenter {
 
     private MainCoursesFragment fragment;
 
