@@ -3,6 +3,7 @@ package com.shg.keyebang.services.coursetable;
 import com.shg.keyebang.model.Course;
 import com.shg.keyebang.model.Todo;
 import com.shg.keyebang.model.User;
+import com.shg.keyebang.services.sqlitemodel.CourseTableDB;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -18,6 +19,12 @@ import cn.bmob.v3.listener.SaveListener;
 
 public class CourseTable {
 
+
+    public static void addClass(final CourseTableDB course, CourseTableListener listener){
+
+
+
+    }
 
     public static void setClass(final Course course , CourseTableListener listener){
 
@@ -35,6 +42,8 @@ public class CourseTable {
         });
 
     }
+
+
 
     public static void getClass(GetClassListener listener){
         BmobQuery<Course> query =new BmobQuery<>();
