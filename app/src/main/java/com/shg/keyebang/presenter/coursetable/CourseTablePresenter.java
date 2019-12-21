@@ -1,5 +1,7 @@
 package com.shg.keyebang.presenter.coursetable;
 
+import android.util.Log;
+
 import com.shg.keyebang.aatools.TimeCNUtil;
 import com.shg.keyebang.fakeservices.coursetable.FakeGetTableListener;
 import com.shg.keyebang.fakeservices.coursetable.SemesterTimeListener;
@@ -8,6 +10,8 @@ import com.shg.keyebang.model.ViewTodo;
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.presenter.BasePresenter;
 import com.shg.keyebang.fakeservices.coursetable.FakeTableService;
+import com.shg.keyebang.services.coursetable.CourseTable;
+import com.shg.keyebang.services.coursetable.GetClassListener;
 import com.shg.keyebang.view.activity.coursetable.CourseTableFragment;
 
 import java.util.Calendar;
@@ -21,20 +25,21 @@ public class CourseTablePresenter extends BasePresenter {
     }
 
     public void fakeGetTableToFragment(){
-        if(true){
-            FakeTableService.getTable("", new FakeGetTableListener() {
+
+        if (User.getCurrentUser(User.class) != null){
+            CourseTable.getClass(new GetClassListener() {
                 @Override
                 public void onSuccess(Map<ViewCourse, ViewTodo> table) {
                     fragment.setCourseTable(table);
                 }
 
                 @Override
-                public void onFailure(String errMsg) {
-                    fragment.toastAndLog(errMsg);
-
+                public void onFailure(String errMassage) {
+                    fragment.showErrMessage(errMassage);
                 }
             });
         }
+        else fragment.showErrMessage("你未登录");
     }
 
     public String getTitle(){
@@ -45,17 +50,9 @@ public class CourseTablePresenter extends BasePresenter {
     }
 
     public void getSemesterTime(){
-        FakeTableService.getSemesterTime(new SemesterTimeListener() {
-            @Override
-            public void onSuccess(String time) {
-                fragment.setSemesterTime(time);
-            }
-
-            @Override
-            public void onFailure(String errMsg) {
-                fragment.toastAndLog(errMsg);
-            }
-        });
+        int week = 10;
+        boolean singleOrDouble = week%2 != 0;
+        fragment.setSemesterTime(week, singleOrDouble);
     }
 
     public String getDate() {

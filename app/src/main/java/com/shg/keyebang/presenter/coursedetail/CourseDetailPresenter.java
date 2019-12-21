@@ -20,6 +20,11 @@ public class CourseDetailPresenter extends BasePresenter {
         this.activity = courseDetailActivity;
     }
 
+    public void getEvaId(String courseId) {
+        String evaId = "SDfa";
+        activity.setEvaId(evaId);
+    }
+
     public void getCourseInfo(String courseId /* Or String evaluationId */){
 
         ViewCourseInfo viewCourseInfo = ViewCourseInfo.builder()
@@ -66,7 +71,7 @@ public class CourseDetailPresenter extends BasePresenter {
         activity.setTimeData(viewCourseSelects);
     }
 
-    public void getBookList(){
+    public void getBookList(String evaId){
         ViewBook book = ViewBook.builder()
                 .setBookName("《他改变了中国》");
 
@@ -77,7 +82,7 @@ public class CourseDetailPresenter extends BasePresenter {
         activity.setBookData(books);
     }
 
-    public void getCommentList(){
+    public void getCommentList(String evaId){
         Calendar time = Calendar.getInstance();
         ViewComment comment = ViewComment.builder()
                 .setCommentUserName("同济学生")
@@ -95,7 +100,21 @@ public class CourseDetailPresenter extends BasePresenter {
         activity.setCommentData(comments);
     }
 
-    public void sendComment(String text) {
+    public void getLikeNum(String evaId){
+        int likenum = 123;
+        activity.setLikeNum(likenum);
+    }
+
+    public void getIsLike(String evaId){
+        boolean isLike = false;
+        activity.setIsLike(isLike);
+    }
+
+    public void getLimit() {
+        activity.setLimit(true);
+    }
+
+    public void sendComment(String evaId, String text) {
         if(StringUtil.isAllNullOrEmpty(text)){
             activity.toastAndLog("评论内容为空");
             return;
@@ -109,13 +128,13 @@ public class CourseDetailPresenter extends BasePresenter {
         activity.addMyComment(comment);
     }
 
-    public void getLimit() {
-        activity.setLimit(true);
-    }
-
-    public void getEvaId(String courseId) {
-    }
-
     public void addBook(String bookName, String evaId) {
+    }
+
+    public void addCourseToTable(String courseId) {
+    }
+
+    public void updateLike(String evaId, int num /* 1 or -1 */) {
+        activity.updateLikeSuccess(num);
     }
 }
