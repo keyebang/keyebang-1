@@ -14,7 +14,7 @@ import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.recyclerview.ProgressStyle;
 import com.shg.keyebang.R;
 import com.shg.keyebang.aatools.StringUtil;
-import com.shg.keyebang.model.Course;
+import com.shg.keyebang.model.ViewCourse;
 import com.shg.keyebang.presenter.courselist.FindCoursePresenter;
 import com.shg.keyebang.view.activity.BaseActivity;
 import com.shg.keyebang.view.activity.CourseList.adapter.ItemCourseListAdapter;
@@ -91,7 +91,7 @@ public class SearchCourseActivity extends BaseActivity {
         searchCourseRecyclerView.refreshComplete(0);
     }
 
-    public void setResultCourseList(ArrayList<Course> courses) {
+    public void setResultCourseList(ArrayList<ViewCourse> courses) {
         itemCourseListAdapter.setCourseList(courses);
         lItemCourseListAdapter.notifyDataSetChanged();
         searchCourseRecyclerView.refreshComplete(0);

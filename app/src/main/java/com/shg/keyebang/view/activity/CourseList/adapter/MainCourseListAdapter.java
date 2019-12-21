@@ -6,8 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.shg.keyebang.R;
-import com.shg.keyebang.aatools.TimeCNUtil;
-import com.shg.keyebang.model.Course;
+import com.shg.keyebang.model.ViewCourse;
 
 import java.util.ArrayList;
 
@@ -15,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MainCourseListAdapter extends RecyclerView.Adapter<MainCourseListAdapter.ListItemHolder> {
-    private ArrayList<Course> courses;
+    private ArrayList<ViewCourse> courses;
 
     public static class ListItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView optionalCourseName;
@@ -44,9 +43,9 @@ public class MainCourseListAdapter extends RecyclerView.Adapter<MainCourseListAd
 
     @Override
     public void onBindViewHolder(@NonNull ListItemHolder holder, int position) {
-        Course course = courses.get(position);
-        holder.optionalCourseName.setText(course.getClassName());
-        holder.optionalCourseId = course.getObjectId();
+        ViewCourse course = courses.get(position);
+        holder.optionalCourseName.setText(course.getCourseName());
+        holder.optionalCourseId = course.getCourseId();
     }
 
     @Override
@@ -54,15 +53,15 @@ public class MainCourseListAdapter extends RecyclerView.Adapter<MainCourseListAd
         return courses.size();
     }
 
-    public void setCourseList(ArrayList<Course> courses) {
+    public void setCourseList(ArrayList<ViewCourse> courses) {
         this.courses = courses;
     }
 
     public String getCourseId(int position){
-        return courses.get(position).getObjectId();
+        return courses.get(position).getCourseId();
     }
 
     public String getCourseName(int position){
-        return courses.get(position).getClassName();
+        return courses.get(position).getCourseName();
     }
 }

@@ -1,6 +1,6 @@
 package com.shg.keyebang.presenter.courselist;
 
-import com.shg.keyebang.model.Course;
+import com.shg.keyebang.model.ViewCourse;
 import com.shg.keyebang.presenter.BasePresenter;
 import com.shg.keyebang.view.activity.CourseList.ChooseMainCourseActivity;
 import com.shg.keyebang.view.activity.CourseList.SearchCourseActivity;
@@ -20,10 +20,10 @@ public class FindCoursePresenter extends BasePresenter {
     }
 
     public void getChooseCourseList(String courseName){
-        Course course = Course.builder()
-                .setClassName(courseName)
+        ViewCourse course = ViewCourse.builder()
+                .setCourseName(courseName)
                 .setTeacher("李华");
-        ArrayList<Course> courses = new ArrayList<>();
+        ArrayList<ViewCourse> courses = new ArrayList<>();
         courses.add(course);
         courses.add(course);
         courses.add(course);
@@ -41,10 +41,10 @@ public class FindCoursePresenter extends BasePresenter {
     }
 
     public void FindCourseByName(String courseName){
-        Course course = Course.builder()
-                .setClassName(courseName)
+        ViewCourse course = ViewCourse.builder()
+                .setCourseName(courseName)
                 .setTeacher("李华");
-        ArrayList<Course> courses = new ArrayList<>();
+        ArrayList<ViewCourse> courses = new ArrayList<>();
         courses.add(course);
         courses.add(course);
         courses.add(course);

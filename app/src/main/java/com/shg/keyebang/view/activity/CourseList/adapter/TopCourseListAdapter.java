@@ -1,6 +1,5 @@
 package com.shg.keyebang.view.activity.CourseList.adapter;
 
-import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,9 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.shehuan.niv.NiceImageView;
-import com.shg.keyebang.MyApplication;
 import com.shg.keyebang.R;
-import com.shg.keyebang.model.Course;
 import com.shg.keyebang.model.TopCourse;
 import com.shg.keyebang.view.activity.CourseList.OptionalCourseFragment;
 import com.shg.keyebang.view.activity.coursedetail.CourseDetailActivity;
@@ -76,8 +73,8 @@ public class TopCourseListAdapter extends RecyclerView.Adapter<RecyclerView.View
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         position -= NUM_HEADER;
         if(holder instanceof ListItemHolder) {
-            ((ListItemHolder)holder).topCourseName.setText(topCourses.get(position).getClassName());
-            ((ListItemHolder)holder).name = topCourses.get(position).getClassName();
+            ((ListItemHolder)holder).topCourseName.setText(topCourses.get(position).getCourseName());
+            ((ListItemHolder)holder).name = topCourses.get(position).getCourseName();
             ((ListItemHolder)holder).teacher = topCourses.get(position).getTeacher();
         }
     }

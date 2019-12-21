@@ -9,7 +9,7 @@ import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.recyclerview.ProgressStyle;
 import com.shg.keyebang.R;
-import com.shg.keyebang.model.Course;
+import com.shg.keyebang.model.ViewCourse;
 import com.shg.keyebang.presenter.courselist.FindCoursePresenter;
 import com.shg.keyebang.view.activity.BaseActivity;
 import com.shg.keyebang.view.activity.CourseList.adapter.ItemCourseListAdapter;
@@ -65,7 +65,7 @@ public class ChooseMainCourseActivity extends BaseActivity {
         presenter.getChooseCourseList(courseName);
     }
 
-    public void setChooseCourseList(ArrayList<Course> courses) {
+    public void setChooseCourseList(ArrayList<ViewCourse> courses) {
         itemCourseListAdapter.setCourseList(courses);
         lItemCourseListAdapter.notifyDataSetChanged();
         chooseCourseRecyclerView.refreshComplete(0);

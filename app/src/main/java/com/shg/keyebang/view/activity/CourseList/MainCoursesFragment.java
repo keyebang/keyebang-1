@@ -7,12 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.github.jdsjlzx.interfaces.OnItemClickListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.recyclerview.ProgressStyle;
 import com.shg.keyebang.R;
-import com.shg.keyebang.model.Course;
+import com.shg.keyebang.model.ViewCourse;
 import com.shg.keyebang.presenter.courselist.MainCoursePresenter;
 import com.shg.keyebang.view.activity.BaseFragment;
 import com.shg.keyebang.view.activity.CourseList.adapter.MainCourseListAdapter;
@@ -72,7 +71,7 @@ public class MainCoursesFragment extends BaseFragment {
         presenter.getMainCourses();
     }
 
-    public void setMainCourseData(ArrayList<Course> courses) {
+    public void setMainCourseData(ArrayList<ViewCourse> courses) {
         mainCourseListAdapter.setCourseList(courses);
         lMainCourseListAdapter.notifyDataSetChanged();
         mainCourseRecyclerView.refreshComplete(0);

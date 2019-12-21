@@ -10,7 +10,7 @@ import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.recyclerview.ProgressStyle;
 import com.shg.keyebang.R;
-import com.shg.keyebang.model.Course;
+import com.shg.keyebang.model.ViewCourse;
 import com.shg.keyebang.model.TopCourse;
 import com.shg.keyebang.presenter.courselist.OptionalCoursePresenter;
 import com.shg.keyebang.view.activity.BaseFragment;
@@ -85,7 +85,7 @@ public class OptionalCourseFragment extends BaseFragment {
         topCourseListAdapter.notifyDataSetChanged();
     }
 
-    public void setOptionalCourseData(ArrayList<Course> courses) {
+    public void setOptionalCourseData(ArrayList<ViewCourse> courses) {
         optionalCourseListAdapter.setCourseList(courses);
         lOptionalCourseListAdapter.notifyDataSetChanged();
         optionalCourseRecyclerView.refreshComplete(0);
