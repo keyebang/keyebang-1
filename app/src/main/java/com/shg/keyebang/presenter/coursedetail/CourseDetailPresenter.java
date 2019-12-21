@@ -3,6 +3,8 @@ package com.shg.keyebang.presenter.coursedetail;
 import com.shg.keyebang.aatools.StringUtil;
 import com.shg.keyebang.model.ViewBook;
 import com.shg.keyebang.model.ViewComment;
+import com.shg.keyebang.model.ViewCourseInfo;
+import com.shg.keyebang.model.ViewCourseSelect;
 import com.shg.keyebang.model.ViewCourseTime;
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.presenter.BasePresenter;
@@ -18,7 +20,17 @@ public class CourseDetailPresenter extends BasePresenter {
         this.activity = courseDetailActivity;
     }
 
-    public void getCourseTimeList(){
+    public void getCourseInfo(String courseId /* Or String evaluationId */){
+
+        ViewCourseInfo viewCourseInfo = ViewCourseInfo.builder()
+                .setType("必修课")
+                .setCredit(3f)
+                .setInfo("课程的主要内容");
+
+        activity.setCourseInfoData(viewCourseInfo);
+    }
+
+    public void getThisCourseList(String courseId /* Or String evaluationId */){
         ViewCourseTime time1 = ViewCourseTime.builder()
                 .setWeekday(1)
                 .setFirstClass(1)
@@ -44,11 +56,14 @@ public class CourseDetailPresenter extends BasePresenter {
         times2.add(time3);
         times2.add(time4);
 
-        ArrayList<ArrayList<ViewCourseTime>> times = new ArrayList<>();
-        times.add(times1);
-        times.add(times2);
+        ViewCourseSelect viewCourseSelect1 = new ViewCourseSelect("1", "李华", "安楼101", times1);
+        ViewCourseSelect viewCourseSelect2 = new ViewCourseSelect("2", "李明", "安楼101", times2);
 
-        activity.setTimeData(times);
+        ArrayList<ViewCourseSelect> viewCourseSelects = new ArrayList<>();
+        viewCourseSelects.add(viewCourseSelect1);
+        viewCourseSelects.add(viewCourseSelect2);
+
+        activity.setTimeData(viewCourseSelects);
     }
 
     public void getBookList(){
@@ -96,5 +111,11 @@ public class CourseDetailPresenter extends BasePresenter {
 
     public void getLimit() {
         activity.setLimit(true);
+    }
+
+    public void getEvaId(String courseId) {
+    }
+
+    public void addBook(String bookName, String evaId) {
     }
 }

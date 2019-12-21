@@ -72,7 +72,6 @@ public class CourseCard extends FrameLayout {
 
     public void setTodoState(boolean exist){
         if(exist){
-            Log.d("todo", "setTodoState: " + todo.getTodoId());
             todoTitle.setVisibility(View.VISIBLE);
             todoTime.setVisibility(View.VISIBLE);
             todoTag.setVisibility(View.VISIBLE);
