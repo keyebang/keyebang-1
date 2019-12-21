@@ -1,9 +1,11 @@
 package com.shg.keyebang.view.activity.coursedetail;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -12,30 +14,35 @@ import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
 import com.shg.keyebang.R;
+import com.shg.keyebang.aatools.DisplayUtil;
 import com.shg.keyebang.aatools.StringUtil;
 import com.shg.keyebang.model.ViewBook;
 import com.shg.keyebang.model.ViewComment;
+import com.shg.keyebang.model.ViewCourseInfo;
+import com.shg.keyebang.model.ViewCourseSelect;
 import com.shg.keyebang.model.ViewCourseTime;
 import com.shg.keyebang.presenter.coursedetail.CourseDetailPresenter;
 import com.shg.keyebang.view.activity.BaseActivity;
 import com.shg.keyebang.view.activity.coursedetail.adapter.CommentListAdapter;
 import com.shg.keyebang.view.activity.coursedetail.adapter.CourseBookListAdapter;
-import com.shg.keyebang.view.activity.coursedetail.adapter.CourseTimeListAdapter;
+import com.shg.keyebang.view.activity.coursedetail.adapter.CourseSelectListAdapter;
 import com.shg.keyebang.view.general.TitleBarLayout;
 
 import java.util.ArrayList;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class CourseDetailActivity extends BaseActivity {
+    private String courseId;
+    private String evaId;
     private String courseName;
-    private String courseTeacher;
     private boolean limit = false;
     private CourseDetailPresenter presenter;
-    private CourseTimeListAdapter courseTimeListAdapter;
+    private CourseSelectListAdapter courseSelectListAdapter;
     private CourseBookListAdapter courseBookListAdapter;
     private CommentListAdapter commentListAdapter;
     private LRecyclerViewAdapter lCommentListAdapter;
@@ -45,6 +52,11 @@ public class CourseDetailActivity extends BaseActivity {
     private LinearLayout courseDetailContainer;
     private SwipeRefreshLayout refreshLayout;
     private TitleBarLayout titleBar;
+    private TextView courseType;
+    private TextView courseCredit;
+    private TextView courseMessage;
+    private ImageView addBookButton;
+    private ConstraintLayout getSecondHandBookButton;
     private TextView limitMessage;
     private EditText commentEditText;
     private ConstraintLayout sendComment;
@@ -55,17 +67,22 @@ public class CourseDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_detail);
         presenter = new CourseDetailPresenter(this);
+        courseId = getIntent().getStringExtra("courseId");
         courseName = getIntent().getStringExtra("courseName" );
-        courseTeacher = getIntent().getStringExtra("courseTeacher" );
-        titleBar = findViewById(R.id.detailTitleBar);
-        courseTimeListAdapter = new CourseTimeListAdapter();
+        courseSelectListAdapter = new CourseSelectListAdapter();
         courseBookListAdapter = new CourseBookListAdapter();
         commentListAdapter = new CommentListAdapter();
         lCommentListAdapter = new LRecyclerViewAdapter(commentListAdapter);
+        titleBar = findViewById(R.id.detailTitleBar);
         courseTimeRecyclerView = findViewById(R.id.courseTimeRecycler);
         courseBookRecyclerView = findViewById(R.id.coursebookRecycler);
         commentRecyclerView = findViewById(R.id.commentRecyclerView);
         courseDetailContainer = findViewById(R.id.courseDetailContainer);
+        courseType = findViewById(R.id.courseType);
+        courseCredit = findViewById(R.id.courseCredit);
+        courseMessage = findViewById(R.id.courseMessage);
+        addBookButton = findViewById(R.id.addBookButton);
+        getSecondHandBookButton = findViewById(R.id.getSecondHandButton);
         refreshLayout = findViewById(R.id.refreshLayout);
         limitMessage = findViewById(R.id.limitMessage);
         commentEditText = findViewById(R.id.commentEditText);
@@ -77,11 +94,28 @@ public class CourseDetailActivity extends BaseActivity {
     @Override
     protected void init() {
         if(!StringUtil.isAllNullOrEmpty(courseName)) titleBar.setTitle(courseName);
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                getData();
-            }
+        refreshLayout.setOnRefreshListener(this::getData);
+        getSecondHandBookButton.setOnClickListener(v->{
+            Intent intent = new Intent(this, SecondHandBookActivity.class);
+            intent.putExtra("courseId", courseId);
+            intent.putExtra("evaId", evaId);
+            startActivity(intent);
+        });
+        addBookButton.setOnClickListener(v->{
+            final EditText edit = new EditText(this);
+            edit.setWidth(DisplayUtil.dpTopx(200));
+            edit.setTranslationX(DisplayUtil.dpTopx(20));
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setView(edit);
+            builder.setTitle("添加书籍资料");
+            builder.setPositiveButton("添加", (v1, i1)->{
+                String bookName = edit.getText().toString();
+                if(StringUtil.isAllNullOrEmpty(bookName)) toastAndLog("输入信息为空");
+                else presenter.addBook(bookName, evaId);
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            dialog.getWindow().setLayout(DisplayUtil.dpTopx(360), LinearLayout.LayoutParams.WRAP_CONTENT);
         });
         likeButton.setOnLikeListener(new OnLikeListener() {
             @Override
@@ -99,7 +133,7 @@ public class CourseDetailActivity extends BaseActivity {
         LinearLayoutManager verticalTimeLayoutManager = new LinearLayoutManager(this);
         verticalTimeLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         courseTimeRecyclerView.setLayoutManager(verticalTimeLayoutManager);
-        courseTimeRecyclerView.setAdapter(courseTimeListAdapter);
+        courseTimeRecyclerView.setAdapter(courseSelectListAdapter);
 
         LinearLayoutManager verticalBookLayoutManager = new LinearLayoutManager(this);
         verticalBookLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -119,7 +153,9 @@ public class CourseDetailActivity extends BaseActivity {
 
     private void getData(){
         //presenter.getLimit();
-        presenter.getCourseTimeList();
+        presenter.getEvaId(courseId);
+        presenter.getCourseInfo(courseId);
+        presenter.getThisCourseList(evaId);
         presenter.getBookList();
         if(limit){
             presenter.getCommentList();
@@ -127,9 +163,15 @@ public class CourseDetailActivity extends BaseActivity {
         refreshLayout.setRefreshing(false);
     }
 
-    public void setTimeData(ArrayList<ArrayList<ViewCourseTime>> courseTimes){
-        courseTimeListAdapter.setCourseTimes(courseTimes);
-        courseTimeListAdapter.notifyDataSetChanged();
+    public void setCourseInfoData(ViewCourseInfo courseInfo) {
+        courseType.setText(courseInfo.getType());
+        courseCredit.setText("学分：" + courseInfo.getCredit());
+        courseMessage.setText(courseInfo.getInfo());
+    }
+
+    public void setTimeData(ArrayList<ViewCourseSelect> courseTimes){
+        courseSelectListAdapter.setCourseSelects(courseTimes);
+        courseSelectListAdapter.notifyDataSetChanged();
     }
 
     public void setBookData(ArrayList<ViewBook> books){
@@ -156,5 +198,6 @@ public class CourseDetailActivity extends BaseActivity {
             limitMessage.setVisibility(View.GONE);
         }
         else if (!this.limit) limitMessage.setVisibility(View.VISIBLE);
+        else limitMessage.setVisibility(View.GONE);
     }
 }

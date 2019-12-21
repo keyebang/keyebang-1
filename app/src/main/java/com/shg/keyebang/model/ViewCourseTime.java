@@ -15,6 +15,7 @@ public class ViewCourseTime {
     public @interface SingleDoubleWeek {}
 
     private String timeId;
+    private String courseId;
     private int weekday;
     private int firstClass;
     private int lastClass;
@@ -77,4 +78,14 @@ public class ViewCourseTime {
         this.singleOrDouble = singleOrDouble;
         return this;
     }
+
+    public String getCourseId() {
+        return courseId;
+    }
+
+    public ViewCourseTime setCourseId(String courseId) {
+        this.courseId = courseId;
+        return this;
+    }
+
 }

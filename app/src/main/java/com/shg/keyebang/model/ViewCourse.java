@@ -15,6 +15,7 @@ public class ViewCourse {
     private String teacher;
     private String campus;
     private String type;
+    private String info;
     private float credit;
     private int oneOfWeekday;
     private int oneOfFirstClass;
@@ -148,4 +149,14 @@ public class ViewCourse {
         this.courseId = courseId;
         return this;
     }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public ViewCourse setInfo(String info) {
+        this.info = info;
+        return this;
+    }
+
 }
