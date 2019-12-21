@@ -69,7 +69,7 @@ public class CourseDetailActivity extends BaseActivity {
         presenter = new CourseDetailPresenter(this);
         courseId = getIntent().getStringExtra("courseId");
         courseName = getIntent().getStringExtra("courseName" );
-        courseSelectListAdapter = new CourseSelectListAdapter();
+        courseSelectListAdapter = new CourseSelectListAdapter(this);
         courseBookListAdapter = new CourseBookListAdapter();
         commentListAdapter = new CommentListAdapter();
         lCommentListAdapter = new LRecyclerViewAdapter(commentListAdapter);
@@ -199,5 +199,9 @@ public class CourseDetailActivity extends BaseActivity {
         }
         else if (!this.limit) limitMessage.setVisibility(View.VISIBLE);
         else limitMessage.setVisibility(View.GONE);
+    }
+
+    public void addCourseToTable(String courseId) {
+        presenter.addCourseToTable(courseId);
     }
 }

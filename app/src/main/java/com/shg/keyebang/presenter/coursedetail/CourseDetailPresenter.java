@@ -20,6 +20,9 @@ public class CourseDetailPresenter extends BasePresenter {
         this.activity = courseDetailActivity;
     }
 
+    public void getEvaId(String courseId) {
+    }
+
     public void getCourseInfo(String courseId /* Or String evaluationId */){
 
         ViewCourseInfo viewCourseInfo = ViewCourseInfo.builder()
@@ -95,6 +98,10 @@ public class CourseDetailPresenter extends BasePresenter {
         activity.setCommentData(comments);
     }
 
+    public void getLimit() {
+        activity.setLimit(true);
+    }
+
     public void sendComment(String text) {
         if(StringUtil.isAllNullOrEmpty(text)){
             activity.toastAndLog("评论内容为空");
@@ -109,13 +116,9 @@ public class CourseDetailPresenter extends BasePresenter {
         activity.addMyComment(comment);
     }
 
-    public void getLimit() {
-        activity.setLimit(true);
-    }
-
-    public void getEvaId(String courseId) {
-    }
-
     public void addBook(String bookName, String evaId) {
+    }
+
+    public void addCourseToTable(String courseId) {
     }
 }

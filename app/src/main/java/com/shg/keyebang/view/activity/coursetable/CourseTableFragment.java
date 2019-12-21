@@ -24,6 +24,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class CourseTableFragment extends BaseFragment {
     private View view;
+    private boolean singleOrDouble = false;
     private CourseTablePresenter presenter;
     private ArrayList<CourseCard> courseCards;
     private SwipeRefreshLayout refreshLayout;
@@ -74,6 +75,9 @@ public class CourseTableFragment extends BaseFragment {
         for(ViewCourse course: classTable.keySet()){
             ViewTodo todo = classTable.get(course);
             for(ViewCourseTime courseTime: course.getCourseTimes()){
+                if(courseTime.getSingleOrDouble() != 0){
+                    if((courseTime.getSingleOrDouble() == ViewCourseTime.WEEK_DOUBLE) == singleOrDouble ) continue;
+                }
                 CourseCard card = new CourseCard(getActivity());
                 card.setCourse(course);
                 card.setTodo(todo);
@@ -88,8 +92,9 @@ public class CourseTableFragment extends BaseFragment {
     }
 
 
-    public void setSemesterTime(String textTime) {
-        semesterTime.setText(textTime);
+    public void setSemesterTime(int thisWeek, boolean singleOrDouble) {
+        this.singleOrDouble = singleOrDouble;
+        semesterTime.setText("第" + thisWeek + "周" + (singleOrDouble? "单" : "双") + "周");
     }
 
     public void updateTodoInCourseCard(String todoId, ViewTodo todo){
