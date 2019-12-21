@@ -60,12 +60,13 @@ public class CourseTable {
                     Map<ViewCourse, ViewTodo> courseTable = new HashMap<>();
                     for (Todo todo : object) {
                         BmobQuery<Course> query2 = new BmobQuery<>();
+                        //String courseId=todo.getCourseId().getObjectId();
                         query2.addWhereEqualTo("ObjectId", todo.getCourseId());
                         query2.findObjects(new FindListener<Course>() {
                             @Override
                             public void done(List<Course> object, BmobException e) {
                                 if (e == null) {
-                                    Log.d(TAG, "done:"+object.size());
+
                                     for (Course course : object) {
                                         BmobQuery<CourseTime> query3 = new BmobQuery<>();
                                         query3.addWhereEqualTo("courseId", todo.getCourseId());

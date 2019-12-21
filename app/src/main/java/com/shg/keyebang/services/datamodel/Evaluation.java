@@ -7,6 +7,9 @@ public class Evaluation extends BmobObject {
     private String content;
     private int likes;
 
+    public Evaluation(){
+
+    }
     public Evaluation(String content){
         this.content=content;
     }
