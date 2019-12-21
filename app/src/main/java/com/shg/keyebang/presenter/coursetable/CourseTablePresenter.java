@@ -45,17 +45,9 @@ public class CourseTablePresenter extends BasePresenter {
     }
 
     public void getSemesterTime(){
-        FakeTableService.getSemesterTime(new SemesterTimeListener() {
-            @Override
-            public void onSuccess(String time) {
-                fragment.setSemesterTime(time);
-            }
-
-            @Override
-            public void onFailure(String errMsg) {
-                fragment.toastAndLog(errMsg);
-            }
-        });
+        int week = 10;
+        boolean singleOrDouble = week%2 != 0;
+        fragment.setSemesterTime(week, singleOrDouble);
     }
 
     public String getDate() {

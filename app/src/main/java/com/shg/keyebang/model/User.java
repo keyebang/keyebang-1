@@ -10,6 +10,7 @@ public class User extends BmobUser {
     private String semester;
     private String major;
     private String contactMessage;
+    private boolean limit;
 
     public User(){
 
@@ -71,6 +72,15 @@ public class User extends BmobUser {
 
     public User setContactMessage(String contactMessage) {
         this.contactMessage = contactMessage;
+        return this;
+    }
+
+    public boolean isLimit() {
+        return limit;
+    }
+
+    public User setLimit(boolean limit) {
+        this.limit = limit;
         return this;
     }
 }
