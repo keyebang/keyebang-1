@@ -11,7 +11,7 @@ public class CourseInfo extends BmobObject {
     private int firstClass;
     private int lastClass;
 
-    public CourseInfo(String classId,String className, String classPlace, String teacher, int weekday, int firstClass, int lastClass) {
+    public CourseInfo(String classId, String className, String classPlace, String teacher, int weekday, int firstClass, int lastClass) {
         this.classId =classId;
         this.className = className;
         this.classPlace = classPlace;
@@ -26,8 +26,5 @@ public class CourseInfo extends BmobObject {
         return this;
     }
     public String getClassId(){return classId;}
-    public CourseInfo setClassName(String className){
-        this
-    }
 
 }

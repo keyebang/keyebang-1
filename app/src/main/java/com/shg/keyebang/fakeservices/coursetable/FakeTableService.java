@@ -1,9 +1,10 @@
 package com.shg.keyebang.fakeservices.coursetable;
 
-import com.shg.keyebang.model.Course;
-import com.shg.keyebang.model.Todo;
-import com.shg.keyebang.view.activity.coursetable.CourseCard;
+import com.shg.keyebang.model.ViewCourse;
+import com.shg.keyebang.model.ViewCourseTime;
+import com.shg.keyebang.model.ViewTodo;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -14,41 +15,98 @@ public class FakeTableService {
 
         boolean success = true;
 
-        //Course: 取数据下来的时候，记得包含他的ObjectId（一般是默认）
-        Course course1 = new Course("概率论1", "安楼101","李华",1,1,2);
-        Course course2 = new Course("概率论2", "安楼101","李华",1,3,4);
-        Course course3 = new Course("概率论3", "安楼101","李华",2,5,12);
-        Course course4 = new Course("概率论4", "安楼101","李华",3,1,2);
-        Course course5 = new Course("概率论概率论概率论", "安楼101","李华",5,1,2);
-        Course course6 = new Course("概率论6", "安楼101","李华",4,3,4);
-        Course course7 = new Course("概率论概率论概率论", "安楼101","李华",2,3,4);
-        Course course8 = new Course("组合数学", "安楼101","李华",2,1,2);
-        Course course9 = new Course("组合数学", "安楼101","李华",4,1,2);
-        Course course10 = new Course("组合数学", "安楼101","李华",3,5,6);
-        Course course11 = new Course("组合数学", "安楼101","李华",4,5,6);
+        ViewCourseTime courseTime1 = ViewCourseTime.builder()
+                .setTimeId("1")
+                .setWeekday(1)
+                .setFirstClass(1)
+                .setLastClass(2)
+                .setSingleOrDouble(ViewCourseTime.WEEK_ALL);
+
+        ViewCourseTime courseTime2 = ViewCourseTime.builder()
+                .setTimeId("2")
+                .setWeekday(4)
+                .setFirstClass(1)
+                .setLastClass(2)
+                .setSingleOrDouble(ViewCourseTime.WEEK_DOUBLE);
+
+        ViewCourseTime courseTime3 = ViewCourseTime.builder()
+                .setTimeId("3")
+                .setWeekday(2)
+                .setFirstClass(3)
+                .setLastClass(4)
+                .setSingleOrDouble(ViewCourseTime.WEEK_ALL);
+
+        ViewCourseTime courseTime4 = ViewCourseTime.builder()
+                .setTimeId("4")
+                .setWeekday(3)
+                .setFirstClass(3)
+                .setLastClass(4)
+                .setSingleOrDouble(ViewCourseTime.WEEK_ALL);
+
+        ViewCourseTime courseTime5 = ViewCourseTime.builder()
+                .setTimeId("5")
+                .setWeekday(4)
+                .setFirstClass(3)
+                .setLastClass(4)
+                .setSingleOrDouble(ViewCourseTime.WEEK_ALL);
+
+        ViewCourseTime courseTime6 = ViewCourseTime.builder()
+                .setTimeId("6")
+                .setWeekday(5)
+                .setFirstClass(3)
+                .setLastClass(4)
+                .setSingleOrDouble(ViewCourseTime.WEEK_ALL);
+
+        ViewCourseTime courseTime7 = ViewCourseTime.builder()
+                .setTimeId("7")
+                .setWeekday(3)
+                .setFirstClass(5)
+                .setLastClass(7)
+                .setSingleOrDouble(ViewCourseTime.WEEK_ALL);
+
+        ArrayList<ViewCourseTime> courseTimes1 = new ArrayList<>();
+        courseTimes1.add(courseTime1);
+        courseTimes1.add(courseTime2);
+
+        ArrayList<ViewCourseTime> courseTimes2 = new ArrayList<>();
+        courseTimes2.add(courseTime3);
+
+        ArrayList<ViewCourseTime> courseTimes3 = new ArrayList<>();
+        courseTimes3.add(courseTime4);
+
+        ArrayList<ViewCourseTime> courseTimes4 = new ArrayList<>();
+        courseTimes4.add(courseTime5);
+
+        ArrayList<ViewCourseTime> courseTimes5 = new ArrayList<>();
+        courseTimes5.add(courseTime6);
+
+        ArrayList<ViewCourseTime> courseTimes6 = new ArrayList<>();
+        courseTimes6.add(courseTime7);
+
+        ViewCourse course1 = new ViewCourse("1","概率论1", "安楼101","李华", courseTimes1);
+        ViewCourse course2 = new ViewCourse("2","概率论1", "安楼101","李华", courseTimes2);
+        ViewCourse course3 = new ViewCourse("3","概率论1", "安楼101","李华", courseTimes3);
+        ViewCourse course4 = new ViewCourse("4","概率论1", "安楼101","李华", courseTimes4);
+        ViewCourse course5 = new ViewCourse("5","概率论1", "安楼101","李华", courseTimes5);
+        ViewCourse course6 = new ViewCourse("6","概率论1", "安楼101","李华", courseTimes6);
 
         //Todos：取数据下来的时候，记得包含他的ObjectId（一般是默认）
         Calendar calendar = new GregorianCalendar(2000,11 - 1, 20,23,59);
-        Todo todo1 = new Todo("交第二十一章作业", "第二十一章第1、2、5、7、12题", calendar, Todo.COLOR_RED);
-        Todo todo2 = new Todo("交第二十一章作业", "第二十一章第1、2、5、7、12题", calendar, Todo.COLOR_GREEN);
-        Todo todo3 = new Todo("交第二十一章作业", "第二十一章第1、2、5、7、12题", calendar, Todo.COLOR_BLUE);
+        ViewTodo todo1 = new ViewTodo("todo1","交第二十一章作业", "第二十一章第1、2、5、7、12题", calendar, ViewTodo.COLOR_RED);
+        ViewTodo todo2 = new ViewTodo("todo2","交第二十一章作业", "第二十一章第1、2、5、7、12题", calendar, ViewTodo.COLOR_GREEN);
+        ViewTodo todo3 = new ViewTodo("todo3","交第二十一章作业", "第二十一章第1、2、5、7、12题", calendar, ViewTodo.COLOR_BLUE);
 
         //Table
-        Map<Course, Todo> classTable = new HashMap<>();
-        classTable.put(course1, null);
-        classTable.put(course2, null);
-        classTable.put(course3, todo1);
-        classTable.put(course7, null);
-        classTable.put(course4, todo2);
-        classTable.put(course5, null);
-        classTable.put(course6, null);
-        classTable.put(course8, todo3);
-        classTable.put(course9, null);
-        classTable.put(course10, null);
-        classTable.put(course11, null);
+        Map<ViewCourse, ViewTodo> courseTable = new HashMap<>();
+        courseTable.put(course1, todo1);
+        courseTable.put(course2, todo2);
+        courseTable.put(course3, null);
+        courseTable.put(course4, null);
+        courseTable.put(course5, todo3);
+        courseTable.put(course6, null);
 
 
-        if(success) listener.onSuccess(classTable);
+        if(success) listener.onSuccess(courseTable);
         else listener.onFailure("ErrMessage");
     }
 

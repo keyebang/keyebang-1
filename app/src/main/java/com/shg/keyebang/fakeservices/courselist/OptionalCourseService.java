@@ -1,6 +1,6 @@
 package com.shg.keyebang.fakeservices.courselist;
 
-import com.shg.keyebang.model.Course;
+import com.shg.keyebang.model.ViewCourse;
 import com.shg.keyebang.model.TopCourse;
 
 import java.util.ArrayList;
@@ -20,15 +20,15 @@ public class OptionalCourseService {
     }
 
     public static void getOptionalCoursesData(GetCourseListListener listener) {
-        Course course1 = Course.builder()
-                .setClassName("选修课1")
+        ViewCourse course1 = ViewCourse.builder()
+                .setCourseName("选修课1")
                 .setCampus("嘉定校区")
-                .setWeekday(3)
-                .setFirstClass(10)
-                .setLastClass(11)
+                .setOneOfWeekday(3)
+                .setOneOfFirstClass(10)
+                .setOneOfLastClass(11)
                 .setCredit(1.5f);
 
-        ArrayList<Course> courses = new ArrayList<>();
+        ArrayList<ViewCourse> courses = new ArrayList<>();
         courses.add(course1);
         courses.add(course1);
         courses.add(course1);

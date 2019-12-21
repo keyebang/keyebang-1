@@ -68,7 +68,7 @@
                 android:id="@+id/getCode"
                 android:layout_width="104dp"
                 android:layout_height="36dp"
-                android:background="@drawable/bg_touch"
+                android:background="@drawable/bg_touch_round"
                 app:layout_constraintTop_toTopOf="@id/phoneLoginPhoneNumber"
                 app:layout_constraintRight_toRightOf="@id/phoneLoginPhoneNumber">
 
