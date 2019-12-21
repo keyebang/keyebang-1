@@ -6,8 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.shg.keyebang.R;
-import com.shg.keyebang.model.Book;
-import com.shg.keyebang.model.Comment;
+import com.shg.keyebang.model.ViewComment;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -16,7 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.ListItemHolder> {
-    ArrayList<Comment> comments;
+    ArrayList<ViewComment> comments;
 
     static class ListItemHolder extends RecyclerView.ViewHolder {
         private TextView commentUserName;
@@ -41,7 +40,7 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull CommentListAdapter.ListItemHolder holder, int position) {
-        Comment comment = comments.get(position);
+        ViewComment comment = comments.get(position);
         Calendar time = comment.getCommentTime();
         holder.commentUserName.setText(comment.getCommentUserName());
         holder.commentTime.setText(time.get(Calendar.MONTH) + "." + time.get(Calendar.DAY_OF_MONTH) + "." + time.get(Calendar.YEAR));
@@ -53,11 +52,11 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
         return comments.size();
     }
 
-    public void setComments(ArrayList<Comment> comments) {
+    public void setComments(ArrayList<ViewComment> comments) {
         this.comments = comments;
     }
 
-    public void addComment(Comment comment){
+    public void addComment(ViewComment comment){
         comments.add(0, comment);
     }
 }

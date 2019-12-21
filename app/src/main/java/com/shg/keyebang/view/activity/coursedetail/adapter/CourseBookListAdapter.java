@@ -3,13 +3,10 @@ package com.shg.keyebang.view.activity.coursedetail.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.shg.keyebang.R;
-import com.shg.keyebang.aatools.TimeCNUtil;
-import com.shg.keyebang.model.Book;
-import com.shg.keyebang.model.CourseTime;
+import com.shg.keyebang.model.ViewBook;
 
 import java.util.ArrayList;
 
@@ -17,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CourseBookListAdapter extends RecyclerView.Adapter<CourseBookListAdapter.ListItemHolder> {
-    ArrayList<Book> books;
+    ArrayList<ViewBook> books;
 
     static class ListItemHolder extends RecyclerView.ViewHolder {
         private TextView bookname;
@@ -46,7 +43,7 @@ public class CourseBookListAdapter extends RecyclerView.Adapter<CourseBookListAd
         return books.size();
     }
 
-    public void setBooks(ArrayList<Book> books) {
+    public void setBooks(ArrayList<ViewBook> books) {
         this.books = books;
     }
 }

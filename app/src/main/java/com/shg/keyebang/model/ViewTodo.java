@@ -2,34 +2,32 @@ package com.shg.keyebang.model;
 
 import com.shg.keyebang.R;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.util.Calendar;
 
-import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import cn.bmob.v3.BmobObject;
 
-public class Todo extends BmobObject {
+public class ViewTodo {
     public static int COLOR_RED = R.color.cardColorRed;
     public static int COLOR_BLUE = R.color.cardColorBlue;
     public static int COLOR_GREEN = R.color.cardColorGreen;
 
+    private String todoId;
     private String todoTitle;
     private String todoMessage;
     private int color;
     private Calendar date;
 
-    public Todo(String todoTitle, String todoMessage, Calendar date, int color) {
-        this.setTableName("Course");
+    public ViewTodo(String todoId, String todoTitle, String todoMessage, Calendar date, int color) {
+        this.todoId = todoId;
         this.todoTitle = todoTitle;
         this.todoMessage = todoMessage;
         this.date = date;
         this.color = color;
     }
 
-    public Todo() {
+    public ViewTodo() {
 
     }
 
@@ -37,7 +35,7 @@ public class Todo extends BmobObject {
         return color;
     }
 
-    public Todo setColor(@NonNull int color) {
+    public ViewTodo setColor(@NonNull int color) {
         this.color = color;
         return this;
     }
@@ -46,7 +44,7 @@ public class Todo extends BmobObject {
         return todoTitle;
     }
 
-    public Todo setTodoTitle(@NonNull String todoTitle) {
+    public ViewTodo setTodoTitle(@NonNull String todoTitle) {
         this.todoTitle = todoTitle;
         return this;
     }
@@ -55,7 +53,7 @@ public class Todo extends BmobObject {
         return todoMessage;
     }
 
-    public Todo setTodoMessage(@Nullable String todoMessage) {
+    public ViewTodo setTodoMessage(@Nullable String todoMessage) {
         this.todoMessage = todoMessage;
         return this;
     }
@@ -64,8 +62,17 @@ public class Todo extends BmobObject {
         return date;
     }
 
-    public Todo setDate(@NonNull Calendar date) {
+    public ViewTodo setDate(@NonNull Calendar date) {
         this.date = date;
+        return this;
+    }
+
+    public String getTodoId() {
+        return todoId;
+    }
+
+    public ViewTodo setTodoId(String todoId) {
+        this.todoId = todoId;
         return this;
     }
 }

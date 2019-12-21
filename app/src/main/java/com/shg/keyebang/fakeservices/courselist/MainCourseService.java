@@ -1,14 +1,14 @@
 package com.shg.keyebang.fakeservices.courselist;
 
-import com.shg.keyebang.model.Course;
+import com.shg.keyebang.model.ViewCourse;
 
 import java.util.ArrayList;
 
 public class MainCourseService {
     public static void getMainCourseData(GetCourseListListener listener) {
-        Course course = Course.builder()
-                .setClassName("必修课1");
-        ArrayList<Course> courses = new ArrayList<>();
+        ViewCourse course = ViewCourse.builder()
+                .setCourseName("必修课1");
+        ArrayList<ViewCourse> courses = new ArrayList<>();
         courses.add(course);
         courses.add(course);
         courses.add(course);

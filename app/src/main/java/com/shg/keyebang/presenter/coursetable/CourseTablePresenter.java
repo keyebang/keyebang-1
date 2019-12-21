@@ -3,13 +3,11 @@ package com.shg.keyebang.presenter.coursetable;
 import com.shg.keyebang.aatools.TimeCNUtil;
 import com.shg.keyebang.fakeservices.coursetable.FakeGetTableListener;
 import com.shg.keyebang.fakeservices.coursetable.SemesterTimeListener;
-import com.shg.keyebang.model.Course;
-import com.shg.keyebang.model.Todo;
+import com.shg.keyebang.model.ViewCourse;
+import com.shg.keyebang.model.ViewTodo;
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.presenter.BasePresenter;
 import com.shg.keyebang.fakeservices.coursetable.FakeTableService;
-import com.shg.keyebang.services.coursetable.CourseTable;
-import com.shg.keyebang.services.coursetable.GetClassListener;
 import com.shg.keyebang.view.activity.coursetable.CourseTableFragment;
 
 import java.util.Calendar;
@@ -24,9 +22,9 @@ public class CourseTablePresenter extends BasePresenter {
 
     public void fakeGetTableToFragment(){
         if(true){
-            CourseTable.getClass(new GetClassListener() {
+            FakeTableService.getTable("", new FakeGetTableListener() {
                 @Override
-                public void onSuccess(Map<Course, Todo> table) {
+                public void onSuccess(Map<ViewCourse, ViewTodo> table) {
                     fragment.setCourseTable(table);
                 }
 
@@ -35,7 +33,7 @@ public class CourseTablePresenter extends BasePresenter {
                     fragment.toastAndLog(errMsg);
 
                 }
-            } );
+            });
         }
     }
 

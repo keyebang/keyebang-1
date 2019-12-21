@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.shg.keyebang.R;
 import com.shg.keyebang.aatools.TimeCNUtil;
-import com.shg.keyebang.model.CourseTime;
+import com.shg.keyebang.model.ViewCourseTime;
 
 import java.util.ArrayList;
 
@@ -16,7 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CourseTimeListAdapter extends RecyclerView.Adapter<CourseTimeListAdapter.ListItemHolder> {
-    ArrayList<ArrayList<CourseTime>> courseTimes;
+    ArrayList<ArrayList<ViewCourseTime>> courseTimes;
 
     static class ListItemHolder extends RecyclerView.ViewHolder {
         private TextView timeMessage;
@@ -40,7 +40,7 @@ public class CourseTimeListAdapter extends RecyclerView.Adapter<CourseTimeListAd
     @Override
     public void onBindViewHolder(@NonNull ListItemHolder holder, int position) {
         String s = "";
-        for(CourseTime time : courseTimes.get(position)){
+        for(ViewCourseTime time : courseTimes.get(position)){
             s += "周" + TimeCNUtil.weekdayToCN(time.getWeekday() + 1) + time.getFirstClass() + "-" + time.getLastClass() + "  ";
         }
         holder.timeMessage.setText(s);
@@ -51,7 +51,7 @@ public class CourseTimeListAdapter extends RecyclerView.Adapter<CourseTimeListAd
         return courseTimes.size();
     }
 
-    public void setCourseTimes(ArrayList<ArrayList<CourseTime>> courseTimes) {
+    public void setCourseTimes(ArrayList<ArrayList<ViewCourseTime>> courseTimes) {
         this.courseTimes = courseTimes;
     }
 }

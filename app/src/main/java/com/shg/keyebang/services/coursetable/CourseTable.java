@@ -1,25 +1,9 @@
 package com.shg.keyebang.services.coursetable;
 
-import com.shg.keyebang.model.Course;
-import com.shg.keyebang.model.Todo;
-import com.shg.keyebang.model.User;
-
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.SaveListener;
-
 public class CourseTable {
 
 
-    public static void setClass(final Course course , CourseTableListener listener){
+    /*public static void setClass(final ViewCourse course , CourseTableListener listener){
 
         User user= BmobUser.getCurrentUser(User.class);
         course.setStudent(user);//关联到user类
@@ -37,22 +21,22 @@ public class CourseTable {
     }
 
     public static void getClass(GetClassListener listener){
-        BmobQuery<Course> query =new BmobQuery<>();
+        BmobQuery<ViewCourse> query =new BmobQuery<>();
         query.addWhereEqualTo("student",BmobUser.getCurrentUser(User.class));
         query.include("student");
         query.setLimit(20);
-        query.findObjects(new FindListener<Course>() {
+        query.findObjects(new FindListener<ViewCourse>() {
             @Override
-            public void done(List<Course> object, BmobException e) {
+            public void done(List<ViewCourse> object, BmobException e) {
                 if(e==null){
 
-                    Map<Course, Todo> classTable = new HashMap<>();
-                    for (Course course : object) {
-                        Course course1 = new Course(course.getClassName(), course.getClassPlace(),course.getTeacher(),course.getWeekday(),course.getFirstClass(),course.getLastClass());
+                    Map<ViewCourse, ViewTodo> classTable = new HashMap<>();
+                    for (ViewCourse course : object) {
+                        ViewCourse course1 = new ViewCourse(course.getCourseName(), course.getClassPlace(),course.getTeacher(),course.getOneOfWeekday(),course.getOneOfFirstClass(),course.getOneOfLastClass());
                         if(course.getTodoTitle()==null){classTable.put(course1, null);}
                         else{
                             Calendar calendar = new GregorianCalendar(course.getYear(),course.getMonth(), course.getDayOfMonth());
-                            Todo todo = new Todo(course.getTodoTitle(),course.getTodoMessage(),calendar,Todo.COLOR_RED);
+                            ViewTodo todo = new ViewTodo(course.getTodoTitle(),course.getTodoMessage(),calendar,ViewTodo.COLOR_RED);
                             classTable.put(course1,todo);
                         }
 
@@ -63,5 +47,5 @@ public class CourseTable {
                 }
             }
         });
-    }
+    }*/
 }

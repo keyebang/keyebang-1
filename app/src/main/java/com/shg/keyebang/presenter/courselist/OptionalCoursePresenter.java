@@ -3,10 +3,9 @@ package com.shg.keyebang.presenter.courselist;
 import com.shg.keyebang.fakeservices.courselist.GetCourseListListener;
 import com.shg.keyebang.fakeservices.courselist.GetTopCourseListener;
 import com.shg.keyebang.fakeservices.courselist.OptionalCourseService;
-import com.shg.keyebang.model.Course;
+import com.shg.keyebang.model.ViewCourse;
 import com.shg.keyebang.model.TopCourse;
 import com.shg.keyebang.presenter.BasePresenter;
-import com.shg.keyebang.view.activity.CourseList.CourseListFragment;
 import com.shg.keyebang.view.activity.CourseList.OptionalCourseFragment;
 
 import java.util.ArrayList;
@@ -35,7 +34,7 @@ public class OptionalCoursePresenter extends BasePresenter {
     public void getOptionalCourses(){
         OptionalCourseService.getOptionalCoursesData(new GetCourseListListener() {
             @Override
-            public void onSuccess(ArrayList<Course> courses) {
+            public void onSuccess(ArrayList<ViewCourse> courses) {
                 fragment.setOptionalCourseData(courses);
             }
 

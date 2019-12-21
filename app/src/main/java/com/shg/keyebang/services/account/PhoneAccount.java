@@ -31,7 +31,7 @@ public class PhoneAccount {
             public void done(User user, BmobException e) {
 
                 if (e == null) {
-                    if(user.getId4m3()==null){
+                    if(user.getNickname()==null){
                         listener.signupSuccess();
                     }
                     else{
