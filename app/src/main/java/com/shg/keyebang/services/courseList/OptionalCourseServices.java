@@ -17,7 +17,7 @@ public class OptionalCourseServices {
     public static void getTopCourse(GetTopCourseListener listener){
         BmobQuery<Course> query1 = new BmobQuery<>();
         query1.addWhereEqualTo("type","optional");
-        query1.include("evaluationId[likes]");
+
         query1.order("likes");
         query1.setLimit(3);
         query1.findObjects(new FindListener<Course>() {

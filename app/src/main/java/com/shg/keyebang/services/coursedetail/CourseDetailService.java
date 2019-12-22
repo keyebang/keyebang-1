@@ -35,7 +35,7 @@ public class CourseDetailService {
             public void done(List<Course> object, BmobException e) {
                 if(e==null){
                     for(Course course:object){
-                        String evaluationId=course.getEvaluationId().getObjectId();
+                        String evaluationId=course.getEvaId();
                         listener.onSuccess(evaluationId);
                     }
                 }else{listener.onFailure("查询失败"+e.getMessage()+e.getErrorCode());}
@@ -53,7 +53,7 @@ public class CourseDetailService {
                 if(e==null){
                     for(Course course:object){
                         BmobQuery<Evaluation>query2=new BmobQuery<>();
-                        query2.addWhereEqualTo("objectId", course.getEvaluationId());
+                        query2.addWhereEqualTo("objectId", course.getEvaId());
                         query2.findObjects(new FindListener<Evaluation>() {
                             @Override
                             public void done(List<Evaluation> object, BmobException e) {
@@ -79,7 +79,7 @@ public class CourseDetailService {
     public static void getThisCourseList(String evaId ,ThisCourseListListener listener){
         String evaId1= IdUtil.getCorrectId(evaId);
         BmobQuery<Course> query = new BmobQuery<>();
-        query.addWhereEqualTo("evaluationId",evaId1);
+        query.addWhereEqualTo("evaId",evaId1);
         query.findObjects(new FindListener<Course>() {
             @Override
             public void done(List<Course> object, BmobException e) {
@@ -205,8 +205,8 @@ public class CourseDetailService {
         String evaId1= IdUtil.getCorrectId(evaId);
         evaluation.setObjectId(evaId1);
         final Comment comment=new Comment();
-        comment.setEvaId(evaluation);
-        comment.setUserId(User.getCurrentUser(User.class));
+        comment.setEvaId(evaId1);
+        comment.setUserId(User.getCurrentUser(User.class).getObjectId());
         comment.setCommentUserName(User.getCurrentUser(User.class).getNickname());
         comment.setCommentTime(Calendar.getInstance());
         comment.setCommentMessage(text);
@@ -228,7 +228,7 @@ public class CourseDetailService {
         Evaluation evaluation = new Evaluation();
         evaluation.setObjectId(evaId1);
         final Book book =new Book();
-        book.setEvaId(evaluation);
+        book.setEvaId(evaId1);
         book.setBookName(bookName);
         book.update(new UpdateListener(){
             @Override
@@ -247,7 +247,7 @@ public class CourseDetailService {
         String courseId1= IdUtil.getCorrectId(courseId);
         course.setObjectId(courseId1);
         final Todo todo =new Todo();
-        todo.setCourseId(course);
+        todo.setCourseId(courseId1);
         todo.setTodoTitle(null);
         todo.setTodoMessage(null);
         todo.update(new UpdateListener(){

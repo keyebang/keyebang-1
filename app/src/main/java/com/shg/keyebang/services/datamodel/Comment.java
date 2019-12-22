@@ -13,8 +13,8 @@ public class Comment extends BmobObject {
     private String commentUserName;
     private Calendar commentTime;
     private String commentMessage;
-    private User userId;
-    private Evaluation evaId;
+    private String userId;
+    private String evaId;
 
 
     public Comment(Drawable avatar, String commentUserName, Calendar commentTime, String commentMessage) {
@@ -65,16 +65,16 @@ public class Comment extends BmobObject {
         return this;
     }
 
-    public User getUserId(){
+    public String getUserId(){
         return userId;
     }
-    public Comment setUserId(User userId){
+    public Comment setUserId(String userId){
         this.userId=userId;
         return this;
     }
 
-    public Evaluation getEvaId(){return evaId;}
-    public Comment setEvaId(Evaluation evaId){
+    public String getEvaId(){return evaId;}
+    public Comment setEvaId(String evaId){
         this.evaId=evaId;
         return this;
     }

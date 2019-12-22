@@ -18,7 +18,7 @@ public class Course extends BmobObject {
     private float credit;
     private int color;
     private User student;
-    private Evaluation evaluationId;
+    private String evaId;
     private String major;
     private String type;
     private String semester;
@@ -104,9 +104,9 @@ public class Course extends BmobObject {
         this.color = color;
         return this;
     }
-    public Evaluation getEvaluationId(){return evaluationId;}
-    public Course setEvaluationId(Evaluation evaluationId){
-        this.evaluationId=evaluationId;
+    public String getEvaId(){return evaId;}
+    public Course setEvaId(String evaluationId){
+        this.evaId=evaluationId;
         return this;
     }
     public String getMajor(){return major;}
