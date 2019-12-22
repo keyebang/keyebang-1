@@ -98,17 +98,18 @@ public class CourseTableFragment extends BaseFragment {
         semesterTime.setText("第" + thisWeek + "周" + (singleOrDouble? "单" : "双") + "周");
     }
 
-    public void updateTodoInCourseCard(String todoId, ViewTodo todo){
+    public void updateTodoInCourseCard(String courseId, ViewTodo todo){
         for(CourseCard courseCard : courseCards){
-            if(courseCard.getTodoId() != null && todoId.equals(courseCard.getTodoId())) {
+            if(courseId.equals(courseCard.getCourseId())) {
                 courseCard.setTodo(todo);
                 courseCard.setOnClick(this);
             }
         }
     }
 
-    public void showErrMessage(String errMassage) {
-        toastAndLog(errMassage);
+    @Override
+    public void showErrorMessage(String errMsg) {
+        toastAndLog(errMsg);
         refreshLayout.setRefreshing(false);
     }
 }

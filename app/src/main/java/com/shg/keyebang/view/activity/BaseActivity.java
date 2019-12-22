@@ -25,6 +25,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         Log.d(TAG, message);
     }
 
+    public abstract void showErrorMessage(String errMsg);
+
     protected void startActivityDirectly(Class<?> cls){
         Intent intent = new Intent(this, cls);
         startActivity(intent);

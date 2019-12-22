@@ -48,7 +48,7 @@ public class OptionalCourseListAdapter extends RecyclerView.Adapter<OptionalCour
     public void onBindViewHolder(@NonNull ListItemHolder holder, int position) {
         ViewCourse course = courses.get(position);
         holder.optionalCourseName.setText(course.getCourseName());
-        holder.optionalCourseMessage.setText(course.getCampus() +  "·周" + TimeCNUtil.weekdayToCN(course.getOneOfWeekday() + 1) + course.getOneOfFirstClass() + "-" + course.getOneOfLastClass() + " · " + course.getCredit());
+        holder.optionalCourseMessage.setText(course.getCampus() +  " · " + course.getCredit());
         holder.optionalCourseId = courses.get(position).getCourseId();
     }
 

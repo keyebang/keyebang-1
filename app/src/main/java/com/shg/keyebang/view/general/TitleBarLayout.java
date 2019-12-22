@@ -36,8 +36,7 @@ public class TitleBarLayout extends LinearLayout {
                 ((BaseActivity)getContext()).toastAndLog(
                         "当前用户：" + "\n" +
                                 user.getUsername() + "\n" +
-                                user.getNickname() + "\n" +
-                                user.getStudentId());
+                                user.getNickname() + "\n");
             }
         });
     }

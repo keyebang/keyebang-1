@@ -27,9 +27,7 @@ public class Comment extends BmobObject {
     public Comment() {
     }
 
-    public static Comment builder(){
-        return new Comment();
-    }
+    public static Comment builder(){ return new Comment(); }
 
     public Drawable getAvatar() {
         return avatar;
