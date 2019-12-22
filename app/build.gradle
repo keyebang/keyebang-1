@@ -31,6 +31,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 //apple plugin: 'org.sonarqube'
 
+greendao {
+    schemaVersion 1 //数据库版本号
+    daoPackage 'com.shg.keyebang.db'// 设置DaoMaster、DaoSession、Dao 包名
+    targetGenDir 'src/main/java'//设置DaoMaster、DaoSession、Dao目录
+}
+
 dependencies {
     //Bmob
     implementation 'cn.bmob.android:bmob-sdk:3.7.3-rc1'
@@ -65,3 +71,4 @@ dependencies {
 
 
 }
+
