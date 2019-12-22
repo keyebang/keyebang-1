@@ -70,6 +70,7 @@ public class CourseTable {
                                                                 .setSingleOrDouble(courseTime.getWeekTime());
                                                         courseTimes1.add(courseTime1);
                                                         ViewCourse viewCourse1 = new ViewCourse(course.getObjectId(), course.getClassName(), course.getClassPlace(), course.getTeacher(), courseTimes1);
+                                                        viewCourse1.setTodoId(todo.getObjectId());
                                                         if (StringUtil.isAllNullOrEmpty(todo.getTodoTitle())) {
                                                             courseTable.put(viewCourse1, null);
                                                         } else {
