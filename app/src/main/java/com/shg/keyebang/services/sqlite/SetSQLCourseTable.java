@@ -57,7 +57,7 @@ public class SetSQLCourseTable {
                                                     for (CourseTime courseTime : object) {
 
 
-                                                        SQLiteDatabase insertCourse(course,List<CourseTime> time);
+                                                        //SQLiteDatabase insertCourse(course,List<CourseTime> time);
 
                                                     }
 

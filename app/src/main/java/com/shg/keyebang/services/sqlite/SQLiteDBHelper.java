@@ -109,8 +109,8 @@ public class SQLiteDBHelper {
         courseTableDBDao.insertOrReplace(courseTableDB);
         for (CourseTime courseTime:time){
             long timeId = Long.parseLong(courseTime.getObjectId());
-            TimeDB timeDB = new TimeDB(timeId,courseTime.getWeekday(),courseTime.getFirstClass(),courseTime.getLastClass(),courseTime.getWeekTime(),courseId);
-            timeDBDao.insertOrReplace(timeDB);
+            //TimeDB timeDB = new TimeDB(timeId,courseTime.getWeekday(),courseTime.getFirstClass(),courseTime.getLastClass(),courseTime.getWeekTime(),courseId);
+            //timeDBDao.insertOrReplace(timeDB);
         }
         return db;
     }
