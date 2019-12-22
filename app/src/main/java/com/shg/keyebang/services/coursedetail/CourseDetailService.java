@@ -25,23 +25,33 @@ import cn.bmob.v3.listener.UpdateListener;
 
 public class CourseDetailService {
     public static void getEvaId(String courseId,GetEvaIdListener listener){
-        BmobQuery<Evaluation> query1 = new BmobQuery<>();
-        query1.addWhereEqualTo("courseId",courseId);
-        query1.findObjects(new FindListener<Evaluation>() {
+        BmobQuery<Course> query1 = new BmobQuery<>();
+        query1.addWhereEqualTo("objectId",courseId);
+        query1.setLimit(100);
+        query1.findObjects(new FindListener<Course>() {
             @Override
-            public void done(List<Evaluation> object, BmobException e) {
+            public void done(List<Course> object, BmobException e) {
                 if(e==null){
-                    String evaId;
-                    for(Evaluation evaluation :object){
-                        evaId = evaluation.getObjectId();
-                        listener.onSuccess(evaId);
+                    for(Course course:object){
+                        BmobQuery<Evaluation>query2=new BmobQuery<>();
+                        String evaluationId=course.getEvaluationId().getObjectId();
+                        query2.addWhereEqualTo("objectId", evaluationId.substring(1,evaluationId.length()));
+                        query2.findObjects(new FindListener<Evaluation>() {
+                            @Override
+                            public void done(List<Evaluation> object, BmobException e) {
+                                if (e==null){
+                                    String evaId;
+                                    for(Evaluation evaluation :object){
+                                        evaId = evaluation.getObjectId();
+                                        listener.onSuccess(evaId);
+                                    }
+                                }else{listener.onFailure("查询失败"+e.getMessage()+e.getErrorCode());}
+                            }
+                        });
                     }
-
                 }else{listener.onFailure("查询失败"+e.getMessage()+e.getErrorCode());}
-
             }
         });
-
     }
 
     public static void getCourseInfo(String courseId /* Or String evaluationId */,GetCourseInfoListener listener){
@@ -54,7 +64,8 @@ public class CourseDetailService {
                 if(e==null){
                     for(Course course:object){
                         BmobQuery<Evaluation>query2=new BmobQuery<>();
-                        query2.addWhereEqualTo("courseId",course.getObjectId());
+                        String evaluationId=course.getEvaluationId().getObjectId();
+                        query2.addWhereEqualTo("objectId", evaluationId.substring(1,evaluationId.length()));
                         query2.findObjects(new FindListener<Evaluation>() {
                             @Override
                             public void done(List<Evaluation> object, BmobException e) {
@@ -91,7 +102,8 @@ public class CourseDetailService {
                         ViewCourseTime time1 = ViewCourseTime.builder()
                                 .setWeekday(courseTime.getWeekday())
                                 .setFirstClass(courseTime.getFirstClass())
-                                .setLastClass(courseTime.getLastClass());
+                                .setLastClass(courseTime.getLastClass())
+                                .setCourseId(courseId);
                         times1.add(time1);
 
                         BmobQuery<Course> query2 = new BmobQuery<>();
@@ -158,7 +170,6 @@ public class CourseDetailService {
                         BmobQuery<User> query2 = new BmobQuery<>();
                         String userId=comment.getUserId().getObjectId();
                         query2.addWhereEqualTo("objectId", userId.substring(1,userId.length()));
-
                         query2.findObjects(new FindListener<User>() {
                             @Override
                             public void done(List<User> object, BmobException e) {
@@ -211,6 +222,7 @@ public class CourseDetailService {
         evaluation.setObjectId(evaId);
         final Comment comment=new Comment();
         comment.setEvaId(evaluation);
+        comment.setUserId(User.getCurrentUser(User.class));
         comment.setCommentUserName(User.getCurrentUser(User.class).getNickname());
         comment.setCommentTime(Calendar.getInstance());
         comment.setCommentMessage(text);

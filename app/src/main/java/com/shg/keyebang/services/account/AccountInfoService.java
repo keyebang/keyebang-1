@@ -66,7 +66,7 @@ public class AccountInfoService {
         });
     }
 
-    private void fetchUserInfo(SignUpLogInListener listener) {
+    public static void fetchUserInfo(SignUpLogInListener listener) {
         BmobUser.fetchUserInfo(new FetchUserInfoListener<BmobUser>() {
             @Override
             public void done(BmobUser user, BmobException e) {

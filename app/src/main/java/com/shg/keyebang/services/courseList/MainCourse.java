@@ -34,7 +34,8 @@ public class MainCourse {
                         }
                         if(find == 1) continue;
                         ViewCourse course1 = ViewCourse.builder()
-                                .setCourseName(course.getClassName());
+                                .setCourseName(course.getClassName())
+                                .setCourseId(course.getObjectId());
                         courses.add(course1);
                     }
                     listener.onSuccess(courses);

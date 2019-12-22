@@ -52,7 +52,8 @@ public class OptionalCourseServices {
                         ViewCourse course1 = ViewCourse.builder()
                                 .setCourseName(course.getClassName())
                                 .setCampus(course.getCampus())
-                                .setCredit(course.getCredit());
+                                .setCredit(course.getCredit())
+                                .setCourseId(course.getObjectId());
                         courses.add(course1);
                     }
                     listener.onSuccess(courses);
