@@ -15,7 +15,7 @@ import cn.bmob.v3.listener.UpdateListener;
 
 public class SecondHandBookService {
 
-    public void getSecondHandBookList(String evaId,GetSecondHandBookListListener listener){
+    public static void getSecondHandBookList(String evaId,GetSecondHandBookListListener listener){
         BmobQuery<SecondHand> query1 = new BmobQuery<>();
         query1.addWhereEqualTo("evaId",evaId);
         query1.setLimit(100);
@@ -38,7 +38,7 @@ public class SecondHandBookService {
         });
     }
 
-    public void addSecondHandBook(String evaId,String message,AddDataListener listener){
+    public static void addSecondHandBook(String evaId,String message,AddDataListener listener){
         Evaluation evaluation = new Evaluation();
         evaluation.setObjectId(evaId);
         final SecondHand secondHand =new SecondHand();
