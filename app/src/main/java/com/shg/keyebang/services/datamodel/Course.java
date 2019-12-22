@@ -21,6 +21,7 @@ public class Course extends BmobObject {
     private Evaluation evaluationId;
     private String major;
     private String type;
+    private String semester;
 
 
     public Course(){
@@ -116,6 +117,11 @@ public class Course extends BmobObject {
     public String getType(){return type;}
     public Course setType(String type){
         this.type=type;
+        return this;
+    }
+    public String getSemester(){return semester;}
+    public Course setSemester(String semester){
+        this.semester=semester;
         return this;
     }
 }
