@@ -1,7 +1,6 @@
 package com.shg.keyebang.view.activity.coursetable;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,9 +61,9 @@ public class CourseTableFragment extends BaseFragment {
     @Override
     protected void init() {
         refreshLayout.setOnRefreshListener(()->{
-            presenter.fakeGetTableToFragment();
+            presenter.GetCourseTable();
         });
-        presenter.fakeGetTableToFragment();
+        presenter.GetCourseTable();
         presenter.getDate();
         presenter.getSemesterTime();
         titleBar.setTitle(presenter.getTitle());
