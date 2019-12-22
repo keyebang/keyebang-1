@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.graphics.drawable.GradientDrawable;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,8 +14,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.shg.keyebang.R;
 import com.shg.keyebang.aatools.DisplayUtil;
 import com.shg.keyebang.aatools.StringUtil;
-import com.shg.keyebang.model.Course;
-import com.shg.keyebang.model.Todo;
+import com.shg.keyebang.model.ViewCourse;
+import com.shg.keyebang.model.ViewTodo;
 import com.shg.keyebang.presenter.coursetable.TodoPresenter;
 import com.shg.keyebang.view.activity.main.MainActivity;
 
@@ -29,19 +28,16 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.widget.NestedScrollView;
 
-import static android.content.ContentValues.TAG;
-
 public class TodoDialog extends BottomSheetDialog {
-    private MainActivity activity;
+    private CourseTableFragment fragment;
     private TodoPresenter presenter;
-    private Todo todo;
-    private Course course;
+    private ViewTodo todo;
+    private ViewCourse course;
     private int color;
     private int year = 0;
     private int month;
     private int day;
     private boolean isChange = false;
-    private NestedScrollView dialogBg;
     private ImageView save;
     private ImageView delete;
     private ImageView deleteCourse;
@@ -57,14 +53,13 @@ public class TodoDialog extends BottomSheetDialog {
     private TextView coursePlace;
     private TextView courseTeacher;
 
-    public TodoDialog(MainActivity activity, @Nullable Todo todo, @NonNull Course course){
-        super(activity, R.style.todoDialog);
+    TodoDialog(CourseTableFragment fragment, @Nullable ViewTodo todo, @NonNull ViewCourse course){
+        super(fragment.getActivity(), R.style.todoDialog);
         setContentView(R.layout.dialog_todo);
-        this.activity = activity;
+        this.fragment = fragment;
         this.todo = todo;
         this.course = course;
-        presenter = new TodoPresenter(this);
-        dialogBg = findViewById(R.id.dialogBg);
+        presenter = new TodoPresenter(this, fragment);
         save = findViewById(R.id.save);
         delete = findViewById(R.id.delete);
         deleteCourse = findViewById(R.id.deleteCourse);
@@ -137,13 +132,13 @@ public class TodoDialog extends BottomSheetDialog {
             ((GradientDrawable)courseBg.getBackground()).setColor(getContext().getResources().getColor(todo.getColor(), null));
         }
         else {
-            color = Todo.COLOR_BLUE;
+            color = ViewTodo.COLOR_BLUE;
             ((GradientDrawable)courseBg.getBackground()).setColor(getContext().getResources().getColor(R.color.cardColorBlue, null));
         }
     }
 
     private void initCourse() {
-        courseName.setText(course.getClassName());
+        courseName.setText(course.getCourseName());
         coursePlace.setText(course.getClassPlace());
         courseTeacher.setText(course.getTeacher());
     }
@@ -152,7 +147,7 @@ public class TodoDialog extends BottomSheetDialog {
     public void dismiss() {
         if(isChange){
             onStart();
-            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+            AlertDialog.Builder builder = new AlertDialog.Builder(fragment.getActivity());
             builder.setMessage("放弃未保存的更改？");
             builder.setPositiveButton("是的", (v1, i1)->super.dismiss());
             builder.setNegativeButton("取消", (v2, i2)->{});
@@ -165,7 +160,7 @@ public class TodoDialog extends BottomSheetDialog {
 
     private void chooseTime(){
         Calendar calendar = Calendar.getInstance();
-        DatePickerDialog datePickerDialog = new DatePickerDialog(activity, new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(fragment.getActivity(), new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int newYear, int newMonth, int newDay) {
                 setTime(newYear, newMonth, newDay);
@@ -186,13 +181,13 @@ public class TodoDialog extends BottomSheetDialog {
     private void setColor(int i){
         switch (i){
             case 0:
-                color = Todo.COLOR_RED;
+                color = ViewTodo.COLOR_RED;
                 break;
             case 1:
-                color = Todo.COLOR_GREEN;
+                color = ViewTodo.COLOR_GREEN;
                 break;
             case 2:
-                color = Todo.COLOR_BLUE;
+                color = ViewTodo.COLOR_BLUE;
                 break;
         }
         ((GradientDrawable)courseBg.getBackground()).setColor(getContext().getResources().getColor(color, null));
@@ -202,7 +197,7 @@ public class TodoDialog extends BottomSheetDialog {
     private void saveTodo() {
         if(isChange) {
             if (StringUtil.isSomeNullOrEmpty(todoTitle.getText().toString())) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                AlertDialog.Builder builder = new AlertDialog.Builder(fragment.getActivity());
                 builder.setMessage("您未填写Todo标题");
                 builder.setPositiveButton("好", (v1, i1)->{});
                 AlertDialog dialog = builder.create();
@@ -210,7 +205,7 @@ public class TodoDialog extends BottomSheetDialog {
                 dialog.getWindow().setLayout(DisplayUtil.dpTopx(360), LinearLayout.LayoutParams.WRAP_CONTENT);
             }
             else if (year == 0){
-                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                AlertDialog.Builder builder = new AlertDialog.Builder(fragment.getActivity());
                 builder.setMessage("您未设置时间");
                 builder.setPositiveButton("好", (v1, i1)->{});
                 AlertDialog dialog = builder.create();
@@ -218,7 +213,7 @@ public class TodoDialog extends BottomSheetDialog {
                 dialog.getWindow().setLayout(DisplayUtil.dpTopx(360), LinearLayout.LayoutParams.WRAP_CONTENT);
             }
             else {
-                if (todo == null) todo = new Todo();
+                if (todo == null) todo = new ViewTodo();
                 todo.setTodoTitle(todoTitle.getText().toString());
                 todo.setTodoMessage(todoMessage.getText().toString());
                 todo.setColor(color);
@@ -232,10 +227,11 @@ public class TodoDialog extends BottomSheetDialog {
     }
 
     private void deleteTodo(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        if(todo == null) return;
+        AlertDialog.Builder builder = new AlertDialog.Builder(fragment.getActivity());
         builder.setMessage("确定要删除此Todo吗？");
         builder.setPositiveButton("是的", (v1, i1)->{
-            presenter.deleteTodo();
+            presenter.deleteTodo(todo.getTodoId());
             super.dismiss();
         });
         builder.setNegativeButton("取消", (v2, i2)->{});
@@ -245,7 +241,7 @@ public class TodoDialog extends BottomSheetDialog {
     }
 
     private void deleteCourse() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        AlertDialog.Builder builder = new AlertDialog.Builder(fragment.getActivity());
         builder.setMessage("确定要删除此课程吗？");
         builder.setPositiveButton("是的", (v1, i1)->{
             presenter.deleteCourse();
