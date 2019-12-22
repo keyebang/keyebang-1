@@ -18,7 +18,7 @@
         <com.github.jdsjlzx.recyclerview.LRecyclerView
             android:id="@+id/mainCourseRecycler"
             android:layout_width="320dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/bg_card_white"/>
 

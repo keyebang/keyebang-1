@@ -12,6 +12,8 @@ import com.shg.keyebang.presenter.BasePresenter;
 import com.shg.keyebang.fakeservices.coursetable.FakeTableService;
 import com.shg.keyebang.services.coursetable.CourseTable;
 import com.shg.keyebang.services.coursetable.GetClassListener;
+import com.shg.keyebang.services.coursetable.GetSemesterTimeListener;
+import com.shg.keyebang.services.coursetable.GetSemesterTimeService;
 import com.shg.keyebang.view.activity.coursetable.CourseTableFragment;
 
 import java.util.Calendar;
@@ -50,9 +52,21 @@ public class CourseTablePresenter extends BasePresenter {
     }
 
     public void getSemesterTime(){
-        int week = 10;
-        boolean singleOrDouble = week%2 != 0;
-        fragment.setSemesterTime(week, singleOrDouble);
+        GetSemesterTimeService.getSemesterTime(new GetSemesterTimeListener() {
+            @Override
+            public void onSuccess(int num) {
+                boolean singleOrDouble = num%2 != 0;
+                fragment.setSemesterTime(num, singleOrDouble);
+            }
+
+            @Override
+            public void onFailure(String errMassage) {
+                int num = 0;
+                boolean singleOrDouble = num%2 != 0;
+                fragment.setSemesterTime(num, singleOrDouble);
+            }
+        });
+
     }
 
     public String getDate() {

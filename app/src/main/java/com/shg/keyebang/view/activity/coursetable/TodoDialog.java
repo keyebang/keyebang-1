@@ -213,7 +213,10 @@ public class TodoDialog extends BottomSheetDialog {
                 dialog.getWindow().setLayout(DisplayUtil.dpTopx(360), LinearLayout.LayoutParams.WRAP_CONTENT);
             }
             else {
-                if (todo == null) todo = new ViewTodo();
+                if (todo == null) {
+                    todo = new ViewTodo();
+                    todo.setTodoId(course.getTodoId());
+                }
                 todo.setTodoTitle(todoTitle.getText().toString());
                 todo.setTodoMessage(todoMessage.getText().toString());
                 todo.setColor(color);
