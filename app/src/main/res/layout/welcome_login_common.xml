@@ -90,7 +90,7 @@
                 app:layout_constraintTop_toTopOf="@id/commonLoginPassword"
                 app:layout_constraintBottom_toBottomOf="@id/commonLoginPassword"
                 app:layout_constraintRight_toRightOf="@id/commonLoginPassword"
-                android:background="@drawable/bg_touch">
+                android:background="@drawable/bg_touch_round">
 
                 <ImageView
                     android:id="@+id/loginPasswordIcon"

@@ -8,8 +8,9 @@ import android.view.ViewGroup;
 
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
+import com.github.jdsjlzx.recyclerview.ProgressStyle;
 import com.shg.keyebang.R;
-import com.shg.keyebang.model.Course;
+import com.shg.keyebang.model.ViewCourse;
 import com.shg.keyebang.model.TopCourse;
 import com.shg.keyebang.presenter.courselist.OptionalCoursePresenter;
 import com.shg.keyebang.view.activity.BaseFragment;
@@ -25,6 +26,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class OptionalCourseFragment extends BaseFragment {
+    private View view;
     private OptionalCoursePresenter presenter;
     private RecyclerView topCourseRecyclerView;
     private TopCourseListAdapter topCourseListAdapter;
@@ -35,16 +37,20 @@ public class OptionalCourseFragment extends BaseFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = new OptionalCoursePresenter(this);
-        topCourseListAdapter = new TopCourseListAdapter(this);
-        optionalCourseListAdapter = new OptionalCourseListAdapter();
-        lOptionalCourseListAdapter = new LRecyclerViewAdapter(optionalCourseListAdapter);
+        if(view == null){
+            presenter = new OptionalCoursePresenter(this);
+            topCourseListAdapter = new TopCourseListAdapter(this);
+            optionalCourseListAdapter = new OptionalCourseListAdapter();
+            lOptionalCourseListAdapter = new LRecyclerViewAdapter(optionalCourseListAdapter);
+        }
+
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_course_optional, container, false);
+        if(view != null) return view;
+        view = inflater.inflate(R.layout.fragment_course_optional, container, false);
         topCourseRecyclerView = view.findViewById(R.id.topCourseRecycler);
         optionalCourseRecyclerView = view.findViewById(R.id.optionalCourseRecycler);
         init();
@@ -68,7 +74,8 @@ public class OptionalCourseFragment extends BaseFragment {
         });
         optionalCourseRecyclerView.setLayoutManager(verticalLayoutManager);
         optionalCourseRecyclerView.setAdapter(lOptionalCourseListAdapter);
-        optionalCourseRecyclerView.setPullRefreshEnabled(false);
+        optionalCourseRecyclerView.setOnRefreshListener(()->presenter.getOptionalCourses());
+        optionalCourseRecyclerView.setRefreshProgressStyle(ProgressStyle.BallPulse);
         presenter.getTopCourses();
         presenter.getOptionalCourses();
     }
@@ -78,8 +85,9 @@ public class OptionalCourseFragment extends BaseFragment {
         topCourseListAdapter.notifyDataSetChanged();
     }
 
-    public void setOptionalCourseData(ArrayList<Course> courses) {
+    public void setOptionalCourseData(ArrayList<ViewCourse> courses) {
         optionalCourseListAdapter.setCourseList(courses);
         lOptionalCourseListAdapter.notifyDataSetChanged();
+        optionalCourseRecyclerView.refreshComplete(0);
     }
 }

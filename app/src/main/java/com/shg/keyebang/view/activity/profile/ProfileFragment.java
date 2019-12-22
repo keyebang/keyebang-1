@@ -16,13 +16,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class ProfileFragment extends BaseFragment {
+    private View view;
     private Button logOut;
     private Button toTest;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if(view == null){}
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        if(view != null) return view;
+        view = inflater.inflate(R.layout.fragment_profile, container, false);
         logOut = view.findViewById(R.id.logout);
         toTest = view.findViewById(R.id.test);
 

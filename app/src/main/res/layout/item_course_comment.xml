@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="28dp">
+
+        <com.shg.keyebang.view.general.CircleImageView
+            android:id="@+id/avatar"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:src="@drawable/deer"/>
+
+        <TextView
+            style="@style/miniMainTitle"
+            android:id="@+id/commentUserName"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:translationX="40dp"
+            android:translationY="-2dp"
+            android:textSize="13.5sp"
+            android:text="学生1"/>
+
+        <TextView
+            style="@style/subTitle"
+            android:id="@+id/commentTime"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:translationX="40dp"
+            android:translationY="3.5dp"
+            android:textSize="12sp"
+            android:text="2019.12.20"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="16dp"/>
+
+    <TextView
+        style="@style/subTitle"
+        android:id="@+id/commentMessage"
+        android:layout_width="280dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:translationX="40dp"
+        android:textSize="15sp"
+        android:alpha="1.0"
+        android:text="这门课可以"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="32dp"/>
+</LinearLayout>
