@@ -2,6 +2,8 @@ package com.shg.keyebang.presenter.courselist;
 
 import com.shg.keyebang.model.ViewCourse;
 import com.shg.keyebang.presenter.BasePresenter;
+import com.shg.keyebang.services.courseList.FindCourseListener;
+import com.shg.keyebang.services.courseList.FindCourseService;
 import com.shg.keyebang.view.activity.CourseList.ChooseMainCourseActivity;
 import com.shg.keyebang.view.activity.CourseList.SearchCourseActivity;
 
@@ -20,40 +22,31 @@ public class FindCoursePresenter extends BasePresenter {
     }
 
     public void getChooseCourseList(String courseName){
-        ViewCourse course = ViewCourse.builder()
-                .setCourseName(courseName)
-                .setTeacher("李华");
-        ArrayList<ViewCourse> courses = new ArrayList<>();
-        courses.add(course);
-        courses.add(course);
-        courses.add(course);
-        courses.add(course);
-        courses.add(course);
-        courses.add(course);
-        courses.add(course);
-        courses.add(course);
-        courses.add(course);
-        courses.add(course);
-        courses.add(course);
-        courses.add(course);
-        courses.add(course);
-        chooseMainCourseActivity.setChooseCourseList(courses);
+
+        FindCourseService.getChooseCourseList(courseName, new FindCourseListener() {
+            @Override
+            public void onSuccess(ArrayList<ViewCourse> courses) {
+                chooseMainCourseActivity.setChooseCourseList(courses);
+            }
+
+            @Override
+            public void onFailure(String errMassage) {
+                chooseMainCourseActivity.showErrorMessage(errMassage);
+            }
+        });
     }
 
     public void FindCourseByName(String courseName){
-        ViewCourse course = ViewCourse.builder()
-                .setCourseName(courseName)
-                .setTeacher("李华");
-        ArrayList<ViewCourse> courses = new ArrayList<>();
-        courses.add(course);
-        courses.add(course);
-        courses.add(course);
-        courses.add(course);
-        courses.add(course);
-        courses.add(course);
-        courses.add(course);
-        courses.add(course);
-        courses.add(course);
-        searchCourseActivity.setResultCourseList(courses);
+        FindCourseService.getChooseCourseList(courseName, new FindCourseListener() {
+            @Override
+            public void onSuccess(ArrayList<ViewCourse> courses) {
+                searchCourseActivity.setResultCourseList(courses);
+            }
+
+            @Override
+            public void onFailure(String errMassage) {
+                searchCourseActivity.showErrorMessage(errMassage);
+            }
+        });
     }
 }

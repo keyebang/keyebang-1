@@ -35,6 +35,7 @@ public class CourseTable {
         BmobQuery<Todo> query1 = new BmobQuery<>();
         query1.addWhereEqualTo("userId", BmobUser.getCurrentUser(User.class));
 
+        Log.d(TAG, "done: 12345" );
         query1.setLimit(30);
         query1.findObjects(new FindListener<Todo>() {
 
@@ -49,6 +50,7 @@ public class CourseTable {
                         query2.findObjects(new FindListener<Course>() {
                             @Override
                             public void done(List<Course> object, BmobException e) {
+                                Log.d(TAG, "done: " + object.size());
                                 if (e == null) {
 
 
