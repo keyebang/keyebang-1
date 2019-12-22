@@ -29,24 +29,7 @@ import static android.content.ContentValues.TAG;
 public class CourseTable {
 
 
-    /*public static void setClass(final ViewCourse course , CourseTableListener listener){
 
-        User user= BmobUser.getCurrentUser(User.class);
-        course.setStudent(user);//关联到user类
-
-        course.save(new SaveListener<String>() {
-            @Override
-            public void done(String s, BmobException e) {
-
-                if (e == null) { listener.onSuccess("添加数据成功" +s);}
-                else{listener.onFailure("添加数据失败：" + e.getErrorCode()+ "-" + e.getMessage() + "\n");}
-            }
-
-        });
-
-    }
-
-*/
     public static void getClass(GetClassListener listener) {
         BmobQuery<Todo> query1 = new BmobQuery<>();
         query1.addWhereEqualTo("userId", BmobUser.getCurrentUser(User.class));
@@ -60,12 +43,13 @@ public class CourseTable {
                     Map<ViewCourse, ViewTodo> courseTable = new HashMap<>();
                     for (Todo todo : object) {
                         BmobQuery<Course> query2 = new BmobQuery<>();
-                        //String courseId=todo.getCourseId().getObjectId();
-                        query2.addWhereEqualTo("ObjectId", todo.getCourseId());
+                        String courseId=todo.getCourseId().getObjectId();
+                        query2.addWhereEqualTo("objectId", courseId.substring(1,courseId.length()));
                         query2.findObjects(new FindListener<Course>() {
                             @Override
                             public void done(List<Course> object, BmobException e) {
                                 if (e == null) {
+
 
                                     for (Course course : object) {
                                         BmobQuery<CourseTime> query3 = new BmobQuery<>();
@@ -82,7 +66,7 @@ public class CourseTable {
                                                                 .setWeekday(courseTime.getWeekday())
                                                                 .setFirstClass(courseTime.getFirstClass())
                                                                 .setLastClass(courseTime.getLastClass())
-                                                                .setSingleOrDouble(ViewCourseTime.WEEK_ALL);
+                                                                .setSingleOrDouble(courseTime.getWeekTime());
                                                         courseTimes1.add(courseTime1);
                                                         ViewCourse viewCourse1 = new ViewCourse(course.getObjectId(), course.getClassName(), course.getClassPlace(), course.getTeacher(), courseTimes1);
                                                         if (todo.getTodoTitle() == null) {

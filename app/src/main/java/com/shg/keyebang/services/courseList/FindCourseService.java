@@ -11,7 +11,7 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 
 public class FindCourseService {
-    public void getChooseCourseList(String courseName,FindCourseListener listener){
+    public static void getChooseCourseList(String courseName,FindCourseListener listener){
         BmobQuery<Course> query1 = new BmobQuery<>();
         query1.addWhereEqualTo("className",courseName);
         query1.setLimit(100);

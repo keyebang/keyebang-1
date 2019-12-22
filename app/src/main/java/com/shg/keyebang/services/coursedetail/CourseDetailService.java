@@ -23,7 +23,7 @@ import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
 
 public class CourseDetailService {
-    public void getEvaId(String courseId,GetEvaIdListener listener){
+    public static void getEvaId(String courseId,GetEvaIdListener listener){
         BmobQuery<Evaluation> query1 = new BmobQuery<>();
         query1.addWhereEqualTo("courseId",courseId);
         query1.findObjects(new FindListener<Evaluation>() {
@@ -43,7 +43,7 @@ public class CourseDetailService {
 
     }
 
-    public void getCourseInfo(String courseId ,ThisCourseListListener listener){
+    public static void getCourseInfo(String courseId ,ThisCourseListListener listener){
 
         BmobQuery<CourseTime> query1 = new BmobQuery<>();
         query1.addWhereEqualTo("courseId",courseId);
@@ -60,23 +60,27 @@ public class CourseDetailService {
                                 .setLastClass(courseTime.getLastClass());
                         times1.add(time1);
 
-                    }
-                    BmobQuery<Course> query2 = new BmobQuery<>();
-                    query2.addWhereEqualTo("ObjectId",courseId);
-                    query2.findObjects(new FindListener<Course>() {
-                        @Override
-                        public void done(List<Course> object,BmobException e){
-                            if(e==null){
-                                ArrayList<ViewCourseSelect> viewCourseSelects = new ArrayList<>();
-                                for (Course course:object){
-                                    ViewCourseSelect viewCourseSelect1 = new ViewCourseSelect(courseId, course.getTeacher(), course.getClassPlace(), times1);
-                                    viewCourseSelects.add(viewCourseSelect1);
-                                }
-                                listener.onSuccess(viewCourseSelects);
+                        BmobQuery<Course> query2 = new BmobQuery<>();
+                        String courseId=courseTime.getCourseId().getObjectId();
+                        query2.addWhereEqualTo("objectId", courseId.substring(1,courseId.length()));
 
-                            }else{listener.onFailure("查询失败"+e.getMessage()+e.getErrorCode());}
-                        }
-                    });
+                        query2.findObjects(new FindListener<Course>() {
+                            @Override
+                            public void done(List<Course> object,BmobException e){
+                                if(e==null){
+                                    ArrayList<ViewCourseSelect> viewCourseSelects = new ArrayList<>();
+                                    for (Course course:object){
+                                        ViewCourseSelect viewCourseSelect1 = new ViewCourseSelect(courseId, course.getTeacher(), course.getClassPlace(), times1);
+                                        viewCourseSelects.add(viewCourseSelect1);
+                                    }
+                                    listener.onSuccess(viewCourseSelects);
+
+                                }else{listener.onFailure("查询失败"+e.getMessage()+e.getErrorCode());}
+                            }
+                        });
+
+                    }
+
 
                 }else{listener.onFailure("查询失败"+e.getMessage()+e.getErrorCode());}
 
@@ -84,7 +88,7 @@ public class CourseDetailService {
         });
     }
 
-    public void getBookList(String evaId,BookListListener listener){
+    public static void getBookList(String evaId,BookListListener listener){
         BmobQuery<Book> query1 = new BmobQuery<>();
         query1.addWhereEqualTo("evaId",evaId);
         query1.setLimit(100);
@@ -106,7 +110,7 @@ public class CourseDetailService {
         });
     }
 
-    public void getCommentList(String evaId,CommentListListener listener){
+    public static void getCommentList(String evaId,CommentListListener listener){
         BmobQuery<Comment> query1 = new BmobQuery<>();
         query1.addWhereEqualTo("evaId",evaId);
         query1.setLimit(100);
@@ -118,7 +122,9 @@ public class CourseDetailService {
                     for(Comment comment:object){
                         Calendar time = Calendar.getInstance();
                         BmobQuery<User> query2 = new BmobQuery<>();
-                        query2.addWhereEqualTo("ObjectId", comment.getUserId());
+                        String userId=comment.getUserId().getObjectId();
+                        query2.addWhereEqualTo("objectId", userId.substring(1,userId.length()));
+
                         query2.findObjects(new FindListener<User>() {
                             @Override
                             public void done(List<User> object, BmobException e) {
@@ -143,9 +149,9 @@ public class CourseDetailService {
             }
         });
     }
-    public void getLikeNum(String evaId,LikeNumListener listener){
+    public static void getLikeNum(String evaId,LikeNumListener listener){
         BmobQuery<Evaluation> query1=new BmobQuery<>();
-        query1.addWhereEqualTo("ObjectId",evaId);
+        query1.addWhereEqualTo("objectId",evaId);
         query1.findObjects(new FindListener<Evaluation>() {
             @Override
             public void done(List<Evaluation> object, BmobException e) {
@@ -166,7 +172,7 @@ public class CourseDetailService {
 
     }
 
-    public void sendComment(String evaId, String text,SendCommentListener listener){
+    public static void sendComment(String evaId, String text,SendCommentListener listener){
         Evaluation evaluation = new Evaluation();
         evaluation.setObjectId(evaId);
         final Comment comment=new Comment();
@@ -187,7 +193,7 @@ public class CourseDetailService {
 
     }
 
-    public void addBook(String bookName, String evaId,AddDataListener listener){
+    public static void addBook(String bookName, String evaId,AddDataListener listener){
         Evaluation evaluation = new Evaluation();
         evaluation.setObjectId(evaId);
         final Book book =new Book();
@@ -205,7 +211,7 @@ public class CourseDetailService {
         });
     }
 
-    public void addCourseToTable(String courseId,AddDataListener listener) {
+    public static void addCourseToTable(String courseId,AddDataListener listener) {
         Course course=new Course();
         course.setObjectId(courseId);
         final Todo todo =new Todo();
@@ -224,7 +230,7 @@ public class CourseDetailService {
         });
     }
 
-    public void updateLike(String evaId, int num /* 1 or -1 */,AddDataListener listener){
+    public static void updateLike(String evaId, int num /* 1 or -1 */,AddDataListener listener){
         Evaluation evaluation = new Evaluation();
         evaluation.setObjectId(evaId);
         if(num==1){

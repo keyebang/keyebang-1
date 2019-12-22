@@ -6,6 +6,8 @@ public class Evaluation extends BmobObject {
 
     private String content;
     private int likes;
+    private Course courseId;
+
 
     public Evaluation(){
 
@@ -24,5 +26,12 @@ public class Evaluation extends BmobObject {
         this.likes=likes;
         return this;
     }
+
+    public Course getCourseId(){return courseId;}
+    public Evaluation setCourseId(Course courseId){
+        this.courseId=courseId;
+        return this;
+    }
+
 
 }
