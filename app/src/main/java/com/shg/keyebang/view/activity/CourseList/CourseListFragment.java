@@ -91,4 +91,9 @@ public class CourseListFragment extends BaseFragment  {
         }
         else toastAndLog("搜索信息为空");
     }
+
+    @Override
+    public void showErrorMessage(String errMsg) {
+        toastAndLog(errMsg);
+    }
 }

@@ -52,6 +52,7 @@ public class ChooseMainCourseActivity extends BaseActivity {
         lItemCourseListAdapter.addHeaderView(LayoutInflater.from(this).inflate(R.layout.header_course_item, chooseCourseContainer, false));
         lItemCourseListAdapter.setOnItemClickListener((view, position) -> {
             Intent intent = new Intent(this, CourseDetailActivity.class);
+            intent.putExtra("courseId", itemCourseListAdapter.getCourseId(position));
             intent.putExtra("courseName", itemCourseListAdapter.getCourseName(position));
             intent.putExtra("courseTeacher", itemCourseListAdapter.getCourseTeacher(position));
             startActivity(intent);
@@ -68,6 +69,12 @@ public class ChooseMainCourseActivity extends BaseActivity {
     public void setChooseCourseList(ArrayList<ViewCourse> courses) {
         itemCourseListAdapter.setCourseList(courses);
         lItemCourseListAdapter.notifyDataSetChanged();
+        chooseCourseRecyclerView.refreshComplete(0);
+    }
+
+    @Override
+    public void showErrorMessage(String errMsg) {
+        toastAndLog(errMsg);
         chooseCourseRecyclerView.refreshComplete(0);
     }
 }

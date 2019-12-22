@@ -27,20 +27,20 @@ public class LogInPresenter extends BasePresenter {
         PhoneAccount.sendSMS(phoneNumber, new PhoneListener() {
             @Override
             public void onFailure(String errMessage) {
-                activity.toastAndLog(errMessage);
-                activity.waitToSendAgain();
+                activity.showErrorMessage(errMessage);
             }
 
             @Override
             public void phoneSuccess(String Message) {
-                activity.waitToSendAgain();
+
             }
         });
+        activity.waitToSendAgain();
     }
 
     public void loginOrSignUp(String phoneNumber, String code){
         if(StringUtil.isSomeNullOrEmpty(phoneNumber, code)){
-            activity.toastAndLog("信息未填写完全");
+            activity.showErrorMessage("信息未填写完全");
             return;
         }
 
@@ -58,14 +58,14 @@ public class LogInPresenter extends BasePresenter {
 
             @Override
             public void onFailure(String errMessage) {
-                activity.toastAndLog(errMessage);
+                activity.showErrorMessage(errMessage);
             }
         });
     }
 
     public void commonLogin(String username, String password){
         if(StringUtil.isSomeNullOrEmpty(username, password)){
-            activity.toastAndLog("信息未填写完全");
+            activity.showErrorMessage("信息未填写完全");
             return;
         }
 

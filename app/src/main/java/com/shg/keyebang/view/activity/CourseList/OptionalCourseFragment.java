@@ -68,6 +68,7 @@ public class OptionalCourseFragment extends BaseFragment {
         verticalLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         lOptionalCourseListAdapter.setOnItemClickListener((v, p)->{
             Intent intent = new Intent(getActivity(), CourseDetailActivity.class);
+            intent.putExtra("courseId", optionalCourseListAdapter.getCourseId(p));
             intent.putExtra("courseName", optionalCourseListAdapter.getCourseName(p));
             intent.putExtra("courseTeacher", optionalCourseListAdapter.getCourseTeacher(p));
             startActivity(intent);
@@ -88,6 +89,12 @@ public class OptionalCourseFragment extends BaseFragment {
     public void setOptionalCourseData(ArrayList<ViewCourse> courses) {
         optionalCourseListAdapter.setCourseList(courses);
         lOptionalCourseListAdapter.notifyDataSetChanged();
+        optionalCourseRecyclerView.refreshComplete(0);
+    }
+
+    @Override
+    public void showErrorMessage(String errMsg) {
+        toastAndLog(errMsg);
         optionalCourseRecyclerView.refreshComplete(0);
     }
 }
