@@ -12,6 +12,7 @@ import com.shg.keyebang.services.coursedetail.CourseDetailService;
 import com.shg.keyebang.services.coursedetail.GetCourseInfoListener;
 import com.shg.keyebang.services.coursedetail.GetEvaIdListener;
 import com.shg.keyebang.services.coursedetail.ThisCourseListListener;
+import com.shg.keyebang.services.sqlite.SetSQLCourseTable;
 import com.shg.keyebang.view.activity.coursedetail.CourseDetailActivity;
 
 import java.util.ArrayList;

@@ -79,12 +79,11 @@ public class SQLiteDBHelper {
     /**
      * 获取可读数据库
      */
-    private SQLiteDatabase getReadableDatabase(){
+    void getReadableDB(){
         if(mHelper == null){
             mHelper = new DaoMaster.DevOpenHelper(context,"coursetable.db",null);
         }
         SQLiteDatabase db =mHelper.getReadableDatabase();
-        return db;
     }
 
     /**
@@ -101,7 +100,7 @@ public class SQLiteDBHelper {
     /**
      * 添加一条课程数据
      */
-    private SQLiteDatabase insertCourse(Course course,List<CourseTime> time) {
+    void insertCourse(Course course,List<CourseTime> time) {
         courseTableDBDao = mDaoSession.getCourseTableDBDao();
         timeDBDao = mDaoSession.getTimeDBDao();
         long courseId = Long.parseLong(course.getObjectId());
@@ -112,20 +111,18 @@ public class SQLiteDBHelper {
             TimeDB timeDB = new TimeDB(timeId,courseTime.getWeekday(),courseTime.getFirstClass(),courseTime.getLastClass(),courseTime.getWeekTime(),courseId);
             timeDBDao.insertOrReplace(timeDB);
         }
-        return db;
     }
 
     /**
      * 删除一条课程数据
      */
-    private SQLiteDatabase deleteCourse(Long courseId){
+    void deleteCourse(Long courseId){
         Long mCourseId;
         mCourseId = courseId;
         courseTableDBDao = mDaoSession.getCourseTableDBDao();
         timeDBDao = mDaoSession.getTimeDBDao();
         courseTableDBDao.deleteByKey(mCourseId);
         timeDBDao.deleteByKey(mCourseId);
-        return db;
     }
 
     /**
