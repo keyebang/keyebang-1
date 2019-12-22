@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.shg.keyebang.aatools.StringUtil;
 import com.shg.keyebang.model.User;
+
 import com.shg.keyebang.model.ViewCourse;
 import com.shg.keyebang.model.ViewCourseTime;
 import com.shg.keyebang.model.ViewTodo;
@@ -28,9 +29,6 @@ import static android.content.ContentValues.TAG;
 
 
 public class CourseTable {
-
-
-
     public static void getClass(GetClassListener listener) {
         BmobQuery<Todo> query1 = new BmobQuery<>();
         query1.addWhereEqualTo("userId", BmobUser.getCurrentUser(User.class));
