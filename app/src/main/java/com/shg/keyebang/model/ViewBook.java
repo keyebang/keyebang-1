@@ -1,5 +1,7 @@
 package com.shg.keyebang.model;
 
+import com.shg.keyebang.aatools.IdUtil;
+
 public class ViewBook {
     private String bookId;
     private String bookName;
@@ -28,7 +30,7 @@ public class ViewBook {
     }
 
     public ViewBook setBookId(String bookId) {
-        this.bookId = bookId;
+        this.bookId = IdUtil.getCorrectId(bookId);;
         return this;
     }
 }

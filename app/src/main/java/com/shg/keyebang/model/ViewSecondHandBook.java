@@ -1,5 +1,7 @@
 package com.shg.keyebang.model;
 
+import com.shg.keyebang.aatools.IdUtil;
+
 public class ViewSecondHandBook {
     private String secondHandMessageId;
     private String contactMessage;
@@ -24,7 +26,7 @@ public class ViewSecondHandBook {
     }
 
     public ViewSecondHandBook setSecondHandMessageId(String secondHandMessageId) {
-        this.secondHandMessageId = secondHandMessageId;
+        this.secondHandMessageId = IdUtil.getCorrectId(secondHandMessageId);
         return this;
     }
 

@@ -2,6 +2,8 @@ package com.shg.keyebang.model;
 
 import android.graphics.drawable.Drawable;
 
+import com.shg.keyebang.aatools.IdUtil;
+
 import java.util.Calendar;
 
 public class ViewComment {
@@ -65,7 +67,7 @@ public class ViewComment {
     }
 
     public ViewComment setCommentId(String commentId) {
-        this.commentId = commentId;
+        this.commentId = IdUtil.getCorrectId(commentId);
         return this;
     }
 }

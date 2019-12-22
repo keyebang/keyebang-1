@@ -26,7 +26,7 @@ public class CourseTablePresenter extends BasePresenter {
         this.fragment = fragment;
     }
 
-    public void fakeGetTableToFragment(){
+    public void GetCourseTable(){
 
         if (User.getCurrentUser(User.class) != null){
             CourseTable.getClass(new GetClassListener() {

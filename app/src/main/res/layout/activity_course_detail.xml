@@ -153,7 +153,8 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="48dp">
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp">
 
                         <ImageView
                             android:layout_width="20dp"
@@ -166,12 +167,14 @@
 
                         <TextView
                             android:id="@+id/courseMessage"
-                            android:layout_width="wrap_content"
+                            android:layout_width="240dp"
                             android:layout_height="wrap_content"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintLeft_toLeftOf="parent"
                             android:translationX="60dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
                             android:text="课程信息"
                             android:textSize="14sp"
                             android:textColor="@color/themeColorBlack"/>

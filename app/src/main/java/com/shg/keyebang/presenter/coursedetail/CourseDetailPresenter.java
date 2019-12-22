@@ -27,7 +27,6 @@ public class CourseDetailPresenter extends BasePresenter {
     }
 
     public void getEvaId(String courseId) {
-        String evaId = "SDfa";
         CourseDetailService.getEvaId(courseId, new GetEvaIdListener() {
             @Override
             public void onSuccess(String evaId) {
@@ -36,7 +35,7 @@ public class CourseDetailPresenter extends BasePresenter {
 
             @Override
             public void onFailure(String errMassage) {
-
+                activity.showErrorMessage(errMassage);
             }
         });
 
@@ -45,18 +44,16 @@ public class CourseDetailPresenter extends BasePresenter {
     public void getCourseInfo(String courseId /* Or String evaluationId */){
 
         CourseDetailService.getCourseInfo(courseId, new GetCourseInfoListener() {
-                    @Override
-                    public void onSuccess(ViewCourseInfo viewCourseInfo) {
-                        activity.setCourseInfoData(viewCourseInfo);
-                    }
+            @Override
+            public void onSuccess(ViewCourseInfo viewCourseInfo) {
+                activity.setCourseInfoData(viewCourseInfo);
+            }
 
-                    @Override
-                    public void onFailure(String errMassage) {
-
-                    }
-                });
-
-
+            @Override
+            public void onFailure(String errMassage) {
+                activity.showErrorMessage(errMassage);
+            }
+        });
     }
 
     public void getThisCourseList(String courseId /* Or String evaluationId */){
@@ -68,10 +65,10 @@ public class CourseDetailPresenter extends BasePresenter {
 
             @Override
             public void onFailure(String errMassage) {
-
+                activity.showErrorMessage(errMassage);
             }
         });
-        ViewCourseTime time1 = ViewCourseTime.builder()
+        /*ViewCourseTime time1 = ViewCourseTime.builder()
                 .setWeekday(1)
                 .setFirstClass(1)
                 .setLastClass(2);
@@ -102,7 +99,7 @@ public class CourseDetailPresenter extends BasePresenter {
         ArrayList<ViewCourseSelect> viewCourseSelects = new ArrayList<>();
         viewCourseSelects.add(viewCourseSelect1);
         viewCourseSelects.add(viewCourseSelect2);
-
+*/
 
     }
 
