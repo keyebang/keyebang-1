@@ -23,7 +23,8 @@ public class FindCourseService {
                     for(Course course:object){
                         ViewCourse course1 = ViewCourse.builder()
                                 .setCourseName(course.getClassName())
-                                .setTeacher(course.getTeacher());
+                                .setTeacher(course.getTeacher())
+                                .setCourseId(course.getObjectId());
                         courses.add(course1);
                     }
                     listener.onSuccess(courses);
