@@ -1,5 +1,7 @@
 package com.shg.keyebang.services.sqlite;
 
+import android.database.sqlite.SQLiteDatabase;
+
 import com.shg.keyebang.aatools.StringUtil;
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.model.ViewCourse;
@@ -55,18 +57,10 @@ public class SetSQLCourseTable {
                                                     for (CourseTime courseTime : object) {
 
 
-                                                        ViewCourseTime courseTime1 = ViewCourseTime.builder()
-                                                                .setTimeId(courseTime.getObjectId())
-                                                                .setWeekday(courseTime.getWeekday())
-                                                                .setFirstClass(courseTime.getFirstClass())
-                                                                .setLastClass(courseTime.getLastClass())
-                                                                .setSingleOrDouble(courseTime.getWeekTime());
-                                                        courseTimes1.add(courseTime1);
-                                                        ViewCourse viewCourse1 = new ViewCourse(course.getObjectId(), course.getClassName(), course.getClassPlace(), course.getTeacher(), courseTimes1);
-                                                        viewCourse1.setTodoId(todo.getObjectId());
+                                                        SQLiteDatabase insertCourse(course,List<CourseTime> time);
 
                                                     }
-                                                    listener.onSuccess(courseTable);
+
                                                 }else{listener.onFailure("查询失败"+e.getMessage()+e.getErrorCode());}
                                             }
                                         });
