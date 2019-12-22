@@ -1,5 +1,6 @@
 package com.shg.keyebang.services.coursedetail;
 
+import com.shg.keyebang.aatools.IdUtil;
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.model.ViewSecondHandBook;
 import com.shg.keyebang.services.datamodel.Evaluation;
@@ -17,7 +18,8 @@ public class SecondHandBookService {
 
     public static void getSecondHandBookList(String evaId,GetSecondHandBookListListener listener){
         BmobQuery<SecondHand> query1 = new BmobQuery<>();
-        query1.addWhereEqualTo("evaId",evaId);
+        String evaId1= IdUtil.getCorrectId(evaId);
+        query1.addWhereEqualTo("evaId",evaId1);
         query1.setLimit(100);
         query1.findObjects(new FindListener<SecondHand>() {
             @Override
@@ -40,7 +42,8 @@ public class SecondHandBookService {
 
     public static void addSecondHandBook(String evaId,String message,AddDataListener listener){
         Evaluation evaluation = new Evaluation();
-        evaluation.setObjectId(evaId);
+        String evaId1= IdUtil.getCorrectId(evaId);
+        evaluation.setObjectId(evaId1);
         final SecondHand secondHand =new SecondHand();
         secondHand.setEvaId(evaluation);
         secondHand.setBookMessage(message);

@@ -12,6 +12,7 @@ import com.shg.keyebang.services.coursedetail.CourseDetailService;
 import com.shg.keyebang.services.coursedetail.GetCourseInfoListener;
 import com.shg.keyebang.services.coursedetail.GetEvaIdListener;
 import com.shg.keyebang.services.coursedetail.ThisCourseListListener;
+import com.shg.keyebang.services.sqlite.SQLiteListener;
 import com.shg.keyebang.services.sqlite.SetSQLCourseTable;
 import com.shg.keyebang.view.activity.coursedetail.CourseDetailActivity;
 
@@ -55,8 +56,8 @@ public class CourseDetailPresenter extends BasePresenter {
         });
     }
 
-    public void getThisCourseList(String courseId /* Or String evaluationId */){
-        CourseDetailService.getThisCourseList(courseId, new ThisCourseListListener() {
+    public void getThisCourseList(String evaId /* Or String evaluationId */){
+        CourseDetailService.getThisCourseList(evaId, new ThisCourseListListener() {
             @Override
             public void onSuccess(ArrayList<ViewCourseSelect> viewCourseSelects) {
                 activity.setTimeData(viewCourseSelects);
@@ -163,6 +164,17 @@ public class CourseDetailPresenter extends BasePresenter {
     }
 
     public void addCourseToTable(String courseId) {
+        SetSQLCourseTable.addClass(courseId, new SQLiteListener() {
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onFailure(String errMassage) {
+
+            }
+        });
 
     }
 
