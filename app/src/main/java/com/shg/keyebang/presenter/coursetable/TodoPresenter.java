@@ -1,8 +1,10 @@
 package com.shg.keyebang.presenter.coursetable;
 
+import com.shg.keyebang.aatools.StringUtil;
 import com.shg.keyebang.model.ViewTodo;
 import com.shg.keyebang.presenter.BasePresenter;
 import com.shg.keyebang.services.coursedetail.AddDataListener;
+import com.shg.keyebang.services.coursetable.SaveTodoListener;
 import com.shg.keyebang.services.coursetable.TodoService;
 import com.shg.keyebang.view.activity.coursetable.CourseTableFragment;
 import com.shg.keyebang.view.activity.coursetable.TodoDialog;
@@ -33,12 +35,18 @@ public class TodoPresenter extends BasePresenter {
         else fragment.showErrorMessage("删除的Todo不存在");
     }
 
-    public void saveTodo(ViewTodo todo) {
+    public void saveTodo(String courseId, ViewTodo todo) {
         if(todo.getTodoId() == null) return;
-        TodoService.saveTodo(todo, new AddDataListener() {
+        TodoService.saveTodo(todo, new SaveTodoListener() {
             @Override
-            public void onSuccess(String message) {
-                fragment.updateTodoInCourseCard(todo.getTodoId(), todo);
+            public void onSuccess(String message, String objectId) {
+                if(!StringUtil.isAllNullOrEmpty(todo.getTodoId()) && !todo.getTodoId().equals(objectId)){
+                    fragment.showErrorMessage("todoId异常");
+                }
+                else{
+                    todo.setTodoId(objectId);
+                    fragment.updateTodoInCourseCard(courseId, todo);
+                }
             }
 
             @Override
@@ -46,7 +54,6 @@ public class TodoPresenter extends BasePresenter {
                 fragment.showErrorMessage(errMassage);
             }
         });
-
     }
 
     public void deleteCourse() {
