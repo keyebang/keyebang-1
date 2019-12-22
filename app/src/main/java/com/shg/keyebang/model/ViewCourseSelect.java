@@ -1,5 +1,7 @@
 package com.shg.keyebang.model;
 
+import com.shg.keyebang.aatools.IdUtil;
+
 import java.util.ArrayList;
 
 public class ViewCourseSelect {
@@ -27,7 +29,7 @@ public class ViewCourseSelect {
     }
 
     public ViewCourseSelect setCourseId(String courseId) {
-        this.courseId = courseId;
+        this.courseId = IdUtil.getCorrectId(courseId);
         return this;
     }
 

@@ -2,6 +2,7 @@ package com.shg.keyebang.view.activity.coursedetail;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -15,6 +16,7 @@ import com.like.LikeButton;
 import com.like.OnLikeListener;
 import com.shg.keyebang.R;
 import com.shg.keyebang.aatools.DisplayUtil;
+import com.shg.keyebang.aatools.IdUtil;
 import com.shg.keyebang.aatools.StringUtil;
 import com.shg.keyebang.model.ViewBook;
 import com.shg.keyebang.model.ViewComment;
@@ -156,16 +158,16 @@ public class CourseDetailActivity extends BaseActivity {
     }
 
     private void getDataByEvaId(){
-        //presenter.getLimit();
         presenter.getEvaId(courseId);
     }
 
     public void setEvaId(String evaId) {
+        evaId = IdUtil.getCorrectId(evaId);
         this.evaId = evaId;
         presenter.getLikeNum(evaId);
         presenter.getIsLike(evaId);
         presenter.getCourseInfo(courseId);
-        presenter.getThisCourseList(evaId);
+        presenter.getThisCourseList(this.evaId);
         presenter.getBookList(evaId);
         if(limit){
             presenter.getCommentList(evaId);

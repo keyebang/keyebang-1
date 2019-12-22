@@ -1,6 +1,7 @@
 package com.shg.keyebang.model;
 
 import com.shg.keyebang.R;
+import com.shg.keyebang.aatools.IdUtil;
 
 import java.util.Calendar;
 
@@ -72,7 +73,7 @@ public class ViewTodo {
     }
 
     public ViewTodo setTodoId(String todoId) {
-        this.todoId = todoId;
+        this.todoId = IdUtil.getCorrectId(todoId);
         return this;
     }
 }
