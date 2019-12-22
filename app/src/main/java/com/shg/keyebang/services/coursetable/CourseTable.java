@@ -44,7 +44,7 @@ public class CourseTable {
                     Map<ViewCourse, ViewTodo> courseTable = new HashMap<>();
                     for (Todo todo : object) {
                         BmobQuery<Course> query2 = new BmobQuery<>();
-                        query2.addWhereEqualTo("objectId",todo.getCourseId() );
+                        query2.addWhereEqualTo("objectId",IdUtil.getCorrectId(todo.getCourseId()) );
                         query2.findObjects(new FindListener<Course>() {
                             @Override
                             public void done(List<Course> object, BmobException e) {
