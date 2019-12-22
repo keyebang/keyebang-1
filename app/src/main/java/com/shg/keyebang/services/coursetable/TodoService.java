@@ -1,5 +1,6 @@
 package com.shg.keyebang.services.coursetable;
 
+import com.shg.keyebang.aatools.StringUtil;
 import com.shg.keyebang.model.ViewTodo;
 import com.shg.keyebang.services.DeleteListener;
 import com.shg.keyebang.services.coursedetail.AddDataListener;
@@ -30,7 +31,7 @@ public class TodoService {
     }
 
     public static void saveTodo(ViewTodo viewTodo,SaveTodoListener listener) {
-        if(viewTodo.getTodoId() == null) return;
+        if(StringUtil.isAllNullOrEmpty(viewTodo.getTodoId())) return;
         else {
             Calendar calendar =viewTodo.getDate();
             final Todo todo=new Todo();
