@@ -8,6 +8,7 @@ import java.util.List;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FetchUserInfoListener;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
 
@@ -65,5 +66,18 @@ public class AccountInfoService {
         });
     }
 
+    private void fetchUserInfo(SignUpLogInListener listener) {
+        BmobUser.fetchUserInfo(new FetchUserInfoListener<BmobUser>() {
+            @Override
+            public void done(BmobUser user, BmobException e) {
+                if (e == null) {
+                    final User user1 = BmobUser.getCurrentUser(User.class);
+                    listener.onSuccess("更新用户本地缓存信息成功");
+                } else {
+                    listener.onFailure("更新用户本地缓存信息失败" + e.getMessage());
+                }
+            }
+        });
+    }
 
 }
