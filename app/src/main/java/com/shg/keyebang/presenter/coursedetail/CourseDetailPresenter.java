@@ -56,8 +56,8 @@ public class CourseDetailPresenter extends BasePresenter {
         });
     }
 
-    public void getThisCourseList(String courseId /* Or String evaluationId */){
-        CourseDetailService.getThisCourseList(courseId, new ThisCourseListListener() {
+    public void getThisCourseList(String evaId /* Or String evaluationId */){
+        CourseDetailService.getThisCourseList(evaId, new ThisCourseListListener() {
             @Override
             public void onSuccess(ArrayList<ViewCourseSelect> viewCourseSelects) {
                 activity.setTimeData(viewCourseSelects);
