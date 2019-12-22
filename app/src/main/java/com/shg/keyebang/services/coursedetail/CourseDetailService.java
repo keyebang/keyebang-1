@@ -4,6 +4,7 @@ import com.shg.keyebang.model.User;
 import com.shg.keyebang.model.ViewBook;
 import com.shg.keyebang.model.ViewComment;
 import com.shg.keyebang.model.ViewCourse;
+import com.shg.keyebang.model.ViewCourseInfo;
 import com.shg.keyebang.model.ViewCourseSelect;
 import com.shg.keyebang.model.ViewCourseTime;
 import com.shg.keyebang.services.datamodel.Book;
@@ -43,7 +44,40 @@ public class CourseDetailService {
 
     }
 
-    public static void getCourseInfo(String courseId ,ThisCourseListListener listener){
+    public static void getCourseInfo(String courseId /* Or String evaluationId */,GetCourseInfoListener listener){
+        BmobQuery<Course> query1 = new BmobQuery<>();
+        query1.addWhereEqualTo("objectId",courseId);
+        query1.setLimit(100);
+        query1.findObjects(new FindListener<Course>() {
+            @Override
+            public void done(List<Course> object, BmobException e) {
+                if(e==null){
+                    for(Course course:object){
+                        BmobQuery<Evaluation>query2=new BmobQuery<>();
+                        query2.addWhereEqualTo("courseId",course.getObjectId());
+                        query2.findObjects(new FindListener<Evaluation>() {
+                            @Override
+                            public void done(List<Evaluation> object, BmobException e) {
+                                if (e==null){
+                                    for (Evaluation evaluation:object){
+                                        ViewCourseInfo viewCourseInfo = ViewCourseInfo.builder()
+                                                .setType(course.getType())
+                                                .setCredit(course.getCredit())
+                                                .setInfo(evaluation.getContent());
+                                        listener.onSuccess(viewCourseInfo);
+                                    }
+                                }else{listener.onFailure("查询失败"+e.getMessage()+e.getErrorCode());}
+
+                            }
+                        });
+
+                    }
+                }else{listener.onFailure("查询失败"+e.getMessage()+e.getErrorCode());}
+
+            }
+        });
+    }
+    public static void getThisCourseList(String courseId ,ThisCourseListListener listener){
 
         BmobQuery<CourseTime> query1 = new BmobQuery<>();
         query1.addWhereEqualTo("courseId",courseId);
