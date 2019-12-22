@@ -19,9 +19,9 @@ public class Todo extends BmobObject {
     private String todoMessage;
     private int color;
     private Calendar date;
-    private User userId;
-    private Course courseId;
-    private CourseTime timeId;
+    private String userId;
+    private String courseId;
+    private String timeId;
     private int year;
     private int month;
     private int dayOfMonth;
@@ -76,18 +76,18 @@ public class Todo extends BmobObject {
         return this;
     }
 
-    public User getUserId(){return userId;}
-    public Todo setUserId(User userId){
+    public String getUserId(){return userId;}
+    public Todo setUserId(String userId){
         this.userId=userId;
         return this;
     }
-    public Course getCourseId(){return courseId;}
-    public Todo setCourseId(Course courseId){
+    public String getCourseId(){return courseId;}
+    public Todo setCourseId(String courseId){
         this.courseId=courseId;
         return this;
     }
-    public CourseTime getTimeId(){return timeId;}
-    public Todo setTimeId(CourseTime timeId){
+    public String getTimeId(){return timeId;}
+    public Todo setTimeId(String timeId){
         this.timeId=timeId;
         return this;
     }

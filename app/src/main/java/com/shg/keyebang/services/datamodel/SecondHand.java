@@ -5,22 +5,22 @@ import com.shg.keyebang.model.User;
 import cn.bmob.v3.BmobObject;
 
 public class SecondHand extends BmobObject {
-    private User userId;
-    private Evaluation evaId;
+    private String userId;
+    private String evaId;
     private String bookMessage;
     private String contactMessage;
 
-    public User getUserId(){
+    public String getUserId(){
         return userId;
     }
 
-    public SecondHand setUserId(User userId){
+    public SecondHand setUserId(String userId){
         this.userId=userId;
         return this;
     }
 
-    public Evaluation getEvaId(){return evaId;}
-    public SecondHand setEvaId(Evaluation evaId){
+    public String getEvaId(){return evaId;}
+    public SecondHand setEvaId(String evaId){
         this.evaId=evaId;
         return this;
     }

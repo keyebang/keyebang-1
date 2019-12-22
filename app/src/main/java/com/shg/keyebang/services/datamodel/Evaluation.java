@@ -6,7 +6,7 @@ public class Evaluation extends BmobObject {
 
     private String content;
     private int likes;
-    private Course courseId;
+    private String courseId;
 
 
     public Evaluation(){
@@ -27,8 +27,8 @@ public class Evaluation extends BmobObject {
         return this;
     }
 
-    public Course getCourseId(){return courseId;}
-    public Evaluation setCourseId(Course courseId){
+    public String getCourseId(){return courseId;}
+    public Evaluation setCourseId(String courseId){
         this.courseId=courseId;
         return this;
     }

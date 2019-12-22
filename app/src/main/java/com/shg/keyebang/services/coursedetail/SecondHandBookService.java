@@ -45,7 +45,7 @@ public class SecondHandBookService {
         String evaId1= IdUtil.getCorrectId(evaId);
         evaluation.setObjectId(evaId1);
         final SecondHand secondHand =new SecondHand();
-        secondHand.setEvaId(evaluation);
+        secondHand.setEvaId(evaId1);
         secondHand.setBookMessage(message);
         secondHand.setContactMessage(User.getCurrentUser(User.class).getNickname() + "  " + User.getCurrentUser(User.class).getContactMessage());
 

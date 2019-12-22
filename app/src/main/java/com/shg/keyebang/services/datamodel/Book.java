@@ -4,7 +4,7 @@ import cn.bmob.v3.BmobObject;
 
 public class Book extends BmobObject {
     private String bookName;
-    private Evaluation evaId;
+    private String evaId;
 
     public Book(){
 
@@ -27,8 +27,8 @@ public class Book extends BmobObject {
         return this;
     }
 
-    public Evaluation getEvaId(){return evaId;}
-    public Book setEvaId(Evaluation evaId){
+    public String getEvaId(){return evaId;}
+    public Book setEvaId(String evaId){
         this.evaId=evaId;
         return this;
     }
