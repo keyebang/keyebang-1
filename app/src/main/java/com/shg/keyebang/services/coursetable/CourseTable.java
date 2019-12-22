@@ -2,6 +2,7 @@ package com.shg.keyebang.services.coursetable;
 
 import android.util.Log;
 
+import com.shg.keyebang.aatools.IdUtil;
 import com.shg.keyebang.aatools.StringUtil;
 import com.shg.keyebang.model.User;
 
@@ -43,18 +44,18 @@ public class CourseTable {
                     Map<ViewCourse, ViewTodo> courseTable = new HashMap<>();
                     for (Todo todo : object) {
                         BmobQuery<Course> query2 = new BmobQuery<>();
-                        String courseId=todo.getCourseId().getObjectId();
-                        query2.addWhereEqualTo("objectId", courseId.substring(1,courseId.length()));
+                        String objectId1= IdUtil.getCorrectId(todo.getCourseId().getObjectId());
+                        query2.addWhereEqualTo("objectId",objectId1 );
                         query2.findObjects(new FindListener<Course>() {
                             @Override
                             public void done(List<Course> object, BmobException e) {
                                 Log.d(TAG, "done: " + object.size());
                                 if (e == null) {
 
-
                                     for (Course course : object) {
                                         BmobQuery<CourseTime> query3 = new BmobQuery<>();
-                                        query3.addWhereEqualTo("courseId", todo.getCourseId());
+                                        String courseId1= IdUtil.getCorrectId(todo.getCourseId().getObjectId());
+                                        query3.addWhereEqualTo("courseId", courseId1);
                                         ArrayList<ViewCourseTime> courseTimes1 = new ArrayList<>();
                                         query3.findObjects(new FindListener<CourseTime>() {
                                             @Override

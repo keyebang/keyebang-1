@@ -1,5 +1,6 @@
 package com.shg.keyebang.services.coursetable;
 
+import com.shg.keyebang.aatools.IdUtil;
 import com.shg.keyebang.aatools.StringUtil;
 import com.shg.keyebang.model.ViewTodo;
 import com.shg.keyebang.services.DeleteListener;
@@ -14,7 +15,8 @@ import cn.bmob.v3.listener.UpdateListener;
 public class TodoService {
     public static void deleteTodo(String todoId, AddDataListener listener){
         final Todo todo=new Todo();
-        todo.setObjectId(todoId);
+        String todoId1= IdUtil.getCorrectId(todoId);
+        todo.setObjectId(todoId1);
         todo.setTodoTitle("");
         todo.setTodoMessage("");
         todo.update(new UpdateListener(){
@@ -59,7 +61,8 @@ public class TodoService {
     public static void deleteCourse(String todoId, DeleteListener listener) {
         Todo todo=new Todo();
 
-        todo.delete(todoId, new UpdateListener() {
+        String todoId1= IdUtil.getCorrectId(todoId);
+        todo.delete(todoId1, new UpdateListener() {
             @Override
             public void done(BmobException e) {
                 if(e==null){
