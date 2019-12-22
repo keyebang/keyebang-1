@@ -45,6 +45,7 @@ public class SecondHandBookService {
         secondHand.setEvaId(evaluation);
         secondHand.setBookMessage(message);
         secondHand.setContactMessage(User.getCurrentUser(User.class).getNickname() + "  " + User.getCurrentUser(User.class).getContactMessage());
+
         secondHand.update(new UpdateListener(){
             @Override
             public void done(BmobException e) {

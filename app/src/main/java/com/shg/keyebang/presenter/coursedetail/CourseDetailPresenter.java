@@ -162,9 +162,12 @@ public class CourseDetailPresenter extends BasePresenter {
     }
 
     public void addCourseToTable(String courseId) {
+
     }
 
     public void updateLike(String evaId, int num /* 1 or -1 */) {
         activity.updateLikeSuccess(num);
     }
 }
+
+
