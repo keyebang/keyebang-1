@@ -26,7 +26,6 @@ public class MainCourse {
                         BmobQuery<Course> query1 = new BmobQuery<>();
                         query1.addWhereEqualTo("type","必修课");
                         query1.addWhereEqualTo("semester",user.getSemester());
-
                         query1.setLimit(100);
                         query1.findObjects(new FindListener<Course>() {
                             @Override
@@ -43,8 +42,6 @@ public class MainCourse {
                                         ViewCourse course1 = ViewCourse.builder()
                                                 .setCourseName(course.getClassName());
                                         courses.add(course1);
-
-
                                     }
                                     listener.onSuccess(courses);
                                 }else{listener.onFailure("查询失败"+e.getMessage()+e.getErrorCode());}
@@ -52,36 +49,9 @@ public class MainCourse {
 
 
                         });
-
                     }
                 }
-
-
             }
         });
-
-
-        BmobQuery<Course> query1 = new BmobQuery<>();
-        query1.addWhereEqualTo("type","main");
-
-        query1.setLimit(100);
-        query1.findObjects(new FindListener<Course>() {
-            @Override
-            public void done(List<Course> object, BmobException e){
-                if(e==null){
-                    ArrayList<ViewCourse> courses = new ArrayList<>();
-                    for(Course course:object){
-                        ViewCourse course1 = ViewCourse.builder()
-                                .setCourseName(course.getClassName());
-                        courses.add(course1);
-                    }
-                    listener.onSuccess(courses);
-                }else{listener.onFailure("查询失败"+e.getMessage()+e.getErrorCode());}
-            }
-
-
-        });
-
     }
-
 }
