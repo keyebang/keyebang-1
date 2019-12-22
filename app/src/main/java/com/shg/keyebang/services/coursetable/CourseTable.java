@@ -25,6 +25,7 @@ import cn.bmob.v3.listener.FindListener;
 
 public class CourseTable {
 
+
     public static void getClass(GetClassListener listener) {
         BmobQuery<Todo> query1 = new BmobQuery<>();
         query1.addWhereEqualTo("userId", BmobUser.getCurrentUser(User.class));
