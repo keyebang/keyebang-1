@@ -8,7 +8,6 @@ public class CourseTime extends BmobObject {
     private int lastClass;
     private int weekTime;
     private Course courseId;
-    private int weekTime;
 
     public CourseTime(){}
 
@@ -49,16 +48,6 @@ public class CourseTime extends BmobObject {
         this.lastClass = lastClass;
         return this;
     }
-
-    public int getWeekTime() {
-        return weekTime;
-    }
-
-    public CourseTime setWeekTime(int weekTime) {
-        this.weekTime = weekTime;
-        return this;
-    }
-
 
     public Course getCourseId(){return courseId;}
     public CourseTime setCourseId(Course courseId){
