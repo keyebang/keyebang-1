@@ -1,6 +1,8 @@
 package com.shg.keyebang.model;
 
 
+import com.shg.keyebang.aatools.IdUtil;
+
 import java.util.ArrayList;
 
 import org.jetbrains.annotations.Contract;
@@ -147,7 +149,7 @@ public class ViewCourse {
     }
 
     public ViewCourse setCourseId(String courseId){
-        this.courseId = courseId;
+        this.courseId = IdUtil.getCorrectId(courseId);
         return this;
     }
 
@@ -165,7 +167,7 @@ public class ViewCourse {
     }
 
     public ViewCourse setTodoId(String todoId) {
-        this.todoId = todoId;
+        this.todoId = IdUtil.getCorrectId(todoId);
         return this;
     }
 }

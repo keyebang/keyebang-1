@@ -1,5 +1,7 @@
 package com.shg.keyebang.model;
 
+import com.shg.keyebang.aatools.IdUtil;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -66,6 +68,10 @@ public class ViewCourseTime {
     }
 
     public ViewCourseTime setTimeId(String timeId) {
+        char c = timeId.charAt(0);
+        if(!((48  <= c && c <= 57) || (65  <= c && c <= 90) || (97  <= c && c <= 122))){
+            timeId = timeId.substring(1, timeId.length());
+        }
         this.timeId = timeId;
         return this;
     }
@@ -84,7 +90,7 @@ public class ViewCourseTime {
     }
 
     public ViewCourseTime setCourseId(String courseId) {
-        this.courseId = courseId;
+        this.courseId = IdUtil.getCorrectId(courseId);
         return this;
     }
 
