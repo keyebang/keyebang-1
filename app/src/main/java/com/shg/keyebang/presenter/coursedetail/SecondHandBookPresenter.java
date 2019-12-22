@@ -25,7 +25,12 @@ public class SecondHandBookPresenter extends BasePresenter {
         activity.setSecondHandBookList(books);
     }
 
-    public void addSecondHandBook(String message){
+    public void addSecondHandBook(String bookName, String evaId){
+        //....
+        ViewSecondHandBook book = ViewSecondHandBook.builder()
+                .setBookMessage(bookName)
+                .setContactMessage(User.getCurrentUser(User.class).getNickname() + "  " + User.getCurrentUser(User.class).getContactMessage());
+        activity.addSecondHandBookMessage(book);
 
     }
 }

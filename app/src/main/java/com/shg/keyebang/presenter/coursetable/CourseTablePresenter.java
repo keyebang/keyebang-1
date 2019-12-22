@@ -35,11 +35,11 @@ public class CourseTablePresenter extends BasePresenter {
 
                 @Override
                 public void onFailure(String errMassage) {
-                    fragment.showErrMessage(errMassage);
+                    fragment.showErrorMessage(errMassage);
                 }
             });
         }
-        else fragment.showErrMessage("你未登录");
+        else fragment.showErrorMessage("你未登录");
     }
 
     public String getTitle(){

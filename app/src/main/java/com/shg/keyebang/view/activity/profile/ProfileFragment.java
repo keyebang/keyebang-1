@@ -50,4 +50,9 @@ public class ProfileFragment extends BaseFragment {
             getActivity().finish();
         });
     }
+
+    @Override
+    public void showErrorMessage(String errMsg) {
+        toastAndLog(errMsg);
+    }
 }

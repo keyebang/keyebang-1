@@ -194,13 +194,6 @@ public class CourseDetailActivity extends BaseActivity {
         lCommentListAdapter.notifyDataSetChanged();
     }
 
-    public void addMyComment(ViewComment comment) {
-        commentListAdapter.addComment(comment);
-        lCommentListAdapter.notifyDataSetChanged();
-        commentEditText.setText("");
-        presenter.getLimit();
-    }
-
     public void setLimit(boolean limit) {
         if( !this.limit && limit ){
             this.limit = true;
@@ -211,15 +204,6 @@ public class CourseDetailActivity extends BaseActivity {
         else limitMessage.setVisibility(View.GONE);
     }
 
-    public void addCourseToTable(String courseId) {
-        presenter.addCourseToTable(courseId);
-    }
-
-    public void updateLikeSuccess(int num) {
-        likeNum += num;
-        likeNumText.setText(likeNum + "");
-    }
-
     public void setLikeNum(int likeNum) {
         this.likeNum = likeNum;
         likeNumText.setText(likeNum + "");
@@ -227,5 +211,27 @@ public class CourseDetailActivity extends BaseActivity {
 
     public void setIsLike(boolean isLike) {
         likeButton.setLiked(isLike);
+    }
+
+    public void updateLikeSuccess(int num) {
+        likeNum += num;
+        likeNumText.setText(likeNum + "");
+    }
+
+    public void addMyComment(ViewComment comment) {
+        commentListAdapter.addComment(comment);
+        lCommentListAdapter.notifyDataSetChanged();
+        commentEditText.setText("");
+        presenter.getLimit();
+    }
+
+    public void addCourseToTable(String courseId) {
+        presenter.addCourseToTable(courseId);
+    }
+
+    @Override
+    public void showErrorMessage(String errMsg) {
+        toastAndLog(errMsg);
+        refreshLayout.setRefreshing(false);
     }
 }

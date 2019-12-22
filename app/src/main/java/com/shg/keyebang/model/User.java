@@ -4,9 +4,7 @@ import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobRelation;
 
 public class User extends BmobUser {
-    private String name;
     private String nickname;
-    private String studentId;
     private String semester;
     private String major;
     private String contactMessage;
@@ -21,30 +19,12 @@ public class User extends BmobUser {
         setPassword(password);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public User setName(String name) {
-        this.name = name;
-        return this;
-    }
-
     public String getNickname() {
         return nickname;
     }
 
     public User setNickname(String nickname) {
         this.nickname = nickname;
-        return this;
-    }
-
-    public String getStudentId() {
-        return studentId;
-    }
-
-    public User setStudentId(String studentId) {
-        this.studentId = studentId;
         return this;
     }
 

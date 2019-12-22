@@ -26,11 +26,11 @@ public class TodoPresenter extends BasePresenter {
 
                 @Override
                 public void onFailure(String errMassage) {
-                    fragment.showErrMessage(errMassage);
+                    fragment.showErrorMessage(errMassage);
                 }
             });
         }
-        else fragment.showErrMessage("删除的Todo不存在");
+        else fragment.showErrorMessage("删除的Todo不存在");
     }
 
     public void saveTodo(ViewTodo todo) {
@@ -43,7 +43,7 @@ public class TodoPresenter extends BasePresenter {
 
             @Override
             public void onFailure(String errMassage) {
-                fragment.showErrMessage(errMassage);
+                fragment.showErrorMessage(errMassage);
             }
         });
 

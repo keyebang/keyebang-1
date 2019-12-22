@@ -107,8 +107,9 @@ public class CourseTableFragment extends BaseFragment {
         }
     }
 
-    public void showErrMessage(String errMassage) {
-        toastAndLog(errMassage);
+    @Override
+    public void showErrorMessage(String errMsg) {
+        toastAndLog(errMsg);
         refreshLayout.setRefreshing(false);
     }
 }

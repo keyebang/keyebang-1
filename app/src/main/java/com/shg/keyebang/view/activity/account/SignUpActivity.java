@@ -12,10 +12,10 @@ import com.shg.keyebang.view.activity.BaseActivity;
 public class SignUpActivity extends BaseActivity {
     private SignUpPresenter presenter;
     private EditText semester;
-    private EditText studentId;
     private EditText nickname;
     private EditText password;
     private EditText major;
+    private EditText contact;
     private ImageView passwordIcon;
     private ImageView close;
     private Button signUp;
@@ -27,11 +27,11 @@ public class SignUpActivity extends BaseActivity {
         setContentView(R.layout.activity_account_signup);
         presenter = new SignUpPresenter(this);
         close = findViewById(R.id.delete);
-        studentId = findViewById(R.id.signUpStudentId);
         nickname = findViewById(R.id.signUpNickname);
         password = findViewById(R.id.signUpPassword);
         semester = findViewById(R.id.signUpSemester);
         major = findViewById(R.id.signUpMajor);
+        contact = findViewById(R.id.signUpContact);
         //passwordIcon = findViewById(R.id.passwordIcon);
         signUp = findViewById(R.id.signUpButton);
 
@@ -43,15 +43,20 @@ public class SignUpActivity extends BaseActivity {
         signUp.setOnClickListener(view -> {
             presenter.signUp(
                     nickname.getText().toString(),
-                    studentId.getText().toString(),
                     semester.getText().toString(),
                     major.getText().toString(),
-                    password.getText().toString()
+                    password.getText().toString(),
+                    contact.getText().toString()
             );
         });
 
         close.setOnClickListener(v->{
             finish();
         });
+    }
+
+    @Override
+    public void showErrorMessage(String errMsg) {
+        toastAndLog(errMsg);
     }
 }
