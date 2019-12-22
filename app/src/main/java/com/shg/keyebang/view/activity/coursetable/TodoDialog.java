@@ -218,7 +218,7 @@ public class TodoDialog extends BottomSheetDialog {
                 todo.setTodoMessage(todoMessage.getText().toString());
                 todo.setColor(color);
                 todo.setDate(new GregorianCalendar(year, month, day));
-                presenter.saveTodo(todo);
+                presenter.saveTodo(course.getCourseId(), todo);
                 isChange = false;
                 dismiss();
             }

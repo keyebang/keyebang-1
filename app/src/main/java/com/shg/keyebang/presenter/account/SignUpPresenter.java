@@ -4,6 +4,7 @@ import com.shg.keyebang.aatools.StringUtil;
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.presenter.BasePresenter;
 import com.shg.keyebang.services.account.Account4m3;
+import com.shg.keyebang.services.account.AccountInfoService;
 import com.shg.keyebang.services.account.GetInfoListener;
 import com.shg.keyebang.services.coursedetail.AddDataListener;
 import com.shg.keyebang.view.activity.main.MainActivity;
@@ -31,7 +32,7 @@ public class SignUpPresenter extends BasePresenter {
         user.setMajor(major);
         user.setContactMessage(contact);
 
-        Account4m3.gatInfo(user, password, "", "", new GetInfoListener() {
+        AccountInfoService.setInfo(user, new AddDataListener() {
             @Override
             public void onSuccess(String message) {
                 startActivityDirectly(activity, MainActivity.class);
