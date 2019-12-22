@@ -41,7 +41,7 @@ public class OptionalCourseServices {
     public static void getOptionalCourses(GetCourseListListener listener){
 
         BmobQuery<Course> query1 = new BmobQuery<>();
-        query1.addWhereEqualTo("type","optional");
+        query1.addWhereEqualTo("type","选修课");
         query1.setLimit(100);
         query1.findObjects(new FindListener<Course>() {
             @Override

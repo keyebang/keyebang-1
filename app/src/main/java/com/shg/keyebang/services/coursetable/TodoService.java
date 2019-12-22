@@ -15,8 +15,8 @@ public class TodoService {
     public static void deleteTodo(String todoId, AddDataListener listener){
         final Todo todo=new Todo();
         todo.setObjectId(todoId);
-        todo.setTodoTitle(null);
-        todo.setTodoMessage(null);
+        todo.setTodoTitle("");
+        todo.setTodoMessage("");
         todo.update(new UpdateListener(){
             @Override
             public void done(BmobException e) {
