@@ -2,6 +2,7 @@ package com.shg.keyebang.services.coursetable;
 
 import android.util.Log;
 
+import com.shg.keyebang.aatools.StringUtil;
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.model.ViewCourse;
 import com.shg.keyebang.model.ViewCourseTime;
@@ -69,7 +70,7 @@ public class CourseTable {
                                                                 .setSingleOrDouble(courseTime.getWeekTime());
                                                         courseTimes1.add(courseTime1);
                                                         ViewCourse viewCourse1 = new ViewCourse(course.getObjectId(), course.getClassName(), course.getClassPlace(), course.getTeacher(), courseTimes1);
-                                                        if (todo.getTodoTitle() == null) {
+                                                        if (StringUtil.isAllNullOrEmpty(todo.getTodoTitle())) {
                                                             courseTable.put(viewCourse1, null);
                                                         } else {
                                                             Calendar calendar = new GregorianCalendar(todo.getYear(), todo.getMonth(), todo.getDayOfMonth());
