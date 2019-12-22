@@ -68,10 +68,11 @@ public class SearchCourseActivity extends BaseActivity {
         verticalLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         lItemCourseListAdapter.addHeaderView(LayoutInflater.from(this).inflate(R.layout.header_course_item, searchContainer, false));
         lItemCourseListAdapter.setOnItemClickListener((view, position) -> {
-                Intent intent = new Intent(this, CourseDetailActivity.class);
-                intent.putExtra("courseName", itemCourseListAdapter.getCourseName(position));
-                intent.putExtra("courseTeacher", itemCourseListAdapter.getCourseTeacher(position));
-                startActivity(intent);
+            Intent intent = new Intent(this, CourseDetailActivity.class);
+            intent.putExtra("courseId", itemCourseListAdapter.getCourseId(position));
+            intent.putExtra("courseName", itemCourseListAdapter.getCourseName(position));
+            intent.putExtra("courseTeacher", itemCourseListAdapter.getCourseTeacher(position));
+            startActivity(intent);
         });
         searchCourseRecyclerView.setOnRefreshListener(()->presenter.FindCourseByName(searchCourseName));
         searchCourseRecyclerView.setRefreshProgressStyle(ProgressStyle.BallPulse);
@@ -87,13 +88,21 @@ public class SearchCourseActivity extends BaseActivity {
         if(!StringUtil.isAllNullOrEmpty(searchCourseName)){
             presenter.FindCourseByName(searchCourseName);
         }
-        else toastAndLog("搜索信息为空");
-        searchCourseRecyclerView.refreshComplete(0);
+        else {
+            toastAndLog("搜索信息为空");
+            searchCourseRecyclerView.refreshComplete(0);
+        }
     }
 
     public void setResultCourseList(ArrayList<ViewCourse> courses) {
         itemCourseListAdapter.setCourseList(courses);
         lItemCourseListAdapter.notifyDataSetChanged();
+        searchCourseRecyclerView.refreshComplete(0);
+    }
+
+    @Override
+    public void showErrorMessage(String errMsg) {
+        toastAndLog(errMsg);
         searchCourseRecyclerView.refreshComplete(0);
     }
 }

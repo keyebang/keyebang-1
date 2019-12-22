@@ -9,6 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import cn.bmob.v3.BmobObject;
 
 public class ViewCourse {
+    private String todoId;
     private String courseId;
     private String courseName;
     private String classPlace;
@@ -159,4 +160,12 @@ public class ViewCourse {
         return this;
     }
 
+    public String getTodoId() {
+        return todoId;
+    }
+
+    public ViewCourse setTodoId(String todoId) {
+        this.todoId = todoId;
+        return this;
+    }
 }

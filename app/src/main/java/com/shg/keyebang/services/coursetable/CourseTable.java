@@ -1,5 +1,8 @@
 package com.shg.keyebang.services.coursetable;
 
+import android.util.Log;
+
+import com.shg.keyebang.aatools.StringUtil;
 import com.shg.keyebang.model.User;
 
 import com.shg.keyebang.model.ViewCourse;
@@ -22,15 +25,15 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.FindListener;
 
+import static android.content.ContentValues.TAG;
+
 
 public class CourseTable {
-
-
     public static void getClass(GetClassListener listener) {
         BmobQuery<Todo> query1 = new BmobQuery<>();
         query1.addWhereEqualTo("userId", BmobUser.getCurrentUser(User.class));
-        query1.include("courseId[className|classPlace|teacher].timeId[courseId|weekday|firstClass|LastClass]");
 
+        Log.d(TAG, "done: 12345" );
         query1.setLimit(30);
         query1.findObjects(new FindListener<Todo>() {
 
@@ -40,11 +43,15 @@ public class CourseTable {
                     Map<ViewCourse, ViewTodo> courseTable = new HashMap<>();
                     for (Todo todo : object) {
                         BmobQuery<Course> query2 = new BmobQuery<>();
-                        query2.addWhereEqualTo("courseId", todo.getCourseId());
+                        String courseId=todo.getCourseId().getObjectId();
+                        query2.addWhereEqualTo("objectId", courseId.substring(1,courseId.length()));
                         query2.findObjects(new FindListener<Course>() {
                             @Override
                             public void done(List<Course> object, BmobException e) {
+                                Log.d(TAG, "done: " + object.size());
                                 if (e == null) {
+
+
                                     for (Course course : object) {
                                         BmobQuery<CourseTime> query3 = new BmobQuery<>();
                                         query3.addWhereEqualTo("courseId", todo.getCourseId());
@@ -60,10 +67,11 @@ public class CourseTable {
                                                                 .setWeekday(courseTime.getWeekday())
                                                                 .setFirstClass(courseTime.getFirstClass())
                                                                 .setLastClass(courseTime.getLastClass())
-                                                                .setSingleOrDouble(ViewCourseTime.WEEK_ALL);
+                                                                .setSingleOrDouble(courseTime.getWeekTime());
                                                         courseTimes1.add(courseTime1);
                                                         ViewCourse viewCourse1 = new ViewCourse(course.getObjectId(), course.getClassName(), course.getClassPlace(), course.getTeacher(), courseTimes1);
-                                                        if (todo.getTodoTitle() == null) {
+                                                        viewCourse1.setTodoId(todo.getObjectId());
+                                                        if (StringUtil.isAllNullOrEmpty(todo.getTodoTitle())) {
                                                             courseTable.put(viewCourse1, null);
                                                         } else {
                                                             Calendar calendar = new GregorianCalendar(todo.getYear(), todo.getMonth(), todo.getDayOfMonth());

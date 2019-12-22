@@ -59,8 +59,8 @@ public class MainActivity extends BaseActivity {
 
             }
         });
-        bottomTabLayout.addTab(bottomTabLayout.newTab().setIcon(getResources().getDrawable(R.drawable.ic_person_black_24dp, null)));
-        bottomTabLayout.addTab(bottomTabLayout.newTab().setIcon(getResources().getDrawable(R.drawable.ic_person_black_24dp, null)));
+        bottomTabLayout.addTab(bottomTabLayout.newTab().setIcon(getResources().getDrawable(R.drawable.ic_table_fill, null)));
+        bottomTabLayout.addTab(bottomTabLayout.newTab().setIcon(getResources().getDrawable(R.drawable.ic_school_black_24dp, null)));
         bottomTabLayout.addTab(bottomTabLayout.newTab().setIcon(getResources().getDrawable(R.drawable.ic_person_black_24dp, null)));
 
         User user = User.getCurrentUser(User.class);
@@ -68,8 +68,7 @@ public class MainActivity extends BaseActivity {
             toastAndLog(
                     "当前用户：" + "\n" +
                             user.getUsername() + "\n" +
-                            user.getNickname() + "\n" +
-                            user.getStudentId());
+                            user.getNickname() + "\n");
         }
     }
 
@@ -87,5 +86,10 @@ public class MainActivity extends BaseActivity {
             default:
                 break;
         }
+    }
+
+    @Override
+    public void showErrorMessage(String errMsg) {
+        toastAndLog(errMsg);
     }
 }

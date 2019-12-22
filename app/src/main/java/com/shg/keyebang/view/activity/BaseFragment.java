@@ -23,4 +23,6 @@ public abstract class BaseFragment extends Fragment {
         Intent intent = new Intent(getActivity(), cls);
         startActivity(intent);
     }
+
+    public abstract void showErrorMessage(String errMsg);
 }

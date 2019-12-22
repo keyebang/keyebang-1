@@ -59,7 +59,9 @@ public class MainCoursesFragment extends BaseFragment {
         lMainCourseListAdapter.addHeaderView(LayoutInflater.from(getActivity()).inflate(R.layout.header_course_main, mainCourseContainer, false));
         lMainCourseListAdapter.setOnItemClickListener((view, position) -> {
             String courseName = mainCourseListAdapter.getCourseName(position);
+            String courseId = mainCourseListAdapter.getCourseId(position);
             Intent intent = new Intent(getActivity(), ChooseMainCourseActivity.class);
+            intent.putExtra("courseId", courseId);
             intent.putExtra("courseName", courseName);
             startActivity(intent);
         });
@@ -74,6 +76,12 @@ public class MainCoursesFragment extends BaseFragment {
     public void setMainCourseData(ArrayList<ViewCourse> courses) {
         mainCourseListAdapter.setCourseList(courses);
         lMainCourseListAdapter.notifyDataSetChanged();
+        mainCourseRecyclerView.refreshComplete(0);
+    }
+
+    @Override
+    public void showErrorMessage(String errMsg) {
+        toastAndLog(errMsg);
         mainCourseRecyclerView.refreshComplete(0);
     }
 }

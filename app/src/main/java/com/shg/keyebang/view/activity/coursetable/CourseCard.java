@@ -109,4 +109,8 @@ public class CourseCard extends FrameLayout {
     public String getTodoId(){
         return (todo == null)? null : todo.getTodoId();
     }
+
+    public String getCourseId() {
+        return course.getCourseId();
+    }
 }

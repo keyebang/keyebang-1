@@ -20,7 +20,6 @@ import com.shg.keyebang.model.ViewBook;
 import com.shg.keyebang.model.ViewComment;
 import com.shg.keyebang.model.ViewCourseInfo;
 import com.shg.keyebang.model.ViewCourseSelect;
-import com.shg.keyebang.model.ViewCourseTime;
 import com.shg.keyebang.presenter.coursedetail.CourseDetailPresenter;
 import com.shg.keyebang.view.activity.BaseActivity;
 import com.shg.keyebang.view.activity.coursedetail.adapter.CommentListAdapter;
@@ -40,6 +39,7 @@ public class CourseDetailActivity extends BaseActivity {
     private String courseId;
     private String evaId;
     private String courseName;
+    private int likeNum = 0;
     private boolean limit = false;
     private CourseDetailPresenter presenter;
     private CourseSelectListAdapter courseSelectListAdapter;
@@ -52,6 +52,7 @@ public class CourseDetailActivity extends BaseActivity {
     private LinearLayout courseDetailContainer;
     private SwipeRefreshLayout refreshLayout;
     private TitleBarLayout titleBar;
+    private TextView likeNumText;
     private TextView courseType;
     private TextView courseCredit;
     private TextView courseMessage;
@@ -69,7 +70,7 @@ public class CourseDetailActivity extends BaseActivity {
         presenter = new CourseDetailPresenter(this);
         courseId = getIntent().getStringExtra("courseId");
         courseName = getIntent().getStringExtra("courseName" );
-        courseSelectListAdapter = new CourseSelectListAdapter();
+        courseSelectListAdapter = new CourseSelectListAdapter(this);
         courseBookListAdapter = new CourseBookListAdapter();
         commentListAdapter = new CommentListAdapter();
         lCommentListAdapter = new LRecyclerViewAdapter(commentListAdapter);
@@ -78,6 +79,7 @@ public class CourseDetailActivity extends BaseActivity {
         courseBookRecyclerView = findViewById(R.id.coursebookRecycler);
         commentRecyclerView = findViewById(R.id.commentRecyclerView);
         courseDetailContainer = findViewById(R.id.courseDetailContainer);
+        likeNumText = findViewById(R.id.likeNum);
         courseType = findViewById(R.id.courseType);
         courseCredit = findViewById(R.id.courseCredit);
         courseMessage = findViewById(R.id.courseMessage);
@@ -94,7 +96,7 @@ public class CourseDetailActivity extends BaseActivity {
     @Override
     protected void init() {
         if(!StringUtil.isAllNullOrEmpty(courseName)) titleBar.setTitle(courseName);
-        refreshLayout.setOnRefreshListener(this::getData);
+        refreshLayout.setOnRefreshListener(this::getDataByEvaId);
         getSecondHandBookButton.setOnClickListener(v->{
             Intent intent = new Intent(this, SecondHandBookActivity.class);
             intent.putExtra("courseId", courseId);
@@ -105,6 +107,8 @@ public class CourseDetailActivity extends BaseActivity {
             final EditText edit = new EditText(this);
             edit.setWidth(DisplayUtil.dpTopx(200));
             edit.setTranslationX(DisplayUtil.dpTopx(20));
+            edit.setBackground(null);
+            edit.setHint("填写书籍名称");
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setView(edit);
             builder.setTitle("添加书籍资料");
@@ -120,15 +124,15 @@ public class CourseDetailActivity extends BaseActivity {
         likeButton.setOnLikeListener(new OnLikeListener() {
             @Override
             public void liked(LikeButton likeButton) {
-
+                presenter.updateLike(evaId, 1);
             }
 
             @Override
             public void unLiked(LikeButton likeButton) {
-
+                presenter.updateLike(evaId,-1);
             }
         });
-        sendComment.setOnClickListener(v->presenter.sendComment(commentEditText.getText().toString()));
+        sendComment.setOnClickListener(v->presenter.sendComment(evaId, commentEditText.getText().toString()));
 
         LinearLayoutManager verticalTimeLayoutManager = new LinearLayoutManager(this);
         verticalTimeLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -148,17 +152,23 @@ public class CourseDetailActivity extends BaseActivity {
         commentRecyclerView.setAdapter(lCommentListAdapter);
         commentRecyclerView.setLoadMoreEnabled(false);
 
-        getData();
+        getDataByEvaId();
     }
 
-    private void getData(){
+    private void getDataByEvaId(){
         //presenter.getLimit();
         presenter.getEvaId(courseId);
+    }
+
+    public void setEvaId(String evaId) {
+        this.evaId = evaId;
+        presenter.getLikeNum(evaId);
+        presenter.getIsLike(evaId);
         presenter.getCourseInfo(courseId);
         presenter.getThisCourseList(evaId);
-        presenter.getBookList();
+        presenter.getBookList(evaId);
         if(limit){
-            presenter.getCommentList();
+            presenter.getCommentList(evaId);
         }
         refreshLayout.setRefreshing(false);
     }
@@ -184,6 +194,30 @@ public class CourseDetailActivity extends BaseActivity {
         lCommentListAdapter.notifyDataSetChanged();
     }
 
+    public void setLimit(boolean limit) {
+        if( !this.limit && limit ){
+            this.limit = true;
+            presenter.getCommentList(evaId);
+            limitMessage.setVisibility(View.GONE);
+        }
+        else if (!this.limit) limitMessage.setVisibility(View.VISIBLE);
+        else limitMessage.setVisibility(View.GONE);
+    }
+
+    public void setLikeNum(int likeNum) {
+        this.likeNum = likeNum;
+        likeNumText.setText(likeNum + "");
+    }
+
+    public void setIsLike(boolean isLike) {
+        likeButton.setLiked(isLike);
+    }
+
+    public void updateLikeSuccess(int num) {
+        likeNum += num;
+        likeNumText.setText(likeNum + "");
+    }
+
     public void addMyComment(ViewComment comment) {
         commentListAdapter.addComment(comment);
         lCommentListAdapter.notifyDataSetChanged();
@@ -191,13 +225,13 @@ public class CourseDetailActivity extends BaseActivity {
         presenter.getLimit();
     }
 
-    public void setLimit(boolean limit) {
-        if( !this.limit && limit ){
-            this.limit = true;
-            presenter.getCommentList();
-            limitMessage.setVisibility(View.GONE);
-        }
-        else if (!this.limit) limitMessage.setVisibility(View.VISIBLE);
-        else limitMessage.setVisibility(View.GONE);
+    public void addCourseToTable(String courseId) {
+        presenter.addCourseToTable(courseId);
+    }
+
+    @Override
+    public void showErrorMessage(String errMsg) {
+        toastAndLog(errMsg);
+        refreshLayout.setRefreshing(false);
     }
 }
