@@ -33,21 +33,8 @@ public class CourseDetailService {
             public void done(List<Course> object, BmobException e) {
                 if(e==null){
                     for(Course course:object){
-                        BmobQuery<Evaluation>query2=new BmobQuery<>();
                         String evaluationId=course.getEvaluationId().getObjectId();
-                        query2.addWhereEqualTo("objectId", evaluationId.substring(1,evaluationId.length()));
-                        query2.findObjects(new FindListener<Evaluation>() {
-                            @Override
-                            public void done(List<Evaluation> object, BmobException e) {
-                                if (e==null){
-                                    String evaId;
-                                    for(Evaluation evaluation :object){
-                                        evaId = evaluation.getObjectId();
-                                        listener.onSuccess(evaId);
-                                    }
-                                }else{listener.onFailure("查询失败"+e.getMessage()+e.getErrorCode());}
-                            }
-                        });
+                        listener.onSuccess(evaluationId);
                     }
                 }else{listener.onFailure("查询失败"+e.getMessage()+e.getErrorCode());}
             }
