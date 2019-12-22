@@ -8,6 +8,10 @@ import com.shg.keyebang.model.ViewCourseSelect;
 import com.shg.keyebang.model.ViewCourseTime;
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.presenter.BasePresenter;
+import com.shg.keyebang.services.coursedetail.CourseDetailService;
+import com.shg.keyebang.services.coursedetail.GetCourseInfoListener;
+import com.shg.keyebang.services.coursedetail.GetEvaIdListener;
+import com.shg.keyebang.services.coursedetail.ThisCourseListListener;
 import com.shg.keyebang.view.activity.coursedetail.CourseDetailActivity;
 
 import java.util.ArrayList;
@@ -22,20 +26,49 @@ public class CourseDetailPresenter extends BasePresenter {
 
     public void getEvaId(String courseId) {
         String evaId = "SDfa";
-        activity.setEvaId(evaId);
+        CourseDetailService.getEvaId(courseId, new GetEvaIdListener() {
+            @Override
+            public void onSuccess(String evaId) {
+                activity.setEvaId(evaId);
+            }
+
+            @Override
+            public void onFailure(String errMassage) {
+
+            }
+        });
+
     }
 
     public void getCourseInfo(String courseId /* Or String evaluationId */){
 
-        ViewCourseInfo viewCourseInfo = ViewCourseInfo.builder()
-                .setType("必修课")
-                .setCredit(3f)
-                .setInfo("课程的主要内容");
+        CourseDetailService.getCourseInfo(courseId, new GetCourseInfoListener() {
+                    @Override
+                    public void onSuccess(ViewCourseInfo viewCourseInfo) {
+                        activity.setCourseInfoData(viewCourseInfo);
+                    }
 
-        activity.setCourseInfoData(viewCourseInfo);
+                    @Override
+                    public void onFailure(String errMassage) {
+
+                    }
+                });
+
+
     }
 
     public void getThisCourseList(String courseId /* Or String evaluationId */){
+        CourseDetailService.getThisCourseList(courseId, new ThisCourseListListener() {
+            @Override
+            public void onSuccess(ArrayList<ViewCourseSelect> viewCourseSelects) {
+                activity.setTimeData(viewCourseSelects);
+            }
+
+            @Override
+            public void onFailure(String errMassage) {
+
+            }
+        });
         ViewCourseTime time1 = ViewCourseTime.builder()
                 .setWeekday(1)
                 .setFirstClass(1)
@@ -68,7 +101,7 @@ public class CourseDetailPresenter extends BasePresenter {
         viewCourseSelects.add(viewCourseSelect1);
         viewCourseSelects.add(viewCourseSelect2);
 
-        activity.setTimeData(viewCourseSelects);
+
     }
 
     public void getBookList(String evaId){
