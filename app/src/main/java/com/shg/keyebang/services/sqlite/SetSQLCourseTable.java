@@ -35,7 +35,7 @@ public class SetSQLCourseTable {
 
 
     //添加
-    public static void addClass(String courseId, GetClassListener listener) {
+    public static void addClass(String courseId, SQLiteListener listener) {
 
         dbHelper.getReadableDB();
         BmobQuery<Course> query1 = new BmobQuery<>();

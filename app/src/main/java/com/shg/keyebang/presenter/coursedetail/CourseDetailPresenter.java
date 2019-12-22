@@ -12,6 +12,7 @@ import com.shg.keyebang.services.coursedetail.CourseDetailService;
 import com.shg.keyebang.services.coursedetail.GetCourseInfoListener;
 import com.shg.keyebang.services.coursedetail.GetEvaIdListener;
 import com.shg.keyebang.services.coursedetail.ThisCourseListListener;
+import com.shg.keyebang.services.sqlite.SQLiteListener;
 import com.shg.keyebang.services.sqlite.SetSQLCourseTable;
 import com.shg.keyebang.view.activity.coursedetail.CourseDetailActivity;
 
@@ -166,6 +167,17 @@ public class CourseDetailPresenter extends BasePresenter {
     }
 
     public void addCourseToTable(String courseId) {
+        SetSQLCourseTable.addClass(courseId, new SQLiteListener() {
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onFailure(String errMassage) {
+
+            }
+        });
 
     }
 
