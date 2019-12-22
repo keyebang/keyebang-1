@@ -86,11 +86,8 @@ public class CourseDetailService {
                 if (e==null){
                     ArrayList<ViewCourseSelect> viewCourseSelects = new ArrayList<>();
                     for (Course course:object){
-
-                        String courseId1=IdUtil.getCorrectId(course.getObjectId());
-
                         BmobQuery<CourseTime> query1 = new BmobQuery<>();
-                        query1.addWhereEqualTo("courseId",courseId1);
+                        query1.addWhereEqualTo("courseId",course.getObjectId());
                         query1.setLimit(100);
                         query1.findObjects(new FindListener<CourseTime>(){
                             @Override
@@ -102,10 +99,10 @@ public class CourseDetailService {
                                                 .setWeekday(courseTime.getWeekday())
                                                 .setFirstClass(courseTime.getFirstClass())
                                                 .setLastClass(courseTime.getLastClass())
-                                                .setCourseId(courseId1);
+                                                .setCourseId(course.getObjectId());
                                         times1.add(time1);
                                     }
-                                    ViewCourseSelect viewCourseSelect1 = new ViewCourseSelect(courseId1, course.getTeacher(), course.getClassPlace(), times1);
+                                    ViewCourseSelect viewCourseSelect1 = new ViewCourseSelect(course.getObjectId(), course.getTeacher(), course.getClassPlace(), times1);
                                     viewCourseSelects.add(viewCourseSelect1);
                                     listener.onSuccess(viewCourseSelects);
                                 }else{listener.onFailure("查询失败"+e.getMessage()+e.getErrorCode());}
@@ -153,8 +150,8 @@ public class CourseDetailService {
                     for(Comment comment:object){
                         Calendar time = Calendar.getInstance();
                         BmobQuery<User> query2 = new BmobQuery<>();
-                        String userId=IdUtil.getCorrectId(comment.getUserId().getObjectId());
-                        query2.addWhereEqualTo("objectId", userId);
+
+                        query2.addWhereEqualTo("objectId", comment.getUserId());
                         query2.findObjects(new FindListener<User>() {
                             @Override
                             public void done(List<User> object, BmobException e) {

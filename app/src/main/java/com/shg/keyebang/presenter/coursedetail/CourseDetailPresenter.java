@@ -8,9 +8,14 @@ import com.shg.keyebang.model.ViewCourseSelect;
 import com.shg.keyebang.model.ViewCourseTime;
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.presenter.BasePresenter;
+import com.shg.keyebang.services.coursedetail.AddDataListener;
+import com.shg.keyebang.services.coursedetail.BookListListener;
+import com.shg.keyebang.services.coursedetail.CommentListListener;
 import com.shg.keyebang.services.coursedetail.CourseDetailService;
 import com.shg.keyebang.services.coursedetail.GetCourseInfoListener;
 import com.shg.keyebang.services.coursedetail.GetEvaIdListener;
+import com.shg.keyebang.services.coursedetail.LikeNumListener;
+import com.shg.keyebang.services.coursedetail.SendCommentListener;
 import com.shg.keyebang.services.coursedetail.ThisCourseListListener;
 import com.shg.keyebang.services.sqlite.SQLiteListener;
 import com.shg.keyebang.services.sqlite.SetSQLCourseTable;
@@ -104,18 +109,40 @@ public class CourseDetailPresenter extends BasePresenter {
     }
 
     public void getBookList(String evaId){
-        ViewBook book = ViewBook.builder()
+        CourseDetailService.getBookList(evaId, new BookListListener() {
+            @Override
+            public void onSuccess(ArrayList<ViewBook> books) {
+                activity.setBookData(books);
+            }
+
+            @Override
+            public void onFailure(String errMassage) {
+
+            }
+        });
+        /*ViewBook book = ViewBook.builder()
                 .setBookName("《他改变了中国》");
 
         ArrayList<ViewBook> books = new ArrayList<>();
         books.add(book);
         books.add(book);
 
-        activity.setBookData(books);
+        activity.setBookData(books);*/
     }
 
     public void getCommentList(String evaId){
-        Calendar time = Calendar.getInstance();
+        CourseDetailService.getCommentList(evaId, new CommentListListener() {
+            @Override
+            public void onSuccess(ArrayList<ViewComment> viewComments) {
+                activity.setCommentData(viewComments);
+            }
+
+            @Override
+            public void onFailure(String errMassage) {
+
+            }
+        });
+        /*Calendar time = Calendar.getInstance();
         ViewComment comment = ViewComment.builder()
                 .setCommentUserName("同济学生")
                 .setCommentTime(time)
@@ -129,12 +156,23 @@ public class CourseDetailPresenter extends BasePresenter {
         comments.add(comment);
         comments.add(comment);
 
-        activity.setCommentData(comments);
+        activity.setCommentData(comments);*/
     }
 
     public void getLikeNum(String evaId){
-        int likenum = 123;
-        activity.setLikeNum(likenum);
+        CourseDetailService.getLikeNum(evaId, new LikeNumListener() {
+            @Override
+            public void onSuccess(int likenum) {
+                activity.setLikeNum(likenum);
+            }
+
+            @Override
+            public void onFailure(String errMassage) {
+
+            }
+        });
+        /*int likenum = 123;
+        activity.setLikeNum(likenum);*/
     }
 
     public void getIsLike(String evaId){
@@ -151,6 +189,17 @@ public class CourseDetailPresenter extends BasePresenter {
             activity.toastAndLog("评论内容为空");
             return;
         }
+        CourseDetailService.sendComment(evaId, text, new SendCommentListener() {
+            @Override
+            public void onSuccess(String message) {
+
+            }
+
+            @Override
+            public void onFailure(String errMassage) {
+
+            }
+        });
 
         ViewComment comment = ViewComment.builder()
                 .setCommentUserName(User.getCurrentUser(User.class).getNickname())
@@ -161,6 +210,17 @@ public class CourseDetailPresenter extends BasePresenter {
     }
 
     public void addBook(String bookName, String evaId) {
+        CourseDetailService.addBook(bookName, evaId, new AddDataListener() {
+            @Override
+            public void onSuccess(String message) {
+
+            }
+
+            @Override
+            public void onFailure(String errMassage) {
+
+            }
+        });
     }
 
     public void addCourseToTable(String courseId) {
@@ -179,6 +239,17 @@ public class CourseDetailPresenter extends BasePresenter {
     }
 
     public void updateLike(String evaId, int num /* 1 or -1 */) {
+        CourseDetailService.updateLike(evaId, num, new AddDataListener() {
+            @Override
+            public void onSuccess(String message) {
+
+            }
+
+            @Override
+            public void onFailure(String errMassage) {
+
+            }
+        });
         activity.updateLikeSuccess(num);
     }
 }
