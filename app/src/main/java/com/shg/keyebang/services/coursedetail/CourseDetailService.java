@@ -286,22 +286,45 @@ public class CourseDetailService {
     }
 
     public static void updateLike(String evaId, int num /* 1 or -1 */,AddDataListener listener){
+        BmobQuery<Evaluation> query=new BmobQuery<>();
         Evaluation evaluation = new Evaluation();
         String evaId1= IdUtil.getCorrectId(evaId);
-        evaluation.setObjectId(evaId1);
-        if(num==-1){
-            evaluation.setLikes(evaluation.getLikes()-1);
-        }else evaluation.setLikes(evaluation.getLikes()+1);
-        evaluation.update(new UpdateListener(){
+        query.addWhereEqualTo("objectId",evaId1);
+        query.findObjects(new FindListener<Evaluation>() {
             @Override
-            public void done(BmobException e) {
-                if(e==null){
+            public void done(List<Evaluation> object, BmobException e) {
+                if (e==null){
+                    for (Evaluation evaluation1 :object){
+                        evaluation.setObjectId(evaId1);
+                        if(num==-1){
+                            evaluation.setLikes(evaluation1.getLikes()-1);
+                            evaluation.update(new UpdateListener(){
+                                @Override
+                                public void done(BmobException e) {
+                                    if(e==null){
+                                        listener.onSuccess("添加数据成功");
+                                    }else{
+                                        listener.onFailure("创建数据失败：" + e.getMessage());
+                                    }
+                                }
+                            });
+                        }else {
+                            evaluation.setLikes(evaluation1.getLikes()+1);
+                            evaluation.update(new UpdateListener(){
+                                @Override
+                                public void done(BmobException e) {
+                                    if(e==null){
+                                        listener.onSuccess("添加数据成功");
+                                    }else{
+                                        listener.onFailure("创建数据失败：" + e.getMessage());
+                                    }
+                                }
+                            });
+                        }
+                    }
                     listener.onSuccess("添加数据成功");
-                }else{
-                    listener.onFailure("创建数据失败：" + e.getMessage());
-                }
+                }else{ listener.onFailure("创建数据失败：" + e.getMessage());}
             }
         });
-
     }
 }

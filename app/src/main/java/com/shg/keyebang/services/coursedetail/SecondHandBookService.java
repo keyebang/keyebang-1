@@ -12,6 +12,7 @@ import java.util.List;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 
 public class SecondHandBookService {
@@ -49,9 +50,9 @@ public class SecondHandBookService {
         secondHand.setBookMessage(message);
         secondHand.setContactMessage(User.getCurrentUser(User.class).getNickname() + "  " + User.getCurrentUser(User.class).getContactMessage());
 
-        secondHand.update(new UpdateListener(){
+        secondHand.save(new SaveListener<String>() {
             @Override
-            public void done(BmobException e) {
+            public void done(String s, BmobException e) {
                 if(e==null){
                     listener.onSuccess("添加数据成功");
                 }else{
@@ -59,6 +60,7 @@ public class SecondHandBookService {
                 }
             }
         });
+
 
     }
 }
