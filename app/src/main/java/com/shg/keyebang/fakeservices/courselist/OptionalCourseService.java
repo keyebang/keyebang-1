@@ -1,5 +1,7 @@
 package com.shg.keyebang.fakeservices.courselist;
 
+import com.shg.keyebang.MyApplication;
+import com.shg.keyebang.R;
 import com.shg.keyebang.model.ViewCourse;
 import com.shg.keyebang.model.TopCourse;
 
@@ -7,9 +9,15 @@ import java.util.ArrayList;
 
 public class OptionalCourseService {
     public static void getTopCourseData(GetTopCourseListener listener){
-        TopCourse topCourse1 = new TopCourse("热门选修1");
-        TopCourse topCourse2 = new TopCourse("热门选修2");
-        TopCourse topCourse3 = new TopCourse("热门选修3");
+        TopCourse topCourse1 = new TopCourse("绘画实践");
+        topCourse1.setCourseId("V0uWqHHq");
+        topCourse1.setImg(MyApplication.getContext().getResources().getDrawable(R.drawable.draw, null));
+        TopCourse topCourse2 = new TopCourse("星期音乐会");
+        topCourse2.setCourseId("Mb7saaao");
+        topCourse2.setImg(MyApplication.getContext().getResources().getDrawable(R.drawable.music, null));
+        TopCourse topCourse3 = new TopCourse("数码摄影");
+        topCourse3.setCourseId("rpiLFFFd");
+        topCourse3.setImg(MyApplication.getContext().getResources().getDrawable(R.drawable.photo, null));
 
         ArrayList<TopCourse> topCourses = new ArrayList<>();
         topCourses.add(topCourse1);

@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:corner_radius="8dp"
-            android:src="@drawable/example"
+            android:src="@drawable/draw"
             app:mask_color="#40000000"/>
 
         <TextView

@@ -29,8 +29,8 @@ public class TopCourseListAdapter extends RecyclerView.Adapter<RecyclerView.View
         private OptionalCourseFragment fragment;
         private NiceImageView topCourseImg;
         private TextView topCourseName;
-        private String name;
-        private String teacher;
+        private String courseName;
+        private String courseId;
 
         ListItemHolder(View view, OptionalCourseFragment fragment){
             super(view);
@@ -43,8 +43,8 @@ public class TopCourseListAdapter extends RecyclerView.Adapter<RecyclerView.View
         @Override
         public void onClick(View view) {
             Intent intent = new Intent(fragment.getActivity(), CourseDetailActivity.class);
-            intent.putExtra("courseName",  name);
-            intent.putExtra("courseTeacher", teacher);
+            intent.putExtra("courseId",  courseId);
+            intent.putExtra("courseName", courseName);
             fragment.startActivity(intent);
         }
     }
@@ -74,8 +74,9 @@ public class TopCourseListAdapter extends RecyclerView.Adapter<RecyclerView.View
         position -= NUM_HEADER;
         if(holder instanceof ListItemHolder) {
             ((ListItemHolder)holder).topCourseName.setText(topCourses.get(position).getCourseName());
-            ((ListItemHolder)holder).name = topCourses.get(position).getCourseName();
-            ((ListItemHolder)holder).teacher = topCourses.get(position).getTeacher();
+            ((ListItemHolder)holder).topCourseImg.setImageDrawable(topCourses.get(position).getImg());
+            ((ListItemHolder)holder).courseId = topCourses.get(position).getCourseId();
+            ((ListItemHolder)holder).courseName = topCourses.get(position).getCourseName();
         }
     }
 
