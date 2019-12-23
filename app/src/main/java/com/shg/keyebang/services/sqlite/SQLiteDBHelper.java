@@ -138,7 +138,7 @@ public class SQLiteDBHelper {
     /**
      * 添加一条Todo数据
      */
-    private SQLiteDatabase insertTodo(Todo todo) {
+    /*private SQLiteDatabase insertTodo(Todo todo) {
         long todoId = Long.parseLong(todo.getObjectId());
         Course todoCourse = todo.getCourseId();
         long courseId = Long.parseLong(todoCourse.getObjectId());

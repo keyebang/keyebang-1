@@ -15,6 +15,10 @@ public class Comment extends BmobObject {
     private String commentMessage;
     private String userId;
     private String evaId;
+    private int year;
+    private int month;
+    private int dayOfMonth;
+
 
 
     public Comment(Drawable avatar, String commentUserName, Calendar commentTime, String commentMessage) {
@@ -78,4 +82,22 @@ public class Comment extends BmobObject {
         this.evaId=evaId;
         return this;
     }
+
+    public int getYear(){return year;}
+    public Comment setYear(int year){
+        this.year=year;
+        return this;
+    }
+    public int getMonth(){return month;}
+    public Comment setMonth(int month){
+        this.month=month;
+        return this;
+    }
+    public int getDayOfMonth(){return dayOfMonth;}
+    public Comment setDayOfMonth(int dayOfMonth){
+        this.dayOfMonth=dayOfMonth;
+        return this;
+    }
+
+
 }
