@@ -12,7 +12,7 @@ public class GetSemesterTimeService {
         long beginTime = beginCalendar.getTime().getTime();
         long endTime = endCalendar.getTime().getTime();
         int betweenDays = (int) ((endTime - beginTime) / (1000 * 60 * 60 *24));
-        int num=(betweenDays/7)+1;
+        int num=(betweenDays/7)+6;
 
         listener.onSuccess(num);
 

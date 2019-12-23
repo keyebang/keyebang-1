@@ -22,6 +22,7 @@ import java.util.List;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 
 public class CourseDetailService {
@@ -205,18 +206,36 @@ public class CourseDetailService {
         String evaId1= IdUtil.getCorrectId(evaId);
         evaluation.setObjectId(evaId1);
         final Comment comment=new Comment();
+        final User user= new User();
+        user.setObjectId(User.getCurrentUser(User.class).getObjectId());
+        user.setLimit(true);
         comment.setEvaId(evaId1);
         comment.setUserId(User.getCurrentUser(User.class).getObjectId());
         comment.setCommentUserName(User.getCurrentUser(User.class).getNickname());
+        Calendar calendar = Calendar.getInstance();
+        comment.setYear(calendar.get(Calendar.YEAR));
+        comment.setMonth(calendar.get(Calendar.MONTH));
+        comment.setDayOfMonth(calendar.get(Calendar.DAY_OF_MONTH));
         comment.setCommentTime(Calendar.getInstance());
         comment.setCommentMessage(text);
-        comment.update(new UpdateListener(){
+        comment.save(new SaveListener<String>() {
             @Override
-            public void done(BmobException e) {
+            public void done(String s, BmobException e) {
                 if(e==null){
                     listener.onSuccess("添加数据成功");
                 }else{
                     listener.onFailure("创建数据失败：" + e.getMessage());
+                }
+            }
+        });
+
+        user.update(new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if(e==null){
+                    listener.onSuccess("更新数据成功");
+                }else{
+                    listener.onFailure("更新数据失败：" + e.getMessage());
                 }
             }
         });
@@ -230,9 +249,9 @@ public class CourseDetailService {
         final Book book =new Book();
         book.setEvaId(evaId1);
         book.setBookName(bookName);
-        book.update(new UpdateListener(){
+        book.save(new SaveListener<String>() {
             @Override
-            public void done(BmobException e) {
+            public void done(String s, BmobException e) {
                 if(e==null){
                     listener.onSuccess("添加数据成功");
                 }else{
@@ -240,6 +259,7 @@ public class CourseDetailService {
                 }
             }
         });
+
     }
 
     public static void addCourseToTable(String courseId,AddDataListener listener) {
@@ -250,9 +270,9 @@ public class CourseDetailService {
         todo.setCourseId(courseId1);
         todo.setTodoTitle(null);
         todo.setTodoMessage(null);
-        todo.update(new UpdateListener(){
+        todo.save(new SaveListener<String>() {
             @Override
-            public void done(BmobException e) {
+            public void done(String s, BmobException e) {
                 if(e==null){
                     listener.onSuccess("添加数据成功");
                 }else{
@@ -260,15 +280,16 @@ public class CourseDetailService {
                 }
             }
         });
+
     }
 
     public static void updateLike(String evaId, int num /* 1 or -1 */,AddDataListener listener){
         Evaluation evaluation = new Evaluation();
         String evaId1= IdUtil.getCorrectId(evaId);
         evaluation.setObjectId(evaId1);
-        if(num==1){
-            evaluation.setLikes(evaluation.getLikes()+1);
-        }else evaluation.setLikes(evaluation.getLikes()-1);
+        if(num==-1){
+            evaluation.setLikes(evaluation.getLikes()-1);
+        }else evaluation.setLikes(evaluation.getLikes()+1);
         evaluation.update(new UpdateListener(){
             @Override
             public void done(BmobException e) {
