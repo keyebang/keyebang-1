@@ -25,8 +25,8 @@ public class MainCourse {
         User user =BmobUser.getCurrentUser(User.class);
         BmobQuery<Course> query1 = new BmobQuery<>();
         query1.addWhereEqualTo("type","必修课");
-        String semester1= IdUtil.getCorrectId(user.getSemester());
-        query1.addWhereEqualTo("semester",semester1);
+        query1.addWhereEqualTo("semester",user.getSemester());
+        query1.addWhereEqualTo("major",user.getMajor());
         query1.setLimit(100);
         query1.findObjects(new FindListener<Course>() {
             @Override
