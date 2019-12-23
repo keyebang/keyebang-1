@@ -217,7 +217,7 @@ public class CourseDetailPresenter extends BasePresenter {
         });
     }
 
-    public void addCourseToTable(String courseId) {、
+    public void addCourseToTable(String courseId) {
         CourseDetailService.addCourseToTable(courseId, new AddDataListener() {
             @Override
             public void onSuccess(String message) {
