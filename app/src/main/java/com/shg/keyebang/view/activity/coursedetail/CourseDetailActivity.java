@@ -169,9 +169,7 @@ public class CourseDetailActivity extends BaseActivity {
         presenter.getCourseInfo(courseId);
         presenter.getThisCourseList(this.evaId);
         presenter.getBookList(evaId);
-        if(limit){
-            presenter.getCommentList(evaId);
-        }
+        presenter.getLimit();
         refreshLayout.setRefreshing(false);
     }
 

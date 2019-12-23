@@ -162,8 +162,8 @@ public class CourseDetailPresenter extends BasePresenter {
     public void getLikeNum(String evaId){
         CourseDetailService.getLikeNum(evaId, new LikeNumListener() {
             @Override
-            public void onSuccess(int likenum) {
-                activity.setLikeNum(likenum);
+            public void onSuccess(int likeNum) {
+                activity.setLikeNum(likeNum);
             }
 
             @Override
@@ -181,7 +181,7 @@ public class CourseDetailPresenter extends BasePresenter {
     }
 
     public void getLimit() {
-        activity.setLimit(true);
+        activity.setLimit(User.getCurrentUser(User.class).getLimit());
     }
 
     public void sendComment(String evaId, String text) {
@@ -197,16 +197,10 @@ public class CourseDetailPresenter extends BasePresenter {
 
             @Override
             public void onFailure(String errMassage) {
-
+                activity.showErrorMessage(errMassage);
             }
         });
-
-        ViewComment comment = ViewComment.builder()
-                .setCommentUserName(User.getCurrentUser(User.class).getNickname())
-                .setCommentTime(Calendar.getInstance())
-                .setCommentMessage(text);
-
-        activity.addMyComment(comment);
+        getCommentList(evaId);
     }
 
     public void addBook(String bookName, String evaId) {
@@ -218,23 +212,14 @@ public class CourseDetailPresenter extends BasePresenter {
 
             @Override
             public void onFailure(String errMassage) {
-
+                activity.showErrorMessage(errMassage);
             }
         });
+        getBookList(evaId);
     }
 
     public void addCourseToTable(String courseId) {
-        SetSQLCourseTable.addClass(courseId, new SQLiteListener() {
-            @Override
-            public void onSuccess() {
-
-            }
-
-            @Override
-            public void onFailure(String errMassage) {
-
-            }
-        });
+        activity.toastAndLog(courseId);
 
     }
 
