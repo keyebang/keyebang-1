@@ -192,7 +192,7 @@ public class CourseDetailPresenter extends BasePresenter {
         CourseDetailService.sendComment(evaId, text, new SendCommentListener() {
             @Override
             public void onSuccess(String message) {
-
+                getCommentList(evaId);
             }
 
             @Override
@@ -200,14 +200,14 @@ public class CourseDetailPresenter extends BasePresenter {
                 activity.showErrorMessage(errMassage);
             }
         });
-        getCommentList(evaId);
+
     }
 
     public void addBook(String bookName, String evaId) {
         CourseDetailService.addBook(bookName, evaId, new AddDataListener() {
             @Override
             public void onSuccess(String message) {
-
+                getBookList(evaId);
             }
 
             @Override
@@ -215,40 +215,36 @@ public class CourseDetailPresenter extends BasePresenter {
                 activity.showErrorMessage(errMassage);
             }
         });
-        getBookList(evaId);
     }
 
-    public void addCourseToTable(String courseId) {
-
-        activity.toastAndLog(courseId);
-
+    public void addCourseToTable(String courseId) {、
         CourseDetailService.addCourseToTable(courseId, new AddDataListener() {
             @Override
             public void onSuccess(String message) {
-
+                activity.toastAndLog("添加成功");
             }
 
             @Override
             public void onFailure(String errMassage) {
-
+                activity.showErrorMessage(errMassage);
             }
         });
 
+                                                   
     }
 
     public void updateLike(String evaId, int num /* 1 or -1 */) {
         CourseDetailService.updateLike(evaId, num, new AddDataListener() {
             @Override
             public void onSuccess(String message) {
-
+                activity.updateLikeSuccess(num);
             }
 
             @Override
             public void onFailure(String errMassage) {
-
+                activity.showErrorMessage(errMassage);
             }
         });
-        activity.updateLikeSuccess(num);
     }
 }
 
