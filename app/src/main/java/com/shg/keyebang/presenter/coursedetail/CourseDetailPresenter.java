@@ -217,8 +217,7 @@ public class CourseDetailPresenter extends BasePresenter {
         });
     }
 
-    public void addCourseToTable(String courseId) {
-        activity.toastAndLog(courseId);
+    public void addCourseToTable(String courseId) {、
         CourseDetailService.addCourseToTable(courseId, new AddDataListener() {
             @Override
             public void onSuccess(String message) {
@@ -230,6 +229,8 @@ public class CourseDetailPresenter extends BasePresenter {
                 activity.showErrorMessage(errMassage);
             }
         });
+
+                                                   
     }
 
     public void updateLike(String evaId, int num /* 1 or -1 */) {
