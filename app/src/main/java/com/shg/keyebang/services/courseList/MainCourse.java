@@ -1,5 +1,8 @@
 package com.shg.keyebang.services.courseList;
 
+import android.util.Log;
+
+import com.shg.keyebang.aatools.IdUtil;
 import com.shg.keyebang.fakeservices.courselist.GetCourseListListener;
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.model.ViewCourse;
@@ -14,12 +17,16 @@ import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 
+import static android.content.ContentValues.TAG;
+
 public class MainCourse {
     public static void getMainCourseDa(GetCourseListListener listener){
+        Log.e(TAG, "getMainCourseDa:321");
         User user =BmobUser.getCurrentUser(User.class);
         BmobQuery<Course> query1 = new BmobQuery<>();
         query1.addWhereEqualTo("type","必修课");
-        query1.addWhereEqualTo("semester",user.getSemester());
+        String semester1= IdUtil.getCorrectId(user.getSemester());
+        query1.addWhereEqualTo("semester",semester1);
         query1.setLimit(100);
         query1.findObjects(new FindListener<Course>() {
             @Override

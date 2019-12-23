@@ -42,7 +42,7 @@ public class TodoService {
             todo.setTodoMessage(viewTodo.getTodoMessage());
             todo.setColor(viewTodo.getColor());
             todo.setYear(calendar.get(Calendar.YEAR));
-            todo.setMonth(calendar.get(Calendar.MONTH)+1);
+            todo.setMonth(calendar.get(Calendar.MONTH));
             todo.setDayOfMonth(calendar.get(Calendar.DAY_OF_MONTH));
 
             todo.update(new UpdateListener(){

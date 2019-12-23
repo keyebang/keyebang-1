@@ -32,7 +32,7 @@ import static android.content.ContentValues.TAG;
 public class CourseTable {
     public static void getClass(GetClassListener listener) {
         BmobQuery<Todo> query1 = new BmobQuery<>();
-        query1.addWhereEqualTo("userId", BmobUser.getCurrentUser(User.class));
+        query1.addWhereEqualTo("userId", BmobUser.getCurrentUser(User.class).getObjectId());
 
         Log.d(TAG, "done: 12345" );
         query1.setLimit(30);
