@@ -224,9 +224,9 @@ public class CourseDetailPresenter extends BasePresenter {
     }
 
     public void addCourseToTable(String courseId) {
-        SetSQLCourseTable.addClass(courseId, new SQLiteListener() {
+        CourseDetailService.addCourseToTable(courseId, new AddDataListener() {
             @Override
-            public void onSuccess() {
+            public void onSuccess(String message) {
 
             }
 
