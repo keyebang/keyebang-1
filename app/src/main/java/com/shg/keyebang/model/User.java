@@ -55,7 +55,7 @@ public class User extends BmobUser {
         return this;
     }
 
-    public boolean isLimit() {
+    public boolean getLimit() {
         return limit;
     }
 
