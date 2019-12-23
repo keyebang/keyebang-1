@@ -43,7 +43,7 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
         ViewComment comment = comments.get(position);
         Calendar time = comment.getCommentTime();
         holder.commentUserName.setText(comment.getCommentUserName());
-        holder.commentTime.setText(time.get(Calendar.MONTH) + "." + time.get(Calendar.DAY_OF_MONTH) + "." + time.get(Calendar.YEAR));
+        holder.commentTime.setText((time.get(Calendar.MONTH) + 1 ) + "." + time.get(Calendar.DAY_OF_MONTH) + "." + time.get(Calendar.YEAR));
         holder.commentMessage.setText(comment.getCommentMessage());
     }
 

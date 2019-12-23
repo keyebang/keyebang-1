@@ -28,7 +28,7 @@ public class SecondHandBookPresenter extends BasePresenter {
 
             @Override
             public void onFailure(String errMassage) {
-
+                activity.showErrorMessage(errMassage);
             }
         });
 
@@ -40,18 +40,13 @@ public class SecondHandBookPresenter extends BasePresenter {
         SecondHandBookService.addSecondHandBook(evaId, bookName, new AddDataListener() {
             @Override
             public void onSuccess(String message) {
-
+                getSecondHandBookList(evaId);
             }
 
             @Override
             public void onFailure(String errMassage) {
-
+                activity.showErrorMessage(errMassage);
             }
         });
-        ViewSecondHandBook book = ViewSecondHandBook.builder()
-                .setBookMessage(bookName)
-                .setContactMessage(User.getCurrentUser(User.class).getNickname() + "  " + User.getCurrentUser(User.class).getContactMessage());
-        activity.addSecondHandBookMessage(book);
-
     }
 }
