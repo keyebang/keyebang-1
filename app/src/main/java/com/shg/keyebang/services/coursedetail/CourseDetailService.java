@@ -20,6 +20,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
@@ -149,7 +150,7 @@ public class CourseDetailService {
                 if(e==null){
                     ArrayList<ViewComment> comments = new ArrayList<>();
                     for(Comment comment:object){
-                        Calendar time = Calendar.getInstance();
+                        Calendar time = comment.getCommentTime();
                         BmobQuery<User> query2 = new BmobQuery<>();
 
                         query2.addWhereEqualTo("objectId", comment.getUserId());
@@ -268,6 +269,7 @@ public class CourseDetailService {
         course.setObjectId(courseId1);
         final Todo todo =new Todo();
         todo.setCourseId(courseId1);
+        todo.setUserId(BmobUser.getCurrentUser(User.class).getObjectId());
         todo.setTodoTitle(null);
         todo.setTodoMessage(null);
         todo.save(new SaveListener<String>() {

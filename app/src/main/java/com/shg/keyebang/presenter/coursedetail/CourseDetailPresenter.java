@@ -219,9 +219,9 @@ public class CourseDetailPresenter extends BasePresenter {
     }
 
     public void addCourseToTable(String courseId) {
-<<<<<<< .merge_file_a18420
+
         activity.toastAndLog(courseId);
-=======
+
         CourseDetailService.addCourseToTable(courseId, new AddDataListener() {
             @Override
             public void onSuccess(String message) {
@@ -233,7 +233,6 @@ public class CourseDetailPresenter extends BasePresenter {
 
             }
         });
->>>>>>> .merge_file_a02044
 
     }
 
