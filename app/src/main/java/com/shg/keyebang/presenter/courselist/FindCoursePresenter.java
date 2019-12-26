@@ -21,8 +21,7 @@ public class FindCoursePresenter extends BasePresenter {
         chooseMainCourseActivity = activity;
     }
 
-    public void getChooseCourseList(String courseName){
-
+    public void getChooseMainCourseList(String courseName){
         FindCourseService.getChooseCourseList(courseName, new FindCourseListener() {
             @Override
             public void onSuccess(ArrayList<ViewCourse> courses) {

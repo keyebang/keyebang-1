@@ -65,25 +65,19 @@ public class MainActivity extends BaseActivity {
         bottomTabLayout.addTab(bottomTabLayout.newTab().setIcon(getResources().getDrawable(R.drawable.ic_school_black_24dp, null)));
         bottomTabLayout.addTab(bottomTabLayout.newTab().setIcon(getResources().getDrawable(R.drawable.ic_person_black_24dp, null)));
 
-        AccountInfoService.fetchUserInfo(new SignUpLogInListener() {
-            @Override
-            public void onSuccess(String message) {
-                User user = User.getCurrentUser(User.class);
-                if(user != null) {
-                    toastAndLog(
-                            "当前用户：" + "\n" +
-                                    user.getUsername() + "\n" +
-                                    user.getNickname() + "\n");
+        if(User.isLogin()){
+            AccountInfoService.fetchUserInfo(new SignUpLogInListener() {
+                @Override
+                public void onSuccess(String message) {
+
                 }
-            }
 
-            @Override
-            public void onFailure(String errMassage) {
-                toastAndLog(errMassage);
-            }
-        });
-
-
+                @Override
+                public void onFailure(String errMassage) {
+                    toastAndLog(errMassage);
+                }
+            });
+        }
     }
 
     private void setFragment(int position){
@@ -100,10 +94,5 @@ public class MainActivity extends BaseActivity {
             default:
                 break;
         }
-    }
-
-    @Override
-    public void showErrorMessage(String errMsg) {
-        toastAndLog(errMsg);
     }
 }

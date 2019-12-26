@@ -147,9 +147,4 @@ public class LoginActivity extends BaseActivity {
         }
         password.setSelection(password.getText().toString().length());
     }
-
-    @Override
-    public void showErrorMessage(String errMsg) {
-        toastAndLog(errMsg);
-    }
 }

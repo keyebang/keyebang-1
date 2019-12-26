@@ -36,7 +36,6 @@ public class SecondHandBookPresenter extends BasePresenter {
     }
 
     public void addSecondHandBook(String bookName, String evaId){
-        //....
         SecondHandBookService.addSecondHandBook(evaId, bookName, new AddDataListener() {
             @Override
             public void onSuccess(String message) {

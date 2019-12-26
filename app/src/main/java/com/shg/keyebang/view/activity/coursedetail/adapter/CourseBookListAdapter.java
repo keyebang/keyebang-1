@@ -17,11 +17,11 @@ public class CourseBookListAdapter extends RecyclerView.Adapter<CourseBookListAd
     ArrayList<ViewBook> books;
 
     static class ListItemHolder extends RecyclerView.ViewHolder {
-        private TextView bookname;
+        private TextView bookName;
 
         ListItemHolder(View view) {
             super(view);
-            bookname = view.findViewById(R.id.bookName);
+            bookName = view.findViewById(R.id.bookName);
         }
     }
 
@@ -35,7 +35,7 @@ public class CourseBookListAdapter extends RecyclerView.Adapter<CourseBookListAd
 
     @Override
     public void onBindViewHolder(@NonNull CourseBookListAdapter.ListItemHolder holder, int position) {
-        holder.bookname.setText(books.get(position).getBookName());
+        holder.bookName.setText(books.get(position).getBookName());
     }
 
     @Override

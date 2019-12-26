@@ -17,20 +17,14 @@ import androidx.recyclerview.widget.RecyclerView;
 public class OptionalCourseListAdapter extends RecyclerView.Adapter<OptionalCourseListAdapter.ListItemHolder> {
     private ArrayList<ViewCourse> courses;
 
-    public static class ListItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class ListItemHolder extends RecyclerView.ViewHolder {
         private TextView optionalCourseName;
         private TextView optionalCourseMessage;
-        private String optionalCourseId;
 
         public ListItemHolder(View view) {
             super(view);
             optionalCourseName = view.findViewById(R.id.optionalCourseName);
             optionalCourseMessage = view.findViewById(R.id.optionalCourseMessage);
-        }
-
-        @Override
-        public void onClick(View view) {
-
         }
     }
 
@@ -49,7 +43,6 @@ public class OptionalCourseListAdapter extends RecyclerView.Adapter<OptionalCour
         ViewCourse course = courses.get(position);
         holder.optionalCourseName.setText(course.getCourseName());
         holder.optionalCourseMessage.setText(course.getCampus() +  " · " + course.getCredit());
-        holder.optionalCourseId = courses.get(position).getCourseId();
     }
 
     @Override
@@ -67,9 +60,5 @@ public class OptionalCourseListAdapter extends RecyclerView.Adapter<OptionalCour
 
     public String getCourseName(int position){
         return courses.get(position).getCourseName();
-    }
-
-    public String getCourseTeacher(int position) {
-        return courses.get(position).getTeacher();
     }
 }

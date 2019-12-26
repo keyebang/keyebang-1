@@ -31,7 +31,6 @@ public class CourseTableFragment extends BaseFragment {
     private ConstraintLayout tableContainer;
     private TitleBarLayout titleBar;
     private TextView semesterTime;
-    private TextView date;
 
 
 
@@ -53,7 +52,6 @@ public class CourseTableFragment extends BaseFragment {
         tableContainer = view.findViewById(R.id.tableContainer);
         titleBar = view.findViewById(R.id.courseTableBar);
         semesterTime = view.findViewById(R.id.semesterTime);
-        date = view.findViewById(R.id.date);
         init();
         return view;
     }
@@ -61,17 +59,16 @@ public class CourseTableFragment extends BaseFragment {
     @Override
     protected void init() {
         refreshLayout.setOnRefreshListener(()->{
-            presenter.GetCourseTable();
+            presenter.getTimeAndTable();
         });
-        presenter.GetCourseTable();
-        presenter.getDate();
-        presenter.getSemesterTime();
+        presenter.getTimeAndTable();
         titleBar.setTitle(presenter.getTitle());
-        //date.setText(presenter.getDate());
     }
 
 
     public void setCourseTable(Map<ViewCourse, ViewTodo> classTable){
+        courseCards.clear();
+        tableContainer.removeAllViews();
         for(ViewCourse course: classTable.keySet()){
             ViewTodo todo = classTable.get(course);
             for(ViewCourseTime courseTime: course.getCourseTimes()){
@@ -102,6 +99,15 @@ public class CourseTableFragment extends BaseFragment {
             if(courseId.equals(courseCard.getCourseId())) {
                 courseCard.setTodo(todo);
                 courseCard.setOnClick(this);
+            }
+        }
+    }
+
+    public void deleteCourseInView(String todoId){
+        toastAndLog(todoId);
+        for(CourseCard courseCard : courseCards){
+            if(todoId.equals(courseCard.getTodoId())) {
+                tableContainer.removeView(courseCard);
             }
         }
     }

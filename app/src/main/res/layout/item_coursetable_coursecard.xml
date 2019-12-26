@@ -88,7 +88,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="6dp"
         android:text="丢孔杰平啊丢你啊"
-        android:textSize="10dp"
+        android:textSize="10sp"
         android:textStyle="bold"
         android:textColor="@color/themeColorWhite"
         android:maxLines="2"

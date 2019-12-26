@@ -54,16 +54,15 @@ public class ChooseMainCourseActivity extends BaseActivity {
             Intent intent = new Intent(this, CourseDetailActivity.class);
             intent.putExtra("courseId", itemCourseListAdapter.getCourseId(position));
             intent.putExtra("courseName", itemCourseListAdapter.getCourseName(position));
-            intent.putExtra("courseTeacher", itemCourseListAdapter.getCourseTeacher(position));
             startActivity(intent);
         });
-        chooseCourseRecyclerView.setOnRefreshListener(()->presenter.getChooseCourseList(courseName));
+        chooseCourseRecyclerView.setOnRefreshListener(()->presenter.getChooseMainCourseList(courseName));
         chooseCourseRecyclerView.setRefreshProgressStyle(ProgressStyle.BallPulse);
         chooseCourseRecyclerView.setLayoutManager(verticalLayoutManager);
         chooseCourseRecyclerView.setAdapter(lItemCourseListAdapter);
         chooseCourseRecyclerView.setLoadMoreEnabled(false);
 
-        presenter.getChooseCourseList(courseName);
+        presenter.getChooseMainCourseList(courseName);
     }
 
     public void setChooseCourseList(ArrayList<ViewCourse> courses) {

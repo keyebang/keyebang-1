@@ -38,7 +38,6 @@ public class MainCoursesFragment extends BaseFragment {
             mainCourseListAdapter = new MainCourseListAdapter();
             lMainCourseListAdapter = new LRecyclerViewAdapter(mainCourseListAdapter);
         }
-
     }
 
     @Nullable

@@ -1,6 +1,7 @@
 package com.shg.keyebang.view.activity.coursedetail.adapter;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import static android.content.ContentValues.TAG;
+
 public class CourseSelectListAdapter extends RecyclerView.Adapter<CourseSelectListAdapter.ListItemHolder> {
     private ArrayList<ViewCourseSelect> courseSelects;
     private CourseDetailActivity activity;
@@ -29,13 +32,12 @@ public class CourseSelectListAdapter extends RecyclerView.Adapter<CourseSelectLi
         private String courseId;
         private TextView courseSelectMessage;
         private TextView timeMessage;
-        private ImageView addCourse;
 
         ListItemHolder(View view, CourseDetailActivity activity) {
             super(view);
             courseSelectMessage = view.findViewById(R.id.courseSelectMessage);
             timeMessage = view.findViewById(R.id.timeMessage);
-            addCourse = view.findViewById(R.id.addCourse);
+            ImageView addCourse = view.findViewById(R.id.addCourse);
 
             addCourse.setOnClickListener(v->{
                 AlertDialog.Builder builder = new AlertDialog.Builder(activity);
@@ -69,7 +71,9 @@ public class CourseSelectListAdapter extends RecyclerView.Adapter<CourseSelectLi
         holder.courseSelectMessage.setText(courseSelect.getTeacher() + "  " + courseSelect.getCoursePlace());
         StringBuilder s = new StringBuilder();
         for(ViewCourseTime time : courseSelect.getCourseTimes()){
-            s.append("周").append(TimeCNUtil.weekdayToCN(time.getWeekday() + 1)).append(time.getFirstClass()).append("-").append(time.getLastClass()).append("  ");
+            String t = getSingleOrDoubleCN(time.getSingleOrDouble());
+            Log.d(TAG, "onBindViewHolder: " + time.getSingleOrDouble());
+            s.append("周").append(TimeCNUtil.weekdayToCN(time.getWeekday() + 1)).append(time.getFirstClass()).append("-").append(time.getLastClass()).append(" ").append(t).append("  ");
         }
         holder.timeMessage.setText(s);
     }
@@ -81,5 +85,13 @@ public class CourseSelectListAdapter extends RecyclerView.Adapter<CourseSelectLi
 
     public void setCourseSelects(ArrayList<ViewCourseSelect> courseSelects) {
         this.courseSelects = courseSelects;
+    }
+
+    private String getSingleOrDoubleCN(int i){
+        switch (i){
+            case 1: return "单";
+            case 2: return "双";
+            default: return "";
+        }
     }
 }

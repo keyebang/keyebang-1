@@ -58,7 +58,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginRight="6dp"
-            android:src="@drawable/deer"/>
+            android:src="@drawable/avatar"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

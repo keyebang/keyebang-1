@@ -57,10 +57,6 @@ public class ItemCourseListAdapter extends RecyclerView.Adapter<ItemCourseListAd
         return courses.get(position).getCourseName();
     }
 
-    public String getCourseTeacher(int position) {
-        return courses.get(position).getTeacher();
-    }
-
     public String getCourseId(int position) {
         return courses.get(position).getCourseId();
     }

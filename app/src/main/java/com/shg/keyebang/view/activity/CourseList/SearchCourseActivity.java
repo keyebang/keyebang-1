@@ -71,7 +71,6 @@ public class SearchCourseActivity extends BaseActivity {
             Intent intent = new Intent(this, CourseDetailActivity.class);
             intent.putExtra("courseId", itemCourseListAdapter.getCourseId(position));
             intent.putExtra("courseName", itemCourseListAdapter.getCourseName(position));
-            intent.putExtra("courseTeacher", itemCourseListAdapter.getCourseTeacher(position));
             startActivity(intent);
         });
         searchCourseRecyclerView.setOnRefreshListener(()->presenter.FindCourseByName(searchCourseName));
@@ -87,6 +86,7 @@ public class SearchCourseActivity extends BaseActivity {
         searchCourseName = searchText.getText().toString();
         if(!StringUtil.isAllNullOrEmpty(searchCourseName)){
             presenter.FindCourseByName(searchCourseName);
+            searchText.setText("");
         }
         else {
             toastAndLog("搜索信息为空");

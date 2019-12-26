@@ -64,6 +64,13 @@ public class FakeTableService {
                 .setLastClass(7)
                 .setSingleOrDouble(ViewCourseTime.WEEK_ALL);
 
+        ViewCourseTime courseTime8 = ViewCourseTime.builder()
+                .setTimeId("8")
+                .setWeekday(3)
+                .setFirstClass(1)
+                .setLastClass(2)
+                .setSingleOrDouble(ViewCourseTime.WEEK_ALL);
+
         ArrayList<ViewCourseTime> courseTimes1 = new ArrayList<>();
         courseTimes1.add(courseTime1);
         courseTimes1.add(courseTime2);
@@ -83,12 +90,16 @@ public class FakeTableService {
         ArrayList<ViewCourseTime> courseTimes6 = new ArrayList<>();
         courseTimes6.add(courseTime7);
 
+        ArrayList<ViewCourseTime> courseTimes7 = new ArrayList<>();
+        courseTimes6.add(courseTime8);
+
         ViewCourse course1 = new ViewCourse("1","概率论1", "安楼101","李华", courseTimes1);
         ViewCourse course2 = new ViewCourse("2","概率论1", "安楼101","李华", courseTimes2);
         ViewCourse course3 = new ViewCourse("3","概率论1", "安楼101","李华", courseTimes3);
         ViewCourse course4 = new ViewCourse("4","概率论1", "安楼101","李华", courseTimes4);
         ViewCourse course5 = new ViewCourse("5","概率论1", "安楼101","李华", courseTimes5);
         ViewCourse course6 = new ViewCourse("6","概率论1", "安楼101","李华", courseTimes6);
+        ViewCourse course7 = new ViewCourse("7","概率论1", "安楼101","李华", courseTimes7);
 
         //Todos：取数据下来的时候，记得包含他的ObjectId（一般是默认）
         Calendar calendar = new GregorianCalendar(2000,11 - 1, 20,23,59);
@@ -104,6 +115,7 @@ public class FakeTableService {
         courseTable.put(course4, null);
         courseTable.put(course5, todo3);
         courseTable.put(course6, null);
+        courseTable.put(course7, null);
 
 
         if(success) listener.onSuccess(courseTable);

@@ -26,9 +26,28 @@ public class CourseTablePresenter extends BasePresenter {
         this.fragment = fragment;
     }
 
-    public void GetCourseTable(){
+    public void getTimeAndTable(){
+        if(User.isLogin()){
+            GetSemesterTimeService.getSemesterTime(new GetSemesterTimeListener() {
+                @Override
+                public void onSuccess(int num) {
+                    boolean singleOrDouble = num%2 != 0;
+                    fragment.setSemesterTime(num, singleOrDouble);
+                    getCourseTable();
+                }
 
-        if (User.getCurrentUser(User.class) != null){
+                @Override
+                public void onFailure(String errMassage) {
+                    fragment.setSemesterTime(0, false);
+                }
+            });
+        }
+        else fragment.showErrorMessage("你未登录");
+    }
+
+    public void getCourseTable(){
+
+        if (User.isLogin()){
             CourseTable.getClass(new GetClassListener() {
                 @Override
                 public void onSuccess(Map<ViewCourse, ViewTodo> table) {
@@ -49,31 +68,5 @@ public class CourseTablePresenter extends BasePresenter {
         String nickname = User.getCurrentUser(User.class).getNickname();
         String greeting = TimeCNUtil.getGreeting(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
         return greeting + " " + nickname;
-    }
-
-    public void getSemesterTime(){
-        GetSemesterTimeService.getSemesterTime(new GetSemesterTimeListener() {
-            @Override
-            public void onSuccess(int num) {
-                boolean singleOrDouble = num%2 != 0;
-                fragment.setSemesterTime(num, singleOrDouble);
-            }
-
-            @Override
-            public void onFailure(String errMassage) {
-                int num = 0;
-                boolean singleOrDouble = num%2 != 0;
-                fragment.setSemesterTime(num, singleOrDouble);
-            }
-        });
-
-    }
-
-    public String getDate() {
-        Calendar date = Calendar.getInstance();
-        int month = date.get(Calendar.MONTH) ;
-        int day = date.get(Calendar.DAY_OF_MONTH);
-        String weekday = TimeCNUtil.weekdayToCN(date.get(Calendar.DAY_OF_WEEK));
-        return month + "月" + day + "日 " +  "星期" + weekday;
     }
 }

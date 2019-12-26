@@ -70,7 +70,6 @@ public class OptionalCourseFragment extends BaseFragment {
             Intent intent = new Intent(getActivity(), CourseDetailActivity.class);
             intent.putExtra("courseId", optionalCourseListAdapter.getCourseId(p));
             intent.putExtra("courseName", optionalCourseListAdapter.getCourseName(p));
-            intent.putExtra("courseTeacher", optionalCourseListAdapter.getCourseTeacher(p));
             startActivity(intent);
         });
         optionalCourseRecyclerView.setLayoutManager(verticalLayoutManager);

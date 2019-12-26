@@ -24,5 +24,7 @@ public abstract class BaseFragment extends Fragment {
         startActivity(intent);
     }
 
-    public abstract void showErrorMessage(String errMsg);
+    public void showErrorMessage(String errMsg){
+        toastAndLog(errMsg);
+    }
 }

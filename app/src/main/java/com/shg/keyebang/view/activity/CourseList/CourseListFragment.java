@@ -41,7 +41,6 @@ public class CourseListFragment extends BaseFragment  {
             optionalCourseFragment = new OptionalCourseFragment();
         }
         adapter = new CoursesViewPagerAdapter(getChildFragmentManager(), mainCoursesFragment, optionalCourseFragment);
-
     }
 
     @Nullable
@@ -51,7 +50,7 @@ public class CourseListFragment extends BaseFragment  {
             initViewPager();
             return view;
         }
-        view =  inflater.inflate(R.layout.fragment_course_list, container, false);
+        view = inflater.inflate(R.layout.fragment_course_list, container, false);
         titleBar = view.findViewById(R.id.courseListBar);
         searchText = view.findViewById(R.id.searchText);
         search = view.findViewById(R.id.searchIcon);
@@ -90,10 +89,5 @@ public class CourseListFragment extends BaseFragment  {
             startActivity(intent);
         }
         else toastAndLog("搜索信息为空");
-    }
-
-    @Override
-    public void showErrorMessage(String errMsg) {
-        toastAndLog(errMsg);
     }
 }

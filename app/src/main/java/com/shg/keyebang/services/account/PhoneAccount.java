@@ -1,5 +1,6 @@
 package com.shg.keyebang.services.account;
 
+import com.shg.keyebang.aatools.StringUtil;
 import com.shg.keyebang.model.User;
 
 import cn.bmob.v3.BmobSMS;
@@ -31,7 +32,7 @@ public class PhoneAccount {
             public void done(User user, BmobException e) {
 
                 if (e == null) {
-                    if(user.getNickname()==null){
+                    if(StringUtil.isAllNullOrEmpty(user.getNickname())){
                         listener.signupSuccess();
                     }
                     else{

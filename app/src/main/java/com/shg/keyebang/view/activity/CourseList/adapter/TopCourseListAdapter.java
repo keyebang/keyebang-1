@@ -18,9 +18,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class TopCourseListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    public static final int ITEM_TYPE_HEADER = 0;
-    public static final int ITEM_TYPE_CONTENT = 1;
-    public static final int NUM_HEADER = 1;
+    private static final int ITEM_TYPE_HEADER = 0;
+    private static final int ITEM_TYPE_CONTENT = 1;
+    private static final int NUM_HEADER = 1;
 
     private OptionalCourseFragment fragment;
     private ArrayList<TopCourse> topCourses;

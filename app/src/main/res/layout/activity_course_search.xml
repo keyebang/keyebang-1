@@ -29,6 +29,7 @@
             android:textSize="14sp"
             android:hint="搜索课程"
             android:maxLines="1"
+            android:lines="1"
             android:textColor="@color/themeColorBlack"
             android:background="@drawable/bg_roundrectangle_black_alpha"/>
 
