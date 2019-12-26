@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">keyebang</string>
+    <string name="entryButtonHint">进入课业帮</string>
+    <string name="signUpTitle">欢迎注册！首先请完善信息</string>
 </resources>

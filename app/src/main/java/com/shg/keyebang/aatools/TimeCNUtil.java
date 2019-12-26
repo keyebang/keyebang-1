@@ -4,7 +4,7 @@ public class TimeCNUtil {
 
     public static String getGreeting(int i) {
         if(i < 6 || i >= 18) return "晚上好";
-        if(6 <= i  && i < 12) return "早上好";
+        if(i < 12) return "早上好";
         return "下午好";
     }
 

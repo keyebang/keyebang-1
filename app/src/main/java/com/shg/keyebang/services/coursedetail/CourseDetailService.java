@@ -98,6 +98,7 @@ public class CourseDetailService {
                                     ArrayList<ViewCourseTime> times1 = new ArrayList<>();
                                     for(CourseTime courseTime:object){
                                         ViewCourseTime time1 = ViewCourseTime.builder()
+                                                .setSingleOrDouble(courseTime.getWeekTime())
                                                 .setWeekday(courseTime.getWeekday())
                                                 .setFirstClass(courseTime.getFirstClass())
                                                 .setLastClass(courseTime.getLastClass())

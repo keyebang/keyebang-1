@@ -15,12 +15,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.ListItemHolder> {
-    ArrayList<ViewComment> comments;
+    private ArrayList<ViewComment> comments;
 
     static class ListItemHolder extends RecyclerView.ViewHolder {
-        private TextView commentUserName;
-        private TextView commentTime;
-        private TextView commentMessage;
+        private final TextView commentUserName;
+        private final TextView commentTime;
+        private final TextView commentMessage;
 
         ListItemHolder(View view) {
             super(view);

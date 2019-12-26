@@ -36,14 +36,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="欢迎注册！首先请完善信息"
+                android:text="@string/signUpTitle"
                 android:textColor="@color/textColor"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_marginLeft="28dp"
+                android:layout_marginStart="28dp"
                 android:layout_marginBottom="1dp"/>
 
 
@@ -68,7 +68,8 @@
                 app:layout_constraintTop_toBottomOf="@id/nicknameHint"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginTop="8dp"
-                android:paddingEnd="104dp"/>
+                android:paddingEnd="104dp"
+                android:inputType="text" />
 
             <TextView
                 android:id="@+id/passwordHint"
@@ -84,7 +85,8 @@
                 app:layout_constraintTop_toBottomOf="@id/passwordHint"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginTop="8dp"
-                android:paddingEnd="104dp"/>
+                android:paddingEnd="104dp"
+                android:inputType="textPassword" />
 
             <TextView
                 android:id="@+id/semesterHint"
@@ -100,7 +102,8 @@
                 app:layout_constraintTop_toBottomOf="@id/semesterHint"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginTop="8dp"
-                android:paddingEnd="104dp"/>
+                android:paddingEnd="104dp"
+                android:inputType="text" />
 
             <TextView
                 android:id="@+id/majorHint"
@@ -115,7 +118,8 @@
                 style="@style/accountEditText"
                 app:layout_constraintTop_toBottomOf="@id/majorHint"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_marginTop="8dp"/>
+                android:layout_marginTop="8dp"
+                android:inputType="text" />
 
             <TextView
                 android:id="@+id/contactHint"
@@ -130,7 +134,8 @@
                 style="@style/accountEditText"
                 app:layout_constraintTop_toBottomOf="@id/contactHint"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_marginTop="8dp"/>
+                android:layout_marginTop="8dp"
+                android:inputType="text" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

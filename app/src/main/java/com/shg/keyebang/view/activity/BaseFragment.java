@@ -1,6 +1,5 @@
 package com.shg.keyebang.view.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
@@ -24,5 +23,7 @@ public abstract class BaseFragment extends Fragment {
         startActivity(intent);
     }
 
-    public abstract void showErrorMessage(String errMsg);
+    public void showErrorMessage(String errMsg){
+        toastAndLog(errMsg);
+    }
 }

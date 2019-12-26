@@ -50,13 +50,6 @@ public class SignUpActivity extends BaseActivity {
             );
         });
 
-        close.setOnClickListener(v->{
-            finish();
-        });
-    }
-
-    @Override
-    public void showErrorMessage(String errMsg) {
-        toastAndLog(errMsg);
+        close.setOnClickListener(v->finish());
     }
 }

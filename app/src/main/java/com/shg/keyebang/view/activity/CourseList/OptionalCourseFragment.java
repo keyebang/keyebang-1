@@ -1,4 +1,4 @@
-package com.shg.keyebang.view.activity.CourseList;
+package com.shg.keyebang.view.activity.courseList;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,11 +11,11 @@ import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.recyclerview.ProgressStyle;
 import com.shg.keyebang.R;
 import com.shg.keyebang.model.ViewCourse;
-import com.shg.keyebang.model.TopCourse;
+import com.shg.keyebang.model.ViewTopCourse;
 import com.shg.keyebang.presenter.courselist.OptionalCoursePresenter;
 import com.shg.keyebang.view.activity.BaseFragment;
-import com.shg.keyebang.view.activity.CourseList.adapter.OptionalCourseListAdapter;
-import com.shg.keyebang.view.activity.CourseList.adapter.TopCourseListAdapter;
+import com.shg.keyebang.view.activity.courseList.adapter.OptionalCourseListAdapter;
+import com.shg.keyebang.view.activity.courseList.adapter.TopCourseListAdapter;
 import com.shg.keyebang.view.activity.coursedetail.CourseDetailActivity;
 
 import java.util.ArrayList;
@@ -70,7 +70,6 @@ public class OptionalCourseFragment extends BaseFragment {
             Intent intent = new Intent(getActivity(), CourseDetailActivity.class);
             intent.putExtra("courseId", optionalCourseListAdapter.getCourseId(p));
             intent.putExtra("courseName", optionalCourseListAdapter.getCourseName(p));
-            intent.putExtra("courseTeacher", optionalCourseListAdapter.getCourseTeacher(p));
             startActivity(intent);
         });
         optionalCourseRecyclerView.setLayoutManager(verticalLayoutManager);
@@ -81,7 +80,7 @@ public class OptionalCourseFragment extends BaseFragment {
         presenter.getOptionalCourses();
     }
 
-    public void setTopCoursesData(ArrayList<TopCourse> topCourses){
+    public void setTopCoursesData(ArrayList<ViewTopCourse> topCourses){
         topCourseListAdapter.setTopCourses(topCourses);
         topCourseListAdapter.notifyDataSetChanged();
     }

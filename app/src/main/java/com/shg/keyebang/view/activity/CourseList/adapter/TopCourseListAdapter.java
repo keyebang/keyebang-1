@@ -1,4 +1,4 @@
-package com.shg.keyebang.view.activity.CourseList.adapter;
+package com.shg.keyebang.view.activity.courseList.adapter;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -8,8 +8,8 @@ import android.widget.TextView;
 
 import com.shehuan.niv.NiceImageView;
 import com.shg.keyebang.R;
-import com.shg.keyebang.model.TopCourse;
-import com.shg.keyebang.view.activity.CourseList.OptionalCourseFragment;
+import com.shg.keyebang.model.ViewTopCourse;
+import com.shg.keyebang.view.activity.courseList.OptionalCourseFragment;
 import com.shg.keyebang.view.activity.coursedetail.CourseDetailActivity;
 
 import java.util.ArrayList;
@@ -18,17 +18,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class TopCourseListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    public static final int ITEM_TYPE_HEADER = 0;
-    public static final int ITEM_TYPE_CONTENT = 1;
-    public static final int NUM_HEADER = 1;
+    private static final int ITEM_TYPE_HEADER = 0;
+    private static final int ITEM_TYPE_CONTENT = 1;
+    private static final int NUM_HEADER = 1;
 
-    private OptionalCourseFragment fragment;
-    private ArrayList<TopCourse> topCourses;
+    private final OptionalCourseFragment fragment;
+    private ArrayList<ViewTopCourse> topCourses;
 
-    public static class ListItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        private OptionalCourseFragment fragment;
-        private NiceImageView topCourseImg;
-        private TextView topCourseName;
+    static class ListItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        private final OptionalCourseFragment fragment;
+        private final NiceImageView topCourseImg;
+        private final TextView topCourseName;
         private String courseName;
         private String courseId;
 
@@ -49,7 +49,7 @@ public class TopCourseListAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
     }
 
-    public static class HeaderHolder extends RecyclerView.ViewHolder{
+    static class HeaderHolder extends RecyclerView.ViewHolder{
         HeaderHolder(View view){
             super(view);
         }
@@ -91,7 +91,7 @@ public class TopCourseListAdapter extends RecyclerView.Adapter<RecyclerView.View
         else return ITEM_TYPE_CONTENT;
     }
 
-    public void setTopCourses(ArrayList<TopCourse> topCourses) {
+    public void setTopCourses(ArrayList<ViewTopCourse> topCourses) {
         this.topCourses = topCourses;
     }
 }

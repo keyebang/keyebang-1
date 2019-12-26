@@ -79,8 +79,8 @@ public class LoginActivity extends BaseActivity {
         ValueAnimator locationAnim = ValueAnimator.ofFloat(0, 500).setDuration(250);
         locationAnim.addUpdateListener((valueAnimator)-> {
             float currentValue = (Float) valueAnimator.getAnimatedValue();
-            phoneLoginCard.setY(DisplayUtil.pxTodp(currentValue));
-            commonLoginCard.setY(DisplayUtil.pxTodp(500-currentValue));
+            phoneLoginCard.setY(DisplayUtil.dpToPx(currentValue));
+            commonLoginCard.setY(DisplayUtil.dpToPx(500-currentValue));
             commonLoginCard.requestLayout();
             phoneLoginCard.requestLayout();
         });
@@ -92,8 +92,8 @@ public class LoginActivity extends BaseActivity {
         ValueAnimator locationAnim = ValueAnimator.ofInt(500, 0).setDuration(250);
         locationAnim.addUpdateListener((valueAnimator)-> {
             int currentValue = (Integer) valueAnimator.getAnimatedValue();
-            phoneLoginCard.setY(DisplayUtil.pxTodp(currentValue));
-            commonLoginCard.setY(DisplayUtil.pxTodp(500-currentValue));
+            phoneLoginCard.setY(DisplayUtil.dpToPx(currentValue));
+            commonLoginCard.setY(DisplayUtil.dpToPx(500-currentValue));
             commonLoginCard.requestLayout();
             phoneLoginCard.requestLayout();
         });
@@ -146,10 +146,5 @@ public class LoginActivity extends BaseActivity {
             isHidePassword = true;
         }
         password.setSelection(password.getText().toString().length());
-    }
-
-    @Override
-    public void showErrorMessage(String errMsg) {
-        toastAndLog(errMsg);
     }
 }

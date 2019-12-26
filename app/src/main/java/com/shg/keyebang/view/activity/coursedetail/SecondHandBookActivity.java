@@ -1,6 +1,5 @@
 package com.shg.keyebang.view.activity.coursedetail;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.widget.EditText;
@@ -64,8 +63,8 @@ public class SecondHandBookActivity extends BaseActivity {
 
         addSecondHandBookButton.setOnClickListener(v->{
             final EditText edit = new EditText(this);
-            edit.setWidth(DisplayUtil.dpTopx(200));
-            edit.setTranslationX(DisplayUtil.dpTopx(20));
+            edit.setWidth(DisplayUtil.dpToPx(200));
+            edit.setTranslationX(DisplayUtil.dpToPx(20));
             edit.setBackground(null);
             edit.setHint("填写二手书信息");
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -78,7 +77,7 @@ public class SecondHandBookActivity extends BaseActivity {
             });
             AlertDialog dialog = builder.create();
             dialog.show();
-            dialog.getWindow().setLayout(DisplayUtil.dpTopx(360), LinearLayout.LayoutParams.WRAP_CONTENT);
+            dialog.getWindow().setLayout(DisplayUtil.dpToPx(360), LinearLayout.LayoutParams.WRAP_CONTENT);
         });
 
         presenter.getSecondHandBookList(evaId);
@@ -88,11 +87,6 @@ public class SecondHandBookActivity extends BaseActivity {
         bookListAdapter.setBooks(books);
         lBookListAdapter.notifyDataSetChanged();
         bookRecyclerView.refreshComplete(0);
-    }
-
-    public void addSecondHandBookMessage(ViewSecondHandBook book){
-        bookListAdapter.addSecondHandBook(book);
-        lBookListAdapter.notifyDataSetChanged();
     }
 
     @Override
