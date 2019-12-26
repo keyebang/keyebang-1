@@ -55,8 +55,4 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
     public void setComments(ArrayList<ViewComment> comments) {
         this.comments = comments;
     }
-
-    public void addComment(ViewComment comment){
-        comments.add(0, comment);
-    }
 }

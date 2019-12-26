@@ -49,8 +49,4 @@ public class SecondHandBookListAdapter extends RecyclerView.Adapter<SecondHandBo
     public void setBooks(ArrayList<ViewSecondHandBook> books) {
         this.secondHandBooks = books;
     }
-
-    public void addSecondHandBook(ViewSecondHandBook book){
-        secondHandBooks.add(0, book);
-    }
 }

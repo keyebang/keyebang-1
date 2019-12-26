@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public abstract class BaseActivity extends AppCompatActivity {
     private static final String TAG = "KYB";
 
-    abstract protected void init();
+    protected abstract void init();
 
     @Override
     protected void onCreate(Bundle savedInstanceState){

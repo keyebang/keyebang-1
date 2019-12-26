@@ -42,9 +42,4 @@ public class TitleBarLayout extends LinearLayout {
     public void setTitle(String title){
         this.title.setText(title);
     }
-
-    public void setAvatar(){
-
-    }
-
 }
