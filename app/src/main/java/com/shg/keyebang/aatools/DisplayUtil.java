@@ -50,8 +50,7 @@ public class DisplayUtil {
 
     public static float dpToPx(float dp){
         final DisplayMetrics displayMetrics = MyApplication.getContext().getResources().getDisplayMetrics();
-        float px = dp * displayMetrics.density;
-        return px;
+        return dp * displayMetrics.density;
     }
 
     public static int dpToPx(int dp){

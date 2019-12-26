@@ -12,7 +12,6 @@ import com.shg.keyebang.view.activity.BaseActivity;
 
 public class TitleBarLayout extends LinearLayout {
     private TextView title;
-    private CircleImageView avatar;
 
     public TitleBarLayout(Context context){
         super(context);
@@ -28,7 +27,7 @@ public class TitleBarLayout extends LinearLayout {
 
     private void init(){
         title = findViewById(R.id.title);
-        avatar = findViewById(R.id.avatar);
+        CircleImageView avatar = findViewById(R.id.avatar);
         avatar.setOnClickListener(v->{
             User user = User.getCurrentUser(User.class);
             if(user != null) {

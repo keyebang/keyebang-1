@@ -8,7 +8,6 @@ import com.shg.keyebang.services.coursedetail.AddDataListener;
 import com.shg.keyebang.services.coursetable.SaveTodoListener;
 import com.shg.keyebang.services.coursetable.TodoService;
 import com.shg.keyebang.view.activity.coursetable.CourseTableFragment;
-import com.shg.keyebang.view.activity.coursetable.TodoDialog;
 
 public class TodoPresenter extends BasePresenter {
     private final CourseTableFragment fragment;

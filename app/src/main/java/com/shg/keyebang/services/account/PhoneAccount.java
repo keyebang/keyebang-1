@@ -33,7 +33,7 @@ public class PhoneAccount {
 
                 if (e == null) {
                     if(StringUtil.isAllNullOrEmpty(user.getNickname())){
-                        listener.signupSuccess();
+                        listener.signUpSuccess();
                     }
                     else{
                     listener.loginSuccess("短信登录成功：" + user.getUsername());}

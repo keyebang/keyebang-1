@@ -52,7 +52,7 @@ public class LogInPresenter extends BasePresenter {
             }
 
             @Override
-            public void signupSuccess() {
+            public void signUpSuccess() {
                 startActivityDirectly(activity, SignUpActivity.class);
             }
 
