@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.shehuan.niv.NiceImageView;
 import com.shg.keyebang.R;
-import com.shg.keyebang.model.TopCourse;
+import com.shg.keyebang.model.ViewTopCourse;
 import com.shg.keyebang.view.activity.courseList.OptionalCourseFragment;
 import com.shg.keyebang.view.activity.coursedetail.CourseDetailActivity;
 
@@ -23,7 +23,7 @@ public class TopCourseListAdapter extends RecyclerView.Adapter<RecyclerView.View
     private static final int NUM_HEADER = 1;
 
     private final OptionalCourseFragment fragment;
-    private ArrayList<TopCourse> topCourses;
+    private ArrayList<ViewTopCourse> topCourses;
 
     static class ListItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private final OptionalCourseFragment fragment;
@@ -91,7 +91,7 @@ public class TopCourseListAdapter extends RecyclerView.Adapter<RecyclerView.View
         else return ITEM_TYPE_CONTENT;
     }
 
-    public void setTopCourses(ArrayList<TopCourse> topCourses) {
+    public void setTopCourses(ArrayList<ViewTopCourse> topCourses) {
         this.topCourses = topCourses;
     }
 }

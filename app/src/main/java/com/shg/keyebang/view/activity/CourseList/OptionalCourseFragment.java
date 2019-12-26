@@ -11,7 +11,7 @@ import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.recyclerview.ProgressStyle;
 import com.shg.keyebang.R;
 import com.shg.keyebang.model.ViewCourse;
-import com.shg.keyebang.model.TopCourse;
+import com.shg.keyebang.model.ViewTopCourse;
 import com.shg.keyebang.presenter.courselist.OptionalCoursePresenter;
 import com.shg.keyebang.view.activity.BaseFragment;
 import com.shg.keyebang.view.activity.courseList.adapter.OptionalCourseListAdapter;
@@ -80,7 +80,7 @@ public class OptionalCourseFragment extends BaseFragment {
         presenter.getOptionalCourses();
     }
 
-    public void setTopCoursesData(ArrayList<TopCourse> topCourses){
+    public void setTopCoursesData(ArrayList<ViewTopCourse> topCourses){
         topCourseListAdapter.setTopCourses(topCourses);
         topCourseListAdapter.notifyDataSetChanged();
     }

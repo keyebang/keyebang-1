@@ -2,10 +2,10 @@ package com.shg.keyebang.model;
 
 import android.graphics.drawable.Drawable;
 
-public class TopCourse extends ViewCourse {
+public class ViewTopCourse extends ViewCourse {
     private Drawable img;
 
-    public TopCourse(String className) {
+    public ViewTopCourse(String className) {
         setCourseName(className);
     }
 
@@ -13,7 +13,7 @@ public class TopCourse extends ViewCourse {
         return img;
     }
 
-    public TopCourse setImg(Drawable img) {
+    public ViewTopCourse setImg(Drawable img) {
         this.img = img;
         return this;
     }
