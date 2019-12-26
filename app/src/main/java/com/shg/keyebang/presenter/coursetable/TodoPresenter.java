@@ -11,11 +11,9 @@ import com.shg.keyebang.view.activity.coursetable.CourseTableFragment;
 import com.shg.keyebang.view.activity.coursetable.TodoDialog;
 
 public class TodoPresenter extends BasePresenter {
-    private TodoDialog todoDialog;
-    private CourseTableFragment fragment;
+    private final CourseTableFragment fragment;
 
-    public TodoPresenter(TodoDialog todoDialog, CourseTableFragment fragment){
-        this.todoDialog = todoDialog;
+    public TodoPresenter(CourseTableFragment fragment){
         this.fragment = fragment;
     }
 

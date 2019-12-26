@@ -12,7 +12,7 @@ import com.shg.keyebang.view.activity.account.LoginActivity;
 import com.shg.keyebang.view.activity.account.SignUpActivity;
 
 public class LogInPresenter extends BasePresenter {
-    private LoginActivity activity;
+    private final LoginActivity activity;
 
     public LogInPresenter(LoginActivity activity){
         this.activity = activity;

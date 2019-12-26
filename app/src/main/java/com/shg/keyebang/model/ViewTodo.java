@@ -7,12 +7,11 @@ import java.util.Calendar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import cn.bmob.v3.BmobObject;
 
 public class ViewTodo {
-    public static int COLOR_RED = R.color.cardColorRed;
-    public static int COLOR_BLUE = R.color.cardColorBlue;
-    public static int COLOR_GREEN = R.color.cardColorGreen;
+    public static final int COLOR_RED = R.color.cardColorRed;
+    public static final int COLOR_BLUE = R.color.cardColorBlue;
+    public static final int COLOR_GREEN = R.color.cardColorGreen;
 
     private String todoId;
     private String todoTitle;
@@ -36,7 +35,7 @@ public class ViewTodo {
         return color;
     }
 
-    public ViewTodo setColor(@NonNull int color) {
+    public ViewTodo setColor(int color) {
         this.color = color;
         return this;
     }

@@ -17,7 +17,6 @@ import com.shg.keyebang.aatools.StringUtil;
 import com.shg.keyebang.model.ViewCourse;
 import com.shg.keyebang.model.ViewTodo;
 import com.shg.keyebang.presenter.coursetable.TodoPresenter;
-import com.shg.keyebang.view.activity.main.MainActivity;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -26,13 +25,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.widget.NestedScrollView;
 
 public class TodoDialog extends BottomSheetDialog {
-    private CourseTableFragment fragment;
-    private TodoPresenter presenter;
+    private final CourseTableFragment fragment;
+    private final TodoPresenter presenter;
     private ViewTodo todo;
-    private ViewCourse course;
+    private final ViewCourse course;
 
     private int color;
     private int year = 0;
@@ -40,20 +38,20 @@ public class TodoDialog extends BottomSheetDialog {
     private int day;
     private boolean isChange = false;
 
-    private ImageView save;
-    private ImageView delete;
-    private ImageView deleteCourse;
-    private EditText todoTitle;
-    private EditText todoMessage;
-    private TextView todoTime;
-    private ConstraintLayout setTime;
-    private ConstraintLayout chooseRed;
-    private ConstraintLayout chooseGreen;
-    private ConstraintLayout chooseBlue;
-    private ConstraintLayout courseBg;
-    private TextView courseName;
-    private TextView coursePlace;
-    private TextView courseTeacher;
+    private final ImageView save;
+    private final ImageView delete;
+    private final ImageView deleteCourse;
+    private final EditText todoTitle;
+    private final EditText todoMessage;
+    private final TextView todoTime;
+    private final ConstraintLayout setTime;
+    private final ConstraintLayout chooseRed;
+    private final ConstraintLayout chooseGreen;
+    private final ConstraintLayout chooseBlue;
+    private final ConstraintLayout courseBg;
+    private final TextView courseName;
+    private final TextView coursePlace;
+    private final TextView courseTeacher;
 
     TodoDialog(CourseTableFragment fragment, @Nullable ViewTodo todo, @NonNull ViewCourse course){
         super(fragment.getActivity(), R.style.todoDialog);
@@ -61,7 +59,7 @@ public class TodoDialog extends BottomSheetDialog {
         this.fragment = fragment;
         this.todo = todo;
         this.course = course;
-        presenter = new TodoPresenter(this, fragment);
+        presenter = new TodoPresenter(fragment);
         save = findViewById(R.id.save);
         delete = findViewById(R.id.delete);
         deleteCourse = findViewById(R.id.deleteCourse);
@@ -153,12 +151,11 @@ public class TodoDialog extends BottomSheetDialog {
 
     private void chooseTime(){
         Calendar calendar = Calendar.getInstance();
-        DatePickerDialog datePickerDialog = new DatePickerDialog(fragment.getActivity(), new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int newYear, int newMonth, int newDay) {
-                setTime(newYear, newMonth, newDay);
-            }
-        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        DatePickerDialog datePickerDialog = new DatePickerDialog(fragment.getActivity(),
+                (datePicker, newYear, newMonth, newDay) -> setTime(newYear, newMonth, newDay),
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.show();
     }
 
@@ -254,6 +251,6 @@ public class TodoDialog extends BottomSheetDialog {
     private void showAlertDialog(AlertDialog.Builder builder){
         AlertDialog dialog = builder.create();
         dialog.show();
-        dialog.getWindow().setLayout(DisplayUtil.dpTopx(360), LinearLayout.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setLayout(DisplayUtil.dpToPx(360), LinearLayout.LayoutParams.WRAP_CONTENT);
     }
 }

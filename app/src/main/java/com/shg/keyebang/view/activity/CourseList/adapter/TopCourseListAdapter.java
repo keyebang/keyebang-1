@@ -1,4 +1,4 @@
-package com.shg.keyebang.view.activity.CourseList.adapter;
+package com.shg.keyebang.view.activity.courseList.adapter;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.shehuan.niv.NiceImageView;
 import com.shg.keyebang.R;
 import com.shg.keyebang.model.TopCourse;
-import com.shg.keyebang.view.activity.CourseList.OptionalCourseFragment;
+import com.shg.keyebang.view.activity.courseList.OptionalCourseFragment;
 import com.shg.keyebang.view.activity.coursedetail.CourseDetailActivity;
 
 import java.util.ArrayList;
@@ -22,13 +22,13 @@ public class TopCourseListAdapter extends RecyclerView.Adapter<RecyclerView.View
     private static final int ITEM_TYPE_CONTENT = 1;
     private static final int NUM_HEADER = 1;
 
-    private OptionalCourseFragment fragment;
+    private final OptionalCourseFragment fragment;
     private ArrayList<TopCourse> topCourses;
 
-    public static class ListItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        private OptionalCourseFragment fragment;
-        private NiceImageView topCourseImg;
-        private TextView topCourseName;
+    static class ListItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        private final OptionalCourseFragment fragment;
+        private final NiceImageView topCourseImg;
+        private final TextView topCourseName;
         private String courseName;
         private String courseId;
 
@@ -49,7 +49,7 @@ public class TopCourseListAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
     }
 
-    public static class HeaderHolder extends RecyclerView.ViewHolder{
+    static class HeaderHolder extends RecyclerView.ViewHolder{
         HeaderHolder(View view){
             super(view);
         }

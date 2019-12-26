@@ -1,4 +1,4 @@
-package com.shg.keyebang.view.activity.CourseList.adapter;
+package com.shg.keyebang.view.activity.courseList.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.shg.keyebang.R;
-import com.shg.keyebang.aatools.TimeCNUtil;
 import com.shg.keyebang.model.ViewCourse;
 
 import java.util.ArrayList;
@@ -18,10 +17,10 @@ public class OptionalCourseListAdapter extends RecyclerView.Adapter<OptionalCour
     private ArrayList<ViewCourse> courses;
 
     public static class ListItemHolder extends RecyclerView.ViewHolder {
-        private TextView optionalCourseName;
-        private TextView optionalCourseMessage;
+        private final TextView optionalCourseName;
+        private final TextView optionalCourseMessage;
 
-        public ListItemHolder(View view) {
+        ListItemHolder(View view) {
             super(view);
             optionalCourseName = view.findViewById(R.id.optionalCourseName);
             optionalCourseMessage = view.findViewById(R.id.optionalCourseMessage);

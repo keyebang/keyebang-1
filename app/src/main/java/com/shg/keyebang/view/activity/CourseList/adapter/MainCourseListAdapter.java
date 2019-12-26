@@ -1,4 +1,4 @@
-package com.shg.keyebang.view.activity.CourseList.adapter;
+package com.shg.keyebang.view.activity.courseList.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,10 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 public class MainCourseListAdapter extends RecyclerView.Adapter<MainCourseListAdapter.ListItemHolder> {
     private ArrayList<ViewCourse> courses;
 
-    public static class ListItemHolder extends RecyclerView.ViewHolder {
-        private TextView mainCourseName;
+    static class ListItemHolder extends RecyclerView.ViewHolder {
+        private final TextView mainCourseName;
 
-        public ListItemHolder(View view) {
+        ListItemHolder(View view) {
             super(view);
             mainCourseName = view.findViewById(R.id.mainCourseName);
         }

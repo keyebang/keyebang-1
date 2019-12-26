@@ -5,9 +5,11 @@ import com.shg.keyebang.model.ViewBook;
 import com.shg.keyebang.model.ViewComment;
 import com.shg.keyebang.model.ViewCourseInfo;
 import com.shg.keyebang.model.ViewCourseSelect;
-import com.shg.keyebang.model.ViewCourseTime;
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.presenter.BasePresenter;
+import com.shg.keyebang.services.account.Account;
+import com.shg.keyebang.services.account.AccountInfoService;
+import com.shg.keyebang.services.account.SignUpLogInListener;
 import com.shg.keyebang.services.coursedetail.AddDataListener;
 import com.shg.keyebang.services.coursedetail.BookListListener;
 import com.shg.keyebang.services.coursedetail.CommentListListener;
@@ -17,15 +19,12 @@ import com.shg.keyebang.services.coursedetail.GetEvaIdListener;
 import com.shg.keyebang.services.coursedetail.LikeNumListener;
 import com.shg.keyebang.services.coursedetail.SendCommentListener;
 import com.shg.keyebang.services.coursedetail.ThisCourseListListener;
-import com.shg.keyebang.services.sqlite.SQLiteListener;
-import com.shg.keyebang.services.sqlite.SetSQLCourseTable;
 import com.shg.keyebang.view.activity.coursedetail.CourseDetailActivity;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class CourseDetailPresenter extends BasePresenter {
-    private CourseDetailActivity activity;
+    private final CourseDetailActivity activity;
 
     public CourseDetailPresenter(CourseDetailActivity courseDetailActivity){
         this.activity = courseDetailActivity;
@@ -134,9 +133,19 @@ public class CourseDetailPresenter extends BasePresenter {
         CourseDetailService.sendComment(evaId, text, new SendCommentListener() {
             @Override
             public void onSuccess(String message) {
-                getCommentList(evaId);
+                AccountInfoService.fetchUserInfo(new SignUpLogInListener() {
+                    @Override
+                    public void onSuccess(String message) {
+                        if(User.getCurrentUser(User.class).getLimit())
+                        getCommentList(evaId);
+                        activity.setLimit(true);
+                    }
+                    @Override
+                    public void onFailure(String errMassage) {
+                        activity.showErrorMessage(errMassage);
+                    }
+                });
             }
-
             @Override
             public void onFailure(String errMassage) {
                 activity.showErrorMessage(errMassage);

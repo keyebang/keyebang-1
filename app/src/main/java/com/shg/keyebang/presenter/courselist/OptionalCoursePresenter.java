@@ -7,12 +7,12 @@ import com.shg.keyebang.model.ViewCourse;
 import com.shg.keyebang.model.TopCourse;
 import com.shg.keyebang.presenter.BasePresenter;
 import com.shg.keyebang.services.courseList.OptionalCourseServices;
-import com.shg.keyebang.view.activity.CourseList.OptionalCourseFragment;
+import com.shg.keyebang.view.activity.courseList.OptionalCourseFragment;
 
 import java.util.ArrayList;
 
 public class OptionalCoursePresenter extends BasePresenter {
-    private OptionalCourseFragment fragment;
+    private final OptionalCourseFragment fragment;
 
     public OptionalCoursePresenter(OptionalCourseFragment fragment){
         this.fragment = fragment;

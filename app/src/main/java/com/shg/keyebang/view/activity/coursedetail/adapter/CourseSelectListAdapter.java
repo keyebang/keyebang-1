@@ -1,6 +1,5 @@
 package com.shg.keyebang.view.activity.coursedetail.adapter;
 
-import android.app.Activity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,12 +25,12 @@ import static android.content.ContentValues.TAG;
 
 public class CourseSelectListAdapter extends RecyclerView.Adapter<CourseSelectListAdapter.ListItemHolder> {
     private ArrayList<ViewCourseSelect> courseSelects;
-    private CourseDetailActivity activity;
+    private final CourseDetailActivity activity;
 
     public static class ListItemHolder extends RecyclerView.ViewHolder {
         private String courseId;
-        private TextView courseSelectMessage;
-        private TextView timeMessage;
+        private final TextView courseSelectMessage;
+        private final TextView timeMessage;
 
         ListItemHolder(View view, CourseDetailActivity activity) {
             super(view);
@@ -48,7 +47,7 @@ public class CourseSelectListAdapter extends RecyclerView.Adapter<CourseSelectLi
                 builder.setNegativeButton("取消", (v2, i2)->{});
                 AlertDialog dialog = builder.create();
                 dialog.show();
-                dialog.getWindow().setLayout(DisplayUtil.dpTopx(360), LinearLayout.LayoutParams.WRAP_CONTENT);
+                dialog.getWindow().setLayout(DisplayUtil.dpToPx(360), LinearLayout.LayoutParams.WRAP_CONTENT);
             });
         }
     }

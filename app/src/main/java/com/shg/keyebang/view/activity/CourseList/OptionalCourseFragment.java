@@ -1,4 +1,4 @@
-package com.shg.keyebang.view.activity.CourseList;
+package com.shg.keyebang.view.activity.courseList;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,8 +14,8 @@ import com.shg.keyebang.model.ViewCourse;
 import com.shg.keyebang.model.TopCourse;
 import com.shg.keyebang.presenter.courselist.OptionalCoursePresenter;
 import com.shg.keyebang.view.activity.BaseFragment;
-import com.shg.keyebang.view.activity.CourseList.adapter.OptionalCourseListAdapter;
-import com.shg.keyebang.view.activity.CourseList.adapter.TopCourseListAdapter;
+import com.shg.keyebang.view.activity.courseList.adapter.OptionalCourseListAdapter;
+import com.shg.keyebang.view.activity.courseList.adapter.TopCourseListAdapter;
 import com.shg.keyebang.view.activity.coursedetail.CourseDetailActivity;
 
 import java.util.ArrayList;

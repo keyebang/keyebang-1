@@ -1,4 +1,4 @@
-package com.shg.keyebang.view.activity.CourseList;
+package com.shg.keyebang.view.activity.courseList;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import com.shg.keyebang.R;
 import com.shg.keyebang.model.ViewCourse;
 import com.shg.keyebang.presenter.courselist.FindCoursePresenter;
 import com.shg.keyebang.view.activity.BaseActivity;
-import com.shg.keyebang.view.activity.CourseList.adapter.ItemCourseListAdapter;
+import com.shg.keyebang.view.activity.courseList.adapter.ItemCourseListAdapter;
 import com.shg.keyebang.view.activity.coursedetail.CourseDetailActivity;
 import com.shg.keyebang.view.general.TitleBarLayout;
 

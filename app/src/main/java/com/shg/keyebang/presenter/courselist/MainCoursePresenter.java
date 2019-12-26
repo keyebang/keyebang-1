@@ -1,17 +1,16 @@
 package com.shg.keyebang.presenter.courselist;
 
 import com.shg.keyebang.fakeservices.courselist.GetCourseListListener;
-import com.shg.keyebang.fakeservices.courselist.MainCourseService;
 import com.shg.keyebang.model.ViewCourse;
 import com.shg.keyebang.presenter.BasePresenter;
 import com.shg.keyebang.services.courseList.MainCourse;
-import com.shg.keyebang.view.activity.CourseList.MainCoursesFragment;
+import com.shg.keyebang.view.activity.courseList.MainCoursesFragment;
 
 import java.util.ArrayList;
 
 public class    MainCoursePresenter extends BasePresenter {
 
-    private MainCoursesFragment fragment;
+    private final MainCoursesFragment fragment;
 
     public MainCoursePresenter(MainCoursesFragment fragment){
         this.fragment = fragment;

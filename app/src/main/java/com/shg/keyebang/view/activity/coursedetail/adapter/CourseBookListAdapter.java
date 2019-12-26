@@ -14,10 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CourseBookListAdapter extends RecyclerView.Adapter<CourseBookListAdapter.ListItemHolder> {
-    ArrayList<ViewBook> books;
+    private ArrayList<ViewBook> books;
 
     static class ListItemHolder extends RecyclerView.ViewHolder {
-        private TextView bookName;
+        private final TextView bookName;
 
         ListItemHolder(View view) {
             super(view);

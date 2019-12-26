@@ -11,7 +11,6 @@ import com.shg.keyebang.R;
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.view.activity.BaseFragment;
 import com.shg.keyebang.view.activity.account.LoginActivity;
-import com.shg.keyebang.view.activity.account.SignUpActivity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

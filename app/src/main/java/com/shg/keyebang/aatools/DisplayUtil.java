@@ -25,7 +25,7 @@ public class DisplayUtil {
             application.registerComponentCallbacks(new ComponentCallbacks() {
                 @Override
                 public void onConfigurationChanged(@NonNull Configuration configuration) {
-                    if(configuration != null && configuration.fontScale > 0){
+                    if(configuration.fontScale > 0){
                         nonCompatScaleDensity = application.getResources().getDisplayMetrics().scaledDensity;
                     }
                 }
@@ -48,19 +48,13 @@ public class DisplayUtil {
         activityDisplayMetrics.densityDpi = targetDensityDpi;
     }
 
-    public static int pxTodp(int px){
+    public static float dpToPx(float dp){
         final DisplayMetrics displayMetrics = MyApplication.getContext().getResources().getDisplayMetrics();
-        int dp = px * (int)displayMetrics.density;
-        return dp;
+        float px = dp * displayMetrics.density;
+        return px;
     }
 
-    public static float pxTodp(float px){
-        final DisplayMetrics displayMetrics = MyApplication.getContext().getResources().getDisplayMetrics();
-        float dp = px * (float) displayMetrics.density;
-        return dp;
-    }
-
-    public static int dpTopx(int dp){
+    public static int dpToPx(int dp){
         final DisplayMetrics displayMetrics = MyApplication.getContext().getResources().getDisplayMetrics();
         float px = (float) dp * displayMetrics.density;
         return (int)px;

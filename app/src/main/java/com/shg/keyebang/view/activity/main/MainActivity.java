@@ -8,7 +8,7 @@ import com.shg.keyebang.model.User;
 import com.shg.keyebang.services.account.AccountInfoService;
 import com.shg.keyebang.services.account.SignUpLogInListener;
 import com.shg.keyebang.view.activity.BaseActivity;
-import com.shg.keyebang.view.activity.CourseList.CourseListFragment;
+import com.shg.keyebang.view.activity.courseList.CourseListFragment;
 import com.shg.keyebang.view.activity.account.LoginActivity;
 import com.shg.keyebang.view.activity.coursetable.CourseTableFragment;
 import com.shg.keyebang.view.activity.profile.ProfileFragment;

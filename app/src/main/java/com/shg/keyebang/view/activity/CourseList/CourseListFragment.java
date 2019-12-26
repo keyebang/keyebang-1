@@ -1,4 +1,4 @@
-package com.shg.keyebang.view.activity.CourseList;
+package com.shg.keyebang.view.activity.courseList;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,13 +9,12 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.shg.keyebang.R;
 import com.shg.keyebang.aatools.StringUtil;
 import com.shg.keyebang.view.activity.BaseFragment;
-import com.shg.keyebang.view.activity.CourseList.adapter.CoursesViewPagerAdapter;
+import com.shg.keyebang.view.activity.courseList.adapter.CoursesViewPagerAdapter;
 import com.shg.keyebang.view.general.TitleBarLayout;
 
 import androidx.annotation.NonNull;
