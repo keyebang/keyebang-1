@@ -419,6 +419,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:translationX="20dp"
+                android:inputType="text"
                 android:textSize="15sp"
                 android:hint="你的评论..."
                 android:background="@null"

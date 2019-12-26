@@ -60,6 +60,7 @@
                 style="@style/accountEditText"
                 app:layout_constraintTop_toBottomOf="@id/commonLoginPhoneNumberHint"
                 app:layout_constraintLeft_toLeftOf="parent"
+                android:inputType="phone"
                 android:layout_marginTop="8dp"
                 android:paddingEnd="20dp"/>
 
@@ -86,7 +87,7 @@
                 android:id="@+id/changePasswordVisibility"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:layout_marginRight="12dp"
+                android:layout_marginEnd="12dp"
                 app:layout_constraintTop_toTopOf="@id/commonLoginPassword"
                 app:layout_constraintBottom_toBottomOf="@id/commonLoginPassword"
                 app:layout_constraintRight_toRightOf="@id/commonLoginPassword"

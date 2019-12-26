@@ -6,8 +6,6 @@
     <color name="themeColorBlue">#99B7DF</color>
     <color name="themeColorBlueDark">#7890B0</color>
     <color name="themeColorBlack">#002448</color>
-    <color name="themeColorYellow">#FCBB35</color>
-    <color name="themeColorPink">#FC6699</color>
     <color name="themeColorRed">#F4511E</color>
     <color name="themeColorWhite">#FFFFFF</color>
     <color name="cardColorBlue">#97B4DC</color>
@@ -16,6 +14,5 @@
     <color name="textColor">#002448</color>
     <color name="textInputColor">#99002448</color>
     <color name="textHintColor">#40002448</color>
-    <color name="textHintPink">#60FC6699</color>
     <color name="accountEdText">#0D002448</color>
 </resources>
