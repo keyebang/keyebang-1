@@ -15,6 +15,7 @@ import com.shg.keyebang.services.coursedetail.CommentListListener;
 import com.shg.keyebang.services.coursedetail.CourseDetailService;
 import com.shg.keyebang.services.coursedetail.GetCourseInfoListener;
 import com.shg.keyebang.services.coursedetail.GetEvaIdListener;
+import com.shg.keyebang.services.coursedetail.IsLikeListener;
 import com.shg.keyebang.services.coursedetail.LikeNumListener;
 import com.shg.keyebang.services.coursedetail.SendCommentListener;
 import com.shg.keyebang.services.coursedetail.ThisCourseListListener;
@@ -116,8 +117,18 @@ public class CourseDetailPresenter extends BasePresenter {
     }
 
     public void getIsLike(String evaId){
-        boolean isLike = false;
-        activity.setIsLike(isLike);
+        CourseDetailService.getIsLike(evaId, new IsLikeListener() {
+            @Override
+            public void onSuccess(boolean like) {
+                activity.setIsLike(like);
+            }
+
+            @Override
+            public void onFailure(String errMassage) {
+                activity.showErrorMessage(errMassage);
+            }
+        });
+
     }
 
     public void getLimit() {
