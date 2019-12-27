@@ -7,6 +7,7 @@ import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FetchUserInfoListener;
 import cn.bmob.v3.listener.FindListener;
@@ -80,4 +81,8 @@ public class AccountInfoService {
         });
     }
 
+    public static void addHead(String file){
+        final BmobFile bmobFile =new BmobFile(file);
+
+    }
 }

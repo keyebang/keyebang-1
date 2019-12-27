@@ -151,6 +151,11 @@ public class CourseDetailService {
                     ArrayList<ViewComment> comments = new ArrayList<>();
                     for(Comment comment:object){
                         Calendar time = comment.getCommentTime();
+                        Comment comment1=new Comment();
+                        comment1.setYear(time.get(Calendar.YEAR));
+                        comment1.setDayOfMonth(time.get(Calendar.DAY_OF_MONTH)+1);
+                        comment1.setMonth(time.get(Calendar.MONTH));
+                        Calendar time1=comment1.getCommentTime();
                         BmobQuery<User> query2 = new BmobQuery<>();
 
                         query2.addWhereEqualTo("objectId", comment.getUserId());
@@ -161,7 +166,7 @@ public class CourseDetailService {
                                     for(User user:object){
                                         ViewComment viewComment = ViewComment.builder()
                                                 .setCommentUserName(user.getNickname())
-                                                .setCommentTime(time)
+                                                .setCommentTime(time1)
                                                 .setCommentMessage(comment.getCommentMessage());
                                         comments.add(viewComment);
                                     }
@@ -215,7 +220,7 @@ public class CourseDetailService {
         comment.setCommentUserName(User.getCurrentUser(User.class).getNickname());
         Calendar calendar = Calendar.getInstance();
         comment.setYear(calendar.get(Calendar.YEAR));
-        comment.setMonth(calendar.get(Calendar.MONTH));
+        comment.setMonth(calendar.get(Calendar.MONTH)+1);
         comment.setDayOfMonth(calendar.get(Calendar.DAY_OF_MONTH));
         comment.setCommentTime(Calendar.getInstance());
         comment.setCommentMessage(text);
