@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.shg.keyebang.R;
-import com.shg.keyebang.model.ViewBook;
 import com.shg.keyebang.model.ViewSecondHandBook;
 
 import java.util.ArrayList;
@@ -15,11 +14,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class SecondHandBookListAdapter extends RecyclerView.Adapter<SecondHandBookListAdapter.ListItemHolder> {
-    ArrayList<ViewSecondHandBook> secondHandBooks;
+    private ArrayList<ViewSecondHandBook> secondHandBooks;
 
     static class ListItemHolder extends RecyclerView.ViewHolder {
-        private TextView secondHandBookMessage;
-        private TextView contactMessage;
+        private final TextView secondHandBookMessage;
+        private final TextView contactMessage;
 
         ListItemHolder(View view) {
             super(view);
@@ -49,9 +48,5 @@ public class SecondHandBookListAdapter extends RecyclerView.Adapter<SecondHandBo
 
     public void setBooks(ArrayList<ViewSecondHandBook> books) {
         this.secondHandBooks = books;
-    }
-
-    public void addSecondHandBook(ViewSecondHandBook book){
-        secondHandBooks.add(0, book);
     }
 }

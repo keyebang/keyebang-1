@@ -31,51 +31,49 @@ import static android.content.ContentValues.TAG;
 
 public class CourseTable {
     public static void getClass(GetClassListener listener) {
+        Map<ViewCourse, ViewTodo> courseTable = new HashMap<>();
         BmobQuery<Todo> query1 = new BmobQuery<>();
         query1.addWhereEqualTo("userId", BmobUser.getCurrentUser(User.class).getObjectId());
-
-        Log.d(TAG, "done: 12345" );
         query1.setLimit(30);
         query1.findObjects(new FindListener<Todo>() {
 
             @Override
             public void done(List<Todo> object, BmobException e) {
                 if (e == null) {
-                    Map<ViewCourse, ViewTodo> courseTable = new HashMap<>();
+                    if(object.size() == 0) listener.onSuccess(courseTable);
                     for (Todo todo : object) {
                         BmobQuery<Course> query2 = new BmobQuery<>();
-                        query2.addWhereEqualTo("objectId",IdUtil.getCorrectId(todo.getCourseId()) );
+                        query2.addWhereEqualTo("objectId",IdUtil.getCorrectId(todo.getCourseId()));
                         query2.findObjects(new FindListener<Course>() {
                             @Override
                             public void done(List<Course> object, BmobException e) {
-                                Log.d(TAG, "done: " + object.size());
                                 if (e == null) {
-
+                                    if(object.size() == 0) listener.onSuccess(courseTable);
                                     for (Course course : object) {
+                                        ArrayList<ViewCourseTime> courseTimes = new ArrayList<>();
                                         BmobQuery<CourseTime> query3 = new BmobQuery<>();
                                         query3.addWhereEqualTo("courseId", todo.getCourseId());
-                                        ArrayList<ViewCourseTime> courseTimes1 = new ArrayList<>();
                                         query3.findObjects(new FindListener<CourseTime>() {
                                             @Override
                                             public void done(List<CourseTime> object, BmobException e) {
                                                 if (e == null) {
+                                                    if(object.size() == 0) listener.onSuccess(courseTable);
                                                     for (CourseTime courseTime : object) {
-
-                                                        ViewCourseTime courseTime1 = ViewCourseTime.builder()
+                                                        ViewCourseTime viewCourseTime = ViewCourseTime.builder()
                                                                 .setTimeId(courseTime.getObjectId())
                                                                 .setWeekday(courseTime.getWeekday())
                                                                 .setFirstClass(courseTime.getFirstClass())
                                                                 .setLastClass(courseTime.getLastClass())
                                                                 .setSingleOrDouble(courseTime.getWeekTime());
-                                                        courseTimes1.add(courseTime1);
-                                                        ViewCourse viewCourse1 = new ViewCourse(course.getObjectId(), course.getClassName(), course.getClassPlace(), course.getTeacher(), courseTimes1);
-                                                        viewCourse1.setTodoId(todo.getObjectId());
+                                                        courseTimes.add(viewCourseTime);
+                                                        ViewCourse viewCourse = new ViewCourse(course.getObjectId(), course.getClassName(), course.getClassPlace(), course.getTeacher(), courseTimes);
+                                                        viewCourse.setTodoId(todo.getObjectId());
                                                         if (StringUtil.isAllNullOrEmpty(todo.getTodoTitle())) {
-                                                            courseTable.put(viewCourse1, null);
+                                                            courseTable.put(viewCourse, null);
                                                         } else {
                                                             Calendar calendar = new GregorianCalendar(todo.getYear(), todo.getMonth(), todo.getDayOfMonth());
-                                                            ViewTodo viewTodo1 = new ViewTodo(todo.getObjectId(), todo.getTodoTitle(), todo.getTodoMessage(), calendar, todo.getColor());
-                                                            courseTable.put(viewCourse1, viewTodo1);
+                                                            ViewTodo viewTodo = new ViewTodo(todo.getObjectId(), todo.getTodoTitle(), todo.getTodoMessage(), calendar, todo.getColor());
+                                                            courseTable.put(viewCourse, viewTodo);
                                                         }
                                                     }
                                                     listener.onSuccess(courseTable);
@@ -84,8 +82,6 @@ public class CourseTable {
                                         });
                                     }
                                 }else{listener.onFailure("查询失败"+e.getMessage()+e.getErrorCode());}
-
-
                             }
                         });
                     }

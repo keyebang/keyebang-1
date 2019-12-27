@@ -1,7 +1,6 @@
 package com.shg.keyebang.model;
 
 import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.datatype.BmobRelation;
 
 public class User extends BmobUser {
     private String nickname;

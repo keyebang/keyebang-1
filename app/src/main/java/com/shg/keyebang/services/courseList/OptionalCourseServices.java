@@ -2,7 +2,7 @@ package com.shg.keyebang.services.courseList;
 
 import com.shg.keyebang.fakeservices.courselist.GetCourseListListener;
 import com.shg.keyebang.fakeservices.courselist.GetTopCourseListener;
-import com.shg.keyebang.model.TopCourse;
+import com.shg.keyebang.model.ViewTopCourse;
 import com.shg.keyebang.model.ViewCourse;
 import com.shg.keyebang.services.datamodel.Course;
 
@@ -24,9 +24,9 @@ public class OptionalCourseServices {
             @Override
             public void done(List<Course> object, BmobException e){
                 if(e==null){
-                    ArrayList<TopCourse> topCourses = new ArrayList<>();
+                    ArrayList<ViewTopCourse> topCourses = new ArrayList<>();
                     for(Course course:object){
-                        TopCourse topCourse1 = new TopCourse(course.getClassName());
+                        ViewTopCourse topCourse1 = new ViewTopCourse(course.getClassName());
 
                         topCourses.add(topCourse1);
                     }

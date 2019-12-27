@@ -30,7 +30,7 @@ public class Account {
                 if(e==null){
                     listener.onSuccess("登录成功：" + user.getUsername());
                 }
-                else {listener.onFailure("登录失败：" + e.getErrorCode() );}
+                else {listener.onFailure("登录失败：" + e.getErrorCode() + e.getMessage());}
             }
         });
 

@@ -15,12 +15,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.ListItemHolder> {
-    ArrayList<ViewComment> comments;
+    private ArrayList<ViewComment> comments;
 
     static class ListItemHolder extends RecyclerView.ViewHolder {
-        private TextView commentUserName;
-        private TextView commentTime;
-        private TextView commentMessage;
+        private final TextView commentUserName;
+        private final TextView commentTime;
+        private final TextView commentMessage;
 
         ListItemHolder(View view) {
             super(view);
@@ -43,7 +43,7 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
         ViewComment comment = comments.get(position);
         Calendar time = comment.getCommentTime();
         holder.commentUserName.setText(comment.getCommentUserName());
-        holder.commentTime.setText(time.get(Calendar.MONTH) + "." + time.get(Calendar.DAY_OF_MONTH) + "." + time.get(Calendar.YEAR));
+        holder.commentTime.setText((time.get(Calendar.MONTH) + 1 ) + "." + time.get(Calendar.DAY_OF_MONTH) + "." + time.get(Calendar.YEAR));
         holder.commentMessage.setText(comment.getCommentMessage());
     }
 
@@ -54,9 +54,5 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
 
     public void setComments(ArrayList<ViewComment> comments) {
         this.comments = comments;
-    }
-
-    public void addComment(ViewComment comment){
-        comments.add(0, comment);
     }
 }

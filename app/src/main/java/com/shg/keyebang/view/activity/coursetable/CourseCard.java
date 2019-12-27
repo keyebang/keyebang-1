@@ -2,7 +2,6 @@ package com.shg.keyebang.view.activity.coursetable;
 
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -25,13 +24,13 @@ public class CourseCard extends FrameLayout {
 
     private ViewTodo todo;
     private ViewCourse course;
-    private ConstraintLayout cardLayout;
-    private TextView courseName;
-    private TextView coursePlace;
-    private TextView teacher;
-    private TextView todoTitle;
-    private TextView todoTime;
-    private ImageView todoTag;
+    private final ConstraintLayout cardLayout;
+    private final TextView courseName;
+    private final TextView coursePlace;
+    private final TextView teacher;
+    private final TextView todoTitle;
+    private final TextView todoTime;
+    private final ImageView todoTag;
 
     public CourseCard(Context context){
         super(context);
@@ -46,15 +45,15 @@ public class CourseCard extends FrameLayout {
     }
 
     public void setLocation(ViewCourseTime courseTime){
-        int left = DisplayUtil.pxTodp(LEFT_BORDER + (courseTime.getWeekday() - 1) * (CARD_WIDTH + SPACING));
-        int top = DisplayUtil.pxTodp((courseTime.getFirstClass() - 1) * (CARD_HEIGHT + SPACING));
+        int left = DisplayUtil.dpToPx(LEFT_BORDER + (courseTime.getWeekday() - 1) * (CARD_WIDTH + SPACING));
+        int top = DisplayUtil.dpToPx((courseTime.getFirstClass() - 1) * (CARD_HEIGHT + SPACING));
         this.setX(left);
         this.setY(top);
     }
 
     public void setSize(ViewCourseTime courseTime){
         int size = courseTime.getLastClass() - courseTime.getFirstClass();
-        cardLayout.setLayoutParams(new FrameLayout.LayoutParams(DisplayUtil.pxTodp(CARD_WIDTH), DisplayUtil.pxTodp(CARD_HEIGHT * (size + 1) + SPACING * size)));
+        cardLayout.setLayoutParams(new FrameLayout.LayoutParams(DisplayUtil.dpToPx(CARD_WIDTH), DisplayUtil.dpToPx(CARD_HEIGHT * (size + 1) + SPACING * size)));
     }
 
     public void setCourse(ViewCourse course){
@@ -70,7 +69,7 @@ public class CourseCard extends FrameLayout {
         else setTodoState(false);
     }
 
-    public void setTodoState(boolean exist){
+    private void setTodoState(boolean exist){
         if(exist){
             todoTitle.setVisibility(View.VISIBLE);
             todoTime.setVisibility(View.VISIBLE);
@@ -107,7 +106,7 @@ public class CourseCard extends FrameLayout {
     }
 
     public String getTodoId(){
-        return (todo == null)? null : todo.getTodoId();
+        return course.getTodoId();
     }
 
     public String getCourseId() {

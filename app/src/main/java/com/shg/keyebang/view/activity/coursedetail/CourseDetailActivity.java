@@ -2,7 +2,6 @@ package com.shg.keyebang.view.activity.coursedetail;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -107,8 +106,8 @@ public class CourseDetailActivity extends BaseActivity {
         });
         addBookButton.setOnClickListener(v->{
             final EditText edit = new EditText(this);
-            edit.setWidth(DisplayUtil.dpTopx(200));
-            edit.setTranslationX(DisplayUtil.dpTopx(20));
+            edit.setWidth(DisplayUtil.dpToPx(200));
+            edit.setTranslationX(DisplayUtil.dpToPx(20));
             edit.setBackground(null);
             edit.setHint("填写书籍名称");
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -121,7 +120,7 @@ public class CourseDetailActivity extends BaseActivity {
             });
             AlertDialog dialog = builder.create();
             dialog.show();
-            dialog.getWindow().setLayout(DisplayUtil.dpTopx(360), LinearLayout.LayoutParams.WRAP_CONTENT);
+            dialog.getWindow().setLayout(DisplayUtil.dpToPx(360), LinearLayout.LayoutParams.WRAP_CONTENT);
         });
         likeButton.setOnLikeListener(new OnLikeListener() {
             @Override
@@ -216,13 +215,6 @@ public class CourseDetailActivity extends BaseActivity {
     public void updateLikeSuccess(int num) {
         likeNum += num;
         likeNumText.setText(likeNum + "");
-    }
-
-    public void addMyComment(ViewComment comment) {
-        commentListAdapter.addComment(comment);
-        lCommentListAdapter.notifyDataSetChanged();
-        commentEditText.setText("");
-        presenter.getLimit();
     }
 
     public void addCourseToTable(String courseId) {

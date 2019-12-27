@@ -1,4 +1,4 @@
-package com.shg.keyebang.view.activity.CourseList.adapter;
+package com.shg.keyebang.view.activity.courseList.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +17,8 @@ public class ItemCourseListAdapter extends RecyclerView.Adapter<ItemCourseListAd
     private ArrayList<ViewCourse> courses;
 
     static class ListItemHolder extends RecyclerView.ViewHolder {
-        private TextView itemCourseName;
-        private TextView itemCourseMessage;
+        private final TextView itemCourseName;
+        private final TextView itemCourseMessage;
 
         ListItemHolder(View view) {
             super(view);
@@ -55,10 +55,6 @@ public class ItemCourseListAdapter extends RecyclerView.Adapter<ItemCourseListAd
 
     public String getCourseName(int position) {
         return courses.get(position).getCourseName();
-    }
-
-    public String getCourseTeacher(int position) {
-        return courses.get(position).getTeacher();
     }
 
     public String getCourseId(int position) {

@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:corner_radius="8dp"
-            android:src="@drawable/example"
+            android:src="@drawable/draw"
             app:mask_color="#40000000"/>
 
         <TextView
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
             android:layout_marginBottom="12dp"
             android:text="示例课程"
             android:textSize="16sp"
