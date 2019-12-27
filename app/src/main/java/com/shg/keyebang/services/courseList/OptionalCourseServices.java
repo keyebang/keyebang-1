@@ -1,7 +1,5 @@
 package com.shg.keyebang.services.courseList;
 
-import com.shg.keyebang.fakeservices.courselist.GetCourseListListener;
-import com.shg.keyebang.fakeservices.courselist.GetTopCourseListener;
 import com.shg.keyebang.model.ViewTopCourse;
 import com.shg.keyebang.model.ViewCourse;
 import com.shg.keyebang.services.datamodel.Course;

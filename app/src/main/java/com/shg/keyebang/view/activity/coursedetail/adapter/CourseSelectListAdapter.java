@@ -1,6 +1,5 @@
 package com.shg.keyebang.view.activity.coursedetail.adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +19,6 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
-
-import static android.content.ContentValues.TAG;
 
 public class CourseSelectListAdapter extends RecyclerView.Adapter<CourseSelectListAdapter.ListItemHolder> {
     private ArrayList<ViewCourseSelect> courseSelects;
@@ -71,7 +68,6 @@ public class CourseSelectListAdapter extends RecyclerView.Adapter<CourseSelectLi
         StringBuilder s = new StringBuilder();
         for(ViewCourseTime time : courseSelect.getCourseTimes()){
             String t = getSingleOrDoubleCN(time.getSingleOrDouble());
-            Log.d(TAG, "onBindViewHolder: " + time.getSingleOrDouble());
             s.append("周").append(TimeCNUtil.weekdayToCN(time.getWeekday() + 1)).append(time.getFirstClass()).append("-").append(time.getLastClass()).append(" ").append(t).append("  ");
         }
         holder.timeMessage.setText(s);

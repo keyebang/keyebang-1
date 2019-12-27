@@ -1,6 +1,6 @@
 package com.shg.keyebang.presenter.courselist;
 
-import com.shg.keyebang.fakeservices.courselist.GetCourseListListener;
+import com.shg.keyebang.services.courseList.GetCourseListListener;
 import com.shg.keyebang.model.ViewCourse;
 import com.shg.keyebang.presenter.BasePresenter;
 import com.shg.keyebang.services.courseList.MainCourse;

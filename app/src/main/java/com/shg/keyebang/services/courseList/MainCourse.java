@@ -2,8 +2,6 @@ package com.shg.keyebang.services.courseList;
 
 import android.util.Log;
 
-import com.shg.keyebang.aatools.IdUtil;
-import com.shg.keyebang.fakeservices.courselist.GetCourseListListener;
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.model.ViewCourse;
 import com.shg.keyebang.services.datamodel.Course;
