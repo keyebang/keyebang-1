@@ -25,7 +25,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-public class TodoDialog extends BottomSheetDialog {
+class TodoDialog extends BottomSheetDialog {
     private final CourseTableFragment fragment;
     private final TodoPresenter presenter;
     private ViewTodo todo;
