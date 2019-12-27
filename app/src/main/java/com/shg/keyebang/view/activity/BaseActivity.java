@@ -26,7 +26,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void showErrorMessage(String errMsg){
-        toastAndLog(errMsg);
+        Log.e(TAG, "Error: " + errMsg);
+        Toast.makeText(this, errMsg, Toast.LENGTH_SHORT).show();
     }
 
     protected void startActivityDirectly(Class<?> cls){

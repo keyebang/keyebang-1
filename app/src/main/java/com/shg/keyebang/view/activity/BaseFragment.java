@@ -24,6 +24,8 @@ public abstract class BaseFragment extends Fragment {
     }
 
     public void showErrorMessage(String errMsg){
-        toastAndLog(errMsg);
+        Log.e(TAG, "Error: " + errMsg);
+        if(getActivity() == null) return;
+        Toast.makeText(getActivity(), errMsg, Toast.LENGTH_SHORT).show();
     }
 }

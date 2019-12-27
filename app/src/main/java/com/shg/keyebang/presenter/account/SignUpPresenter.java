@@ -15,7 +15,7 @@ public class SignUpPresenter extends BasePresenter {
         this.activity = signUpActivity;
     }
 
-    public void signUp(String nickname, String semester, String major, String password, String contact){
+    public void signUp(String nickname, String password, String contact, String semester, String major){
         if(StringUtil.isSomeNullOrEmpty(nickname, semester, major, password, contact)){
             activity.showErrorMessage("信息未填写完全");
             return;
