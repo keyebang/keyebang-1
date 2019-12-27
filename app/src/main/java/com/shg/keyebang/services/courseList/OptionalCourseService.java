@@ -1,4 +1,4 @@
-package com.shg.keyebang.fakeservices.courselist;
+package com.shg.keyebang.services.courseList;
 
 import com.shg.keyebang.MyApplication;
 import com.shg.keyebang.R;

@@ -12,7 +12,6 @@ import com.shg.keyebang.R;
 import com.shg.keyebang.aatools.DisplayUtil;
 import com.shg.keyebang.aatools.StringUtil;
 import com.shg.keyebang.model.User;
-import com.shg.keyebang.presenter.account.SignUpPresenter;
 import com.shg.keyebang.presenter.profile.ProfilePresenter;
 import com.shg.keyebang.view.activity.BaseActivity;
 

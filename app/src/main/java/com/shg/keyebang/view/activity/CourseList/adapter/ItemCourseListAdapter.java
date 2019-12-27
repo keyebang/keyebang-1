@@ -6,7 +6,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.shg.keyebang.R;
+import com.shg.keyebang.aatools.TimeCNUtil;
 import com.shg.keyebang.model.ViewCourse;
+import com.shg.keyebang.model.ViewCourseTime;
 
 import java.util.ArrayList;
 
@@ -41,7 +43,13 @@ public class ItemCourseListAdapter extends RecyclerView.Adapter<ItemCourseListAd
     public void onBindViewHolder(@NonNull ItemCourseListAdapter.ListItemHolder holder, int position) {
         ViewCourse course = courses.get(position);
         holder.itemCourseName.setText(course.getCourseName());
-        holder.itemCourseMessage.setText(course.getTeacher());
+        StringBuilder message  = new StringBuilder();
+        message.append(course.getTeacher()).append(" · ");
+        for(ViewCourseTime time : course.getCourseTimes()){
+            String t = " " + getSingleOrDoubleCN(time.getSingleOrDouble());
+            message.append("周").append(TimeCNUtil.weekdayToCN(time.getWeekday() + 1)).append(time.getFirstClass()).append("-").append(time.getLastClass()).append(t).append("  ");
+        }
+        holder.itemCourseMessage.setText(message.toString());
     }
 
     @Override
@@ -59,5 +67,13 @@ public class ItemCourseListAdapter extends RecyclerView.Adapter<ItemCourseListAd
 
     public String getCourseId(int position) {
         return courses.get(position).getCourseId();
+    }
+
+    private String getSingleOrDoubleCN(int i){
+        switch (i){
+            case 1: return "单";
+            case 2: return "双";
+            default: return "";
+        }
     }
 }

@@ -1,20 +1,15 @@
 package com.shg.keyebang.presenter.profile;
 
-import android.text.Editable;
-import android.widget.EditText;
-
 import com.shg.keyebang.aatools.StringUtil;
 import com.shg.keyebang.model.User;
 import com.shg.keyebang.presenter.BasePresenter;
-import com.shg.keyebang.services.account.Account;
 import com.shg.keyebang.services.account.AccountInfoService;
-import com.shg.keyebang.services.account.GetInfoListener;
 import com.shg.keyebang.services.account.SignUpLogInListener;
 import com.shg.keyebang.services.coursedetail.AddDataListener;
 import com.shg.keyebang.view.activity.profile.UpdatePersonalInfoActivity;
 
 public class ProfilePresenter extends BasePresenter {
-    private UpdatePersonalInfoActivity activity;
+    private final UpdatePersonalInfoActivity activity;
 
     public ProfilePresenter(UpdatePersonalInfoActivity activity) {
         this.activity = activity;

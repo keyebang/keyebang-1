@@ -104,7 +104,6 @@ public class CourseTableFragment extends BaseFragment {
     }
 
     public void deleteCourseInView(String todoId){
-        toastAndLog(todoId);
         for(CourseCard courseCard : courseCards){
             if(todoId.equals(courseCard.getTodoId())) {
                 tableContainer.removeView(courseCard);

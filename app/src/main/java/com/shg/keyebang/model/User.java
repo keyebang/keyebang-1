@@ -3,7 +3,6 @@ package com.shg.keyebang.model;
 import cn.bmob.v3.BmobUser;
 
 import cn.bmob.v3.datatype.BmobFile;
-import cn.bmob.v3.datatype.BmobRelation;
 
 
 public class User extends BmobUser {
@@ -12,7 +11,6 @@ public class User extends BmobUser {
     private String major;
     private String contactMessage;
     private boolean limit;
-    private BmobFile picture;
 
     public User(){
 
@@ -65,14 +63,6 @@ public class User extends BmobUser {
 
     public User setLimit(boolean limit) {
         this.limit = limit;
-        return this;
-    }
-
-    public BmobFile getPicture(){
-        return picture;
-    }
-    public User setPicture(BmobFile picture){
-        this.picture=picture;
         return this;
     }
 }
