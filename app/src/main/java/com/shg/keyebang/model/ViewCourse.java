@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import cn.bmob.v3.BmobObject;
-
 public class ViewCourse {
     private String todoId;
     private String courseId;

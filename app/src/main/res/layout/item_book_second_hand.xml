@@ -33,6 +33,7 @@
             android:id="@+id/contactMessage"
             android:layout_marginTop="2dp"
             android:textSize="14sp"
+            android:textIsSelectable="true"
             android:text="联系方式"/>
 
         <View

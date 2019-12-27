@@ -68,11 +68,7 @@ public class ViewCourseTime {
     }
 
     public ViewCourseTime setTimeId(String timeId) {
-        char c = timeId.charAt(0);
-        if(!((48  <= c && c <= 57) || (65  <= c && c <= 90) || (97  <= c && c <= 122))){
-            timeId = timeId.substring(1, timeId.length());
-        }
-        this.timeId = timeId;
+        this.timeId = IdUtil.getCorrectId(timeId);
         return this;
     }
 

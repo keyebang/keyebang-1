@@ -8,10 +8,6 @@ public class ViewBook {
 
     public ViewBook(){ }
 
-    public ViewBook(String bookName) {
-        this.bookName = bookName;
-    }
-
     public static ViewBook builder(){
         return new ViewBook();
     }
@@ -30,7 +26,7 @@ public class ViewBook {
     }
 
     public ViewBook setBookId(String bookId) {
-        this.bookId = IdUtil.getCorrectId(bookId);;
+        this.bookId = IdUtil.getCorrectId(bookId);
         return this;
     }
 }

@@ -53,9 +53,9 @@ dependencies {
     implementation 'com.lijiankun24:shadowlayout:1.1.0'
     //RoundImg
     implementation 'com.github.SheHuan:NiceImageView:1.0.5'
-    //
+    //LRecyclerView
     implementation 'com.github.jdsjlzx:LRecyclerView:1.5.4.3'
-    //
+    //LikeButton
     implementation 'com.github.jd-alexander:LikeButton:0.2.3'
 
 
@@ -77,4 +77,3 @@ greendao {
     daoPackage 'com.shg.keyebang.db'// 设置DaoMaster、DaoSession、Dao 包名
     targetGenDir 'src/main/java'//设置DaoMaster、DaoSession、Dao目录
 }
-

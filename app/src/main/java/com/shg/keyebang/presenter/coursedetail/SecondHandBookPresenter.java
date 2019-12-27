@@ -1,18 +1,16 @@
 package com.shg.keyebang.presenter.coursedetail;
 
-import com.shg.keyebang.model.User;
 import com.shg.keyebang.model.ViewSecondHandBook;
 import com.shg.keyebang.presenter.BasePresenter;
 import com.shg.keyebang.services.coursedetail.AddDataListener;
 import com.shg.keyebang.services.coursedetail.GetSecondHandBookListListener;
 import com.shg.keyebang.services.coursedetail.SecondHandBookService;
-import com.shg.keyebang.services.datamodel.SecondHand;
 import com.shg.keyebang.view.activity.coursedetail.SecondHandBookActivity;
 
 import java.util.ArrayList;
 
 public class SecondHandBookPresenter extends BasePresenter {
-    private SecondHandBookActivity activity;
+    private final SecondHandBookActivity activity;
 
 
     public SecondHandBookPresenter(SecondHandBookActivity activity) {
@@ -28,7 +26,7 @@ public class SecondHandBookPresenter extends BasePresenter {
 
             @Override
             public void onFailure(String errMassage) {
-
+                activity.showErrorMessage(errMassage);
             }
         });
 
@@ -36,22 +34,16 @@ public class SecondHandBookPresenter extends BasePresenter {
     }
 
     public void addSecondHandBook(String bookName, String evaId){
-        //....
         SecondHandBookService.addSecondHandBook(evaId, bookName, new AddDataListener() {
             @Override
             public void onSuccess(String message) {
-
+                getSecondHandBookList(evaId);
             }
 
             @Override
             public void onFailure(String errMassage) {
-
+                activity.showErrorMessage(errMassage);
             }
         });
-        ViewSecondHandBook book = ViewSecondHandBook.builder()
-                .setBookMessage(bookName)
-                .setContactMessage(User.getCurrentUser(User.class).getNickname() + "  " + User.getCurrentUser(User.class).getContactMessage());
-        activity.addSecondHandBookMessage(book);
-
     }
 }

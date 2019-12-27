@@ -4,8 +4,8 @@ import com.shg.keyebang.model.ViewCourse;
 import com.shg.keyebang.presenter.BasePresenter;
 import com.shg.keyebang.services.courseList.FindCourseListener;
 import com.shg.keyebang.services.courseList.FindCourseService;
-import com.shg.keyebang.view.activity.CourseList.ChooseMainCourseActivity;
-import com.shg.keyebang.view.activity.CourseList.SearchCourseActivity;
+import com.shg.keyebang.view.activity.courseList.ChooseMainCourseActivity;
+import com.shg.keyebang.view.activity.courseList.SearchCourseActivity;
 
 import java.util.ArrayList;
 
@@ -21,8 +21,7 @@ public class FindCoursePresenter extends BasePresenter {
         chooseMainCourseActivity = activity;
     }
 
-    public void getChooseCourseList(String courseName){
-
+    public void getChooseMainCourseList(String courseName){
         FindCourseService.getChooseCourseList(courseName, new FindCourseListener() {
             @Override
             public void onSuccess(ArrayList<ViewCourse> courses) {

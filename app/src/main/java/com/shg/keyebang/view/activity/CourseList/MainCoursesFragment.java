@@ -1,4 +1,4 @@
-package com.shg.keyebang.view.activity.CourseList;
+package com.shg.keyebang.view.activity.courseList;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import com.shg.keyebang.R;
 import com.shg.keyebang.model.ViewCourse;
 import com.shg.keyebang.presenter.courselist.MainCoursePresenter;
 import com.shg.keyebang.view.activity.BaseFragment;
-import com.shg.keyebang.view.activity.CourseList.adapter.MainCourseListAdapter;
+import com.shg.keyebang.view.activity.courseList.adapter.MainCourseListAdapter;
 
 import java.util.ArrayList;
 
@@ -38,7 +38,6 @@ public class MainCoursesFragment extends BaseFragment {
             mainCourseListAdapter = new MainCourseListAdapter();
             lMainCourseListAdapter = new LRecyclerViewAdapter(mainCourseListAdapter);
         }
-
     }
 
     @Nullable

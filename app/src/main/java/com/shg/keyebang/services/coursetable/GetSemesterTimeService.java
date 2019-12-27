@@ -6,7 +6,7 @@ public class GetSemesterTimeService {
     public static void getSemesterTime(GetSemesterTimeListener listener){
 
         Calendar beginCalendar = Calendar.getInstance();
-        beginCalendar.set(2019,9,2,0,0,0);		//设定时间为2017年3月3日 1:0:0
+        beginCalendar.set(2019,9,2,0,0,0);		
         Calendar endCalendar = Calendar.getInstance();
 
         long beginTime = beginCalendar.getTime().getTime();

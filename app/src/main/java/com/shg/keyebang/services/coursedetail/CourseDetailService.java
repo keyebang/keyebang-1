@@ -13,6 +13,7 @@ import com.shg.keyebang.services.datamodel.Comment;
 import com.shg.keyebang.services.datamodel.Course;
 import com.shg.keyebang.services.datamodel.CourseTime;
 import com.shg.keyebang.services.datamodel.Evaluation;
+import com.shg.keyebang.services.datamodel.Likes;
 import com.shg.keyebang.services.datamodel.Todo;
 
 import java.util.ArrayList;
@@ -98,6 +99,7 @@ public class CourseDetailService {
                                     ArrayList<ViewCourseTime> times1 = new ArrayList<>();
                                     for(CourseTime courseTime:object){
                                         ViewCourseTime time1 = ViewCourseTime.builder()
+                                                .setSingleOrDouble(courseTime.getWeekTime())
                                                 .setWeekday(courseTime.getWeekday())
                                                 .setFirstClass(courseTime.getFirstClass())
                                                 .setLastClass(courseTime.getLastClass())
@@ -203,8 +205,33 @@ public class CourseDetailService {
     }
 
 
-    public void getIsLike(String evaId){
+    public static void getIsLike(String evaId,IsLikeListener listener){
+        BmobQuery<Likes> query=new BmobQuery<>();
+        query.addWhereEqualTo("userId",User.getCurrentUser(User.class).getObjectId());
+        query.findObjects(new FindListener<Likes>() {
+            @Override
+            public void done(List<Likes> object, BmobException e) {
+                if (e==null){
+                    for (Likes likes :object){
+                        BmobQuery<Likes> query1=new BmobQuery<>();
+                        query1.addWhereEqualTo("evaId",evaId);
+                        query1.findObjects(new FindListener<Likes>() {
+                            @Override
+                            public void done(List<Likes> object, BmobException e) {
+                                if (e==null){
+                                    boolean islike;
+                                    for (Likes likes1:object){
+                                        islike=likes1.isLike();
+                                        listener.onSuccess(islike);
+                                    }
+                                }else{listener.onFailure("查询失败"+e.getMessage()+e.getErrorCode());}
+                            }
+                        });
+                    }
+                }else{listener.onFailure("查询失败"+e.getMessage()+e.getErrorCode());}
 
+            }
+        });
     }
 
     public static void sendComment(String evaId, String text,SendCommentListener listener){
@@ -293,12 +320,14 @@ public class CourseDetailService {
     public static void updateLike(String evaId, int num /* 1 or -1 */,AddDataListener listener){
         BmobQuery<Evaluation> query=new BmobQuery<>();
         Evaluation evaluation = new Evaluation();
+        Likes likes =new Likes();
         String evaId1= IdUtil.getCorrectId(evaId);
         query.addWhereEqualTo("objectId",evaId1);
         query.findObjects(new FindListener<Evaluation>() {
             @Override
             public void done(List<Evaluation> object, BmobException e) {
                 if (e==null){
+
                     for (Evaluation evaluation1 :object){
                         evaluation.setObjectId(evaId1);
                         if(num==-1){
@@ -313,6 +342,31 @@ public class CourseDetailService {
                                     }
                                 }
                             });
+                            BmobQuery<Likes> query1=new BmobQuery<>();
+                            query1.addWhereEqualTo("evaId",evaId);
+                            query1.findObjects(new FindListener<Likes>() {
+                                @Override
+                                public void done(List<Likes> object, BmobException e) {
+                                    if (e==null){
+
+                                        for (Likes likes1:object){
+                                            likes.setObjectId(likes1.getObjectId());
+                                            likes.setLike(false);
+                                            likes.update(new UpdateListener() {
+                                                @Override
+                                                public void done(BmobException e) {
+                                                    if(e==null){
+                                                        listener.onSuccess("添加数据成功");
+                                                    }else{
+                                                        listener.onFailure("创建数据失败：" + e.getMessage());
+                                                    }
+                                                }
+                                            });
+
+                                        }
+                                    }else{listener.onFailure("查询失败"+e.getMessage()+e.getErrorCode());}
+                                }
+                            });
                         }else {
                             evaluation.setLikes(evaluation1.getLikes()+1);
                             evaluation.update(new UpdateListener(){
@@ -323,6 +377,29 @@ public class CourseDetailService {
                                     }else{
                                         listener.onFailure("创建数据失败：" + e.getMessage());
                                     }
+                                }
+                            });
+                            BmobQuery<Likes> query1=new BmobQuery<>();
+                            query1.addWhereEqualTo("evaId",evaId);
+                            query1.findObjects(new FindListener<Likes>() {
+                                @Override
+                                public void done(List<Likes> object, BmobException e) {
+                                    if (e==null){
+                                        for (Likes likes1:object){
+                                            likes.setObjectId(likes1.getObjectId());
+                                            likes.setLike(true);
+                                            likes.update(new UpdateListener() {
+                                                @Override
+                                                public void done(BmobException e) {
+                                                    if(e==null){
+                                                        listener.onSuccess("添加数据成功");
+                                                    }else{
+                                                        listener.onFailure("创建数据失败：" + e.getMessage());
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    }else{listener.onFailure("查询失败"+e.getMessage()+e.getErrorCode());}
                                 }
                             });
                         }

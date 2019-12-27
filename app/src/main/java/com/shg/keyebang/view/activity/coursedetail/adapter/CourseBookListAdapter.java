@@ -14,14 +14,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CourseBookListAdapter extends RecyclerView.Adapter<CourseBookListAdapter.ListItemHolder> {
-    ArrayList<ViewBook> books;
+    private ArrayList<ViewBook> books;
 
     static class ListItemHolder extends RecyclerView.ViewHolder {
-        private TextView bookname;
+        private final TextView bookName;
 
         ListItemHolder(View view) {
             super(view);
-            bookname = view.findViewById(R.id.bookName);
+            bookName = view.findViewById(R.id.bookName);
         }
     }
 
@@ -35,7 +35,7 @@ public class CourseBookListAdapter extends RecyclerView.Adapter<CourseBookListAd
 
     @Override
     public void onBindViewHolder(@NonNull CourseBookListAdapter.ListItemHolder holder, int position) {
-        holder.bookname.setText(books.get(position).getBookName());
+        holder.bookName.setText(books.get(position).getBookName());
     }
 
     @Override

@@ -17,7 +17,7 @@ public class AccountInfoService {
 
     public static void setInfo(final User user, AddDataListener listener) {
 
-        if(user.getSemester()=="大一上"){user.setLimit(true);}
+        if(user.getSemester().equals("大一上")){user.setLimit(true);}
         else{user.setLimit(false);}
 
         user.update(new UpdateListener(){
@@ -81,8 +81,5 @@ public class AccountInfoService {
         });
     }
 
-    public static void addHead(String file){
-        final BmobFile bmobFile =new BmobFile(file);
 
-    }
 }
