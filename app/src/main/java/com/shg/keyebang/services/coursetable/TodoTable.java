@@ -1,21 +1,9 @@
 package com.shg.keyebang.services.coursetable;
 
-import com.shg.keyebang.model.Course;
-import com.shg.keyebang.model.Todo;
-
-import java.util.List;
-
-import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.datatype.BmobPointer;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.SaveListener;
-import cn.bmob.v3.listener.UpdateListener;
-
 
 public class TodoTable {
 
-    public static void setTodo(final Todo todo, String classId, CourseTableListener listener){
+    /*public static void setTodo(final ViewTodo todo, String classId, CourseTableListener listener){
 
 
 
@@ -30,7 +18,7 @@ public class TodoTable {
         });
     }
 
-    public static void deleteTodo(Course course, GetTodoListener listener){
+    public static void deleteTodo(ViewCourse course, GetTodoListener listener){
 
         course.setTodoTitle(null);
         course.setTodoMessage(null);
@@ -49,5 +37,5 @@ public class TodoTable {
             }
 
         });
-    }
+    }*/
 }

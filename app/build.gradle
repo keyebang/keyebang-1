@@ -31,6 +31,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 //apple plugin: 'org.sonarqube'
 
+greendao {
+    schemaVersion 1 //数据库版本号
+    daoPackage 'com.shg.keyebang.db'// 设置DaoMaster、DaoSession、Dao 包名
+    targetGenDir 'src/main/java'//设置DaoMaster、DaoSession、Dao目录
+}
+
 dependencies {
     //Bmob
     implementation 'cn.bmob.android:bmob-sdk:3.7.3-rc1'
@@ -47,8 +53,10 @@ dependencies {
     implementation 'com.lijiankun24:shadowlayout:1.1.0'
     //RoundImg
     implementation 'com.github.SheHuan:NiceImageView:1.0.5'
-    //
+    //LRecyclerView
     implementation 'com.github.jdsjlzx:LRecyclerView:1.5.4.3'
+    //LikeButton
+    implementation 'com.github.jd-alexander:LikeButton:0.2.3'
 
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -62,4 +70,10 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
 
 
+}
+
+greendao {
+    schemaVersion 1 //数据库版本号
+    daoPackage 'com.shg.keyebang.db'// 设置DaoMaster、DaoSession、Dao 包名
+    targetGenDir 'src/main/java'//设置DaoMaster、DaoSession、Dao目录
 }

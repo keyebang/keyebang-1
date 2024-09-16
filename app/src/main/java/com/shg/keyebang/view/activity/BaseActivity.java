@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public abstract class BaseActivity extends AppCompatActivity {
     private static final String TAG = "KYB";
 
-    abstract protected void init();
+    protected abstract void init();
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -23,6 +23,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void toastAndLog(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         Log.d(TAG, message);
+    }
+
+    public void showErrorMessage(String errMsg){
+        Log.e(TAG, "Error: " + errMsg);
+        Toast.makeText(this, errMsg, Toast.LENGTH_SHORT).show();
     }
 
     protected void startActivityDirectly(Class<?> cls){

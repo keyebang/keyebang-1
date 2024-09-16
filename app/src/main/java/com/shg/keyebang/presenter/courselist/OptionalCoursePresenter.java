@@ -3,16 +3,16 @@ package com.shg.keyebang.presenter.courselist;
 import com.shg.keyebang.fakeservices.courselist.GetCourseListListener;
 import com.shg.keyebang.fakeservices.courselist.GetTopCourseListener;
 import com.shg.keyebang.fakeservices.courselist.OptionalCourseService;
-import com.shg.keyebang.model.Course;
-import com.shg.keyebang.model.TopCourse;
+import com.shg.keyebang.model.ViewCourse;
+import com.shg.keyebang.model.ViewTopCourse;
 import com.shg.keyebang.presenter.BasePresenter;
-import com.shg.keyebang.view.activity.CourseList.CourseListFragment;
-import com.shg.keyebang.view.activity.CourseList.OptionalCourseFragment;
+import com.shg.keyebang.services.courseList.OptionalCourseServices;
+import com.shg.keyebang.view.activity.courseList.OptionalCourseFragment;
 
 import java.util.ArrayList;
 
 public class OptionalCoursePresenter extends BasePresenter {
-    private OptionalCourseFragment fragment;
+    private final OptionalCourseFragment fragment;
 
     public OptionalCoursePresenter(OptionalCourseFragment fragment){
         this.fragment = fragment;
@@ -21,7 +21,7 @@ public class OptionalCoursePresenter extends BasePresenter {
     public void getTopCourses(){
         OptionalCourseService.getTopCourseData(new GetTopCourseListener() {
             @Override
-            public void onSuccess(ArrayList<TopCourse> topCourses) {
+            public void onSuccess(ArrayList<ViewTopCourse> topCourses) {
                 fragment.setTopCoursesData(topCourses);
             }
 
@@ -33,15 +33,15 @@ public class OptionalCoursePresenter extends BasePresenter {
     }
 
     public void getOptionalCourses(){
-        OptionalCourseService.getOptionalCoursesData(new GetCourseListListener() {
+        OptionalCourseServices.getOptionalCourses(new GetCourseListListener() {
             @Override
-            public void onSuccess(ArrayList<Course> courses) {
+            public void onSuccess(ArrayList<ViewCourse> courses) {
                 fragment.setOptionalCourseData(courses);
             }
 
             @Override
             public void onFailure(String errMsg) {
-
+                fragment.showErrorMessage(errMsg);
             }
         });
     }
