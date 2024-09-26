@@ -5,8 +5,10 @@ import android.os.Bundle;
 import com.google.android.material.tabs.TabLayout;
 import com.shg.keyebang.R;
 import com.shg.keyebang.model.User;
+import com.shg.keyebang.services.account.AccountInfoService;
+import com.shg.keyebang.services.account.SignUpLogInListener;
 import com.shg.keyebang.view.activity.BaseActivity;
-import com.shg.keyebang.view.activity.CourseList.CourseListFragment;
+import com.shg.keyebang.view.activity.courseList.CourseListFragment;
 import com.shg.keyebang.view.activity.account.LoginActivity;
 import com.shg.keyebang.view.activity.coursetable.CourseTableFragment;
 import com.shg.keyebang.view.activity.profile.ProfileFragment;
@@ -59,17 +61,22 @@ public class MainActivity extends BaseActivity {
 
             }
         });
-        bottomTabLayout.addTab(bottomTabLayout.newTab().setIcon(getResources().getDrawable(R.drawable.ic_person_black_24dp, null)));
-        bottomTabLayout.addTab(bottomTabLayout.newTab().setIcon(getResources().getDrawable(R.drawable.ic_person_black_24dp, null)));
+        bottomTabLayout.addTab(bottomTabLayout.newTab().setIcon(getResources().getDrawable(R.drawable.ic_table_fill, null)));
+        bottomTabLayout.addTab(bottomTabLayout.newTab().setIcon(getResources().getDrawable(R.drawable.ic_school_black_24dp, null)));
         bottomTabLayout.addTab(bottomTabLayout.newTab().setIcon(getResources().getDrawable(R.drawable.ic_person_black_24dp, null)));
 
-        User user = User.getCurrentUser(User.class);
-        if(user != null) {
-            toastAndLog(
-                    "当前用户：" + "\n" +
-                            user.getUsername() + "\n" +
-                            user.getNickname() + "\n" +
-                            user.getStudentId());
+        if(User.isLogin()){
+            AccountInfoService.fetchUserInfo(new SignUpLogInListener() {
+                @Override
+                public void onSuccess(String message) {
+
+                }
+
+                @Override
+                public void onFailure(String errMassage) {
+                    toastAndLog(errMassage);
+                }
+            });
         }
     }
 

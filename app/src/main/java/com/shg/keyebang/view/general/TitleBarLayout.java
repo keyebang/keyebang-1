@@ -3,7 +3,6 @@ package com.shg.keyebang.view.general;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -13,7 +12,6 @@ import com.shg.keyebang.view.activity.BaseActivity;
 
 public class TitleBarLayout extends LinearLayout {
     private TextView title;
-    private CircleImageView avatar;
 
     public TitleBarLayout(Context context){
         super(context);
@@ -29,15 +27,14 @@ public class TitleBarLayout extends LinearLayout {
 
     private void init(){
         title = findViewById(R.id.title);
-        avatar = findViewById(R.id.avatar);
+        CircleImageView avatar = findViewById(R.id.avatar);
         avatar.setOnClickListener(v->{
             User user = User.getCurrentUser(User.class);
             if(user != null) {
                 ((BaseActivity)getContext()).toastAndLog(
                         "当前用户：" + "\n" +
                                 user.getUsername() + "\n" +
-                                user.getNickname() + "\n" +
-                                user.getStudentId());
+                                user.getNickname() );
             }
         });
     }
@@ -45,9 +42,4 @@ public class TitleBarLayout extends LinearLayout {
     public void setTitle(String title){
         this.title.setText(title);
     }
-
-    public void setAvatar(){
-
-    }
-
 }

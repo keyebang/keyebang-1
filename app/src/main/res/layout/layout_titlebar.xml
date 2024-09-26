@@ -27,7 +27,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toLeftOf="@id/avatarBg"
             android:layout_marginRight="10dp"
-            android:background="@drawable/bg_touch">
+            android:background="@drawable/bg_touch_round">
 
             <ImageView
                 android:layout_width="20dp"
@@ -57,8 +57,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginRight="6dp"
-            android:src="@drawable/deer"/>
+            android:layout_marginEnd="6dp"
+            android:src="@drawable/avatar"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

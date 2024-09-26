@@ -12,12 +12,20 @@ public abstract class BaseFragment extends Fragment {
     abstract protected void init();
 
     public void toastAndLog(String message){
-        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
         Log.d(TAG, message);
+        if(getActivity() == null) return;
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+
     }
 
     protected void startActivityDirectly(Class<?> cls){
         Intent intent = new Intent(getActivity(), cls);
         startActivity(intent);
+    }
+
+    public void showErrorMessage(String errMsg){
+        Log.e(TAG, "Error: " + errMsg);
+        if(getActivity() == null) return;
+        Toast.makeText(getActivity(), errMsg, Toast.LENGTH_SHORT).show();
     }
 }

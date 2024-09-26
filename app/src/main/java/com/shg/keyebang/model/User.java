@@ -1,9 +1,17 @@
 package com.shg.keyebang.model;
 
 import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.datatype.BmobRelation;
+
+import cn.bmob.v3.datatype.BmobFile;
+
 
 public class User extends BmobUser {
+    private String nickname;
+    private String semester;
+    private String major;
+    private String contactMessage;
+    private boolean limit;
+
     public User(){
 
     }
@@ -13,38 +21,12 @@ public class User extends BmobUser {
         setPassword(password);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public User setName(String name) {
-        this.name = name;
-        return this;
-    }
-    public User setId4m3(String id4m3){
-        this.id4m3=id4m3;
-        return this;
-    }
-    public String getId4m3(){return id4m3;}
-    public User setPassword4m3(String password4m3){
-        this.password4m3=password4m3;
-        return this;
-    }
     public String getNickname() {
         return nickname;
     }
 
     public User setNickname(String nickname) {
         this.nickname = nickname;
-        return this;
-    }
-
-    public String getStudentId() {
-        return studentId;
-    }
-
-    public User setStudentId(String studentId) {
-        this.studentId = studentId;
         return this;
     }
 
@@ -57,10 +39,6 @@ public class User extends BmobUser {
         return this;
     }
 
-    public String getPassword4m3() {
-        return password4m3;
-    }
-
     public String getMajor() {
         return major;
     }
@@ -70,11 +48,21 @@ public class User extends BmobUser {
         return this;
     }
 
-    private String name;
-    private String nickname;
-    private String id4m3;
-    private String password4m3;
-    private String studentId;
-    private String semester;
-    private String major;
+    public String getContactMessage() {
+        return contactMessage;
+    }
+
+    public User setContactMessage(String contactMessage) {
+        this.contactMessage = contactMessage;
+        return this;
+    }
+
+    public boolean getLimit() {
+        return limit;
+    }
+
+    public User setLimit(boolean limit) {
+        this.limit = limit;
+        return this;
+    }
 }

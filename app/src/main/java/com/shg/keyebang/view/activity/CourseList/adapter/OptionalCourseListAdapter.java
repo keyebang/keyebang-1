@@ -1,4 +1,4 @@
-package com.shg.keyebang.view.activity.CourseList.adapter;
+package com.shg.keyebang.view.activity.courseList.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,9 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.shg.keyebang.R;
-import com.shg.keyebang.aatools.TimeCNUtil;
-import com.shg.keyebang.model.Course;
-import com.shg.keyebang.model.TopCourse;
+import com.shg.keyebang.model.ViewCourse;
 
 import java.util.ArrayList;
 
@@ -16,22 +14,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class OptionalCourseListAdapter extends RecyclerView.Adapter<OptionalCourseListAdapter.ListItemHolder> {
-    private ArrayList<Course> courses;
+    private ArrayList<ViewCourse> courses;
 
-    public static class ListItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView optionalCourseName;
-        private TextView optionalCourseMessage;
-        private String optionalCourseId;
+    public static class ListItemHolder extends RecyclerView.ViewHolder {
+        private final TextView optionalCourseName;
+        private final TextView optionalCourseMessage;
 
-        public ListItemHolder(View view) {
+        ListItemHolder(View view) {
             super(view);
             optionalCourseName = view.findViewById(R.id.optionalCourseName);
             optionalCourseMessage = view.findViewById(R.id.optionalCourseMessage);
-        }
-
-        @Override
-        public void onClick(View view) {
-
         }
     }
 
@@ -47,10 +39,9 @@ public class OptionalCourseListAdapter extends RecyclerView.Adapter<OptionalCour
 
     @Override
     public void onBindViewHolder(@NonNull ListItemHolder holder, int position) {
-        Course course = courses.get(position);
-        holder.optionalCourseName.setText(course.getClassName());
-        holder.optionalCourseMessage.setText(course.getCampus() +  "·周" + TimeCNUtil.weekdayToCN(course.getWeekday() + 1) + course.getFirstClass() + "-" + course.getLastClass() + " · " + course.getCredit());
-        holder.optionalCourseId = courses.get(position).getObjectId();
+        ViewCourse course = courses.get(position);
+        holder.optionalCourseName.setText(course.getCourseName());
+        holder.optionalCourseMessage.setText(course.getCampus() +  " · " + course.getCredit());
     }
 
     @Override
@@ -58,19 +49,15 @@ public class OptionalCourseListAdapter extends RecyclerView.Adapter<OptionalCour
         return courses.size();
     }
 
-    public void setCourseList(ArrayList<Course> courses) {
+    public void setCourseList(ArrayList<ViewCourse> courses) {
         this.courses = courses;
     }
 
     public String getCourseId(int position){
-        return courses.get(position).getObjectId();
+        return courses.get(position).getCourseId();
     }
 
     public String getCourseName(int position){
-        return courses.get(position).getClassName();
-    }
-
-    public String getCourseTeacher(int position) {
-        return courses.get(position).getTeacher();
+        return courses.get(position).getCourseName();
     }
 }
